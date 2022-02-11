@@ -4,3 +4,23 @@
 + Nix and NixOS are good, except for the GUI-related parts, such as X Window System, Wayland, etc.
 
 Why not enjoy the best parts of them? Then, here *macOS × Nix* comes.
+
+* Install Nix on macOS
+** download and verify installation script
+From [[https://nixos.org/download.html#nix-verify-installation][official installation]]:
+#+begin_src sh
+$ curl -o install-nix-2.6.0 https://releases.nixos.org/nix/nix-2.6.0/install
+$ curl -o install-nix-2.6.0.asc https://releases.nixos.org/nix/nix-2.6.0/install.asc
+$ gpg2 --keyserver hkps://keyserver.ubuntu.com --recv-keys B541D55301270E0BCF15CA5D8170B4726D7198DE
+$ gpg2 --verify ./install-nix-2.6.0.asc
+#+end_src
+
+If everything is fine, then install it via the recommended [[https://nixos.org/manual/nix/stable/installation/multi-user.html][multi-user installation]], and with macOS limited options:
+#+begin_src sh
+$ sh ./install-nix-2.6.0 --daemon --darwin-use-unencrypted-nix-store-volume
+#+end_src
+
+** verify installation
+#+begin_src sh
+$ nix-env --version
+#+end_src
