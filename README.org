@@ -4,10 +4,16 @@
 + [[https://nixos.org/download.html#download-nix][Nix]] and [[https://nixos.org/][NixOS]] are good, except for the GUI-related parts, such as X Window System, Wayland, etc.
 
 Why not enjoy the best parts of them? Then, here *macOS × Nix* comes:
-+ macOS provides great UI
++ macOS provides great UI.
 + Nix acts as a configuration and package manager, which makes macOS reproducible:
-  + most parts of configurations are managed by Nix
-  + all softwares are managed by Nix
+  + most parts of configurations are managed by Nix.
+  + all softwares are managed by Nix.
+
+This repo will:
++ Introduce how to install Nix-related tools.
++ Manage dependencies with [[https://github.com/nmattia/niv/][niv]].
++ Manage sensitive information with [[https://github.com/AGWA/git-crypt][git-crypt]].
++ Provide sample configurations that can be used on a daily basis.
 
 * Choose macOS version
 I'm using macOS Big Sur.
@@ -104,3 +110,10 @@ Add =/run/current-system/sw/bin/bash= to =/etc/shells=, then run:
 #+begin_src sh
 $ chsh -s /run/current-system/sw/bin/bash
 #+end_src
+
+
+* Good stuff of Nix
+** Ad-hoc shell environments
+Check out https://nix.dev/tutorials/ad-hoc-developer-environments.
+
+* Use Nix as deployment tools for remote servers
