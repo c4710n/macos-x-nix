@@ -1,0 +1,86 @@
+{
+    "NUR": {
+        "branch": "master",
+        "description": "Nix User Repository: User contributed nix packages [maintainer=@Mic92]",
+        "homepage": "https://nur.nix-community.org/",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "3f2ec86cb89bf46db19192c3eb986aa3682fbded",
+        "sha256": "1nygxin8qnirzn79ax84m3zm6cabla0ca61xv9xcxmzmxxgqsrp9",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/NUR/archive/3f2ec86cb89bf46db19192c3eb986aa3682fbded.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "emacs-overlay": {
+        "branch": "master",
+        "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "da2f552d133497abd434006e0cae996c0a282394",
+        "sha256": "023gamkii7bswk5vxb9dr0v7kq34abk8kj7kfrkzq8s0757r45pc",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/da2f552d133497abd434006e0cae996c0a282394.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "home-manager": {
+        "branch": "master",
+        "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
+        "homepage": "https://nix-community.github.io/home-manager/",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "6d9d9294d09b5e88df65f8c6651efb8a4d7d2476",
+        "sha256": "08ksdh2bfagxxn8vh540wkfa64547vswrr55lz9zpmn5mwkgydqv",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/home-manager/archive/6d9d9294d09b5e88df65f8c6651efb8a4d7d2476.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "niv": {
+        "branch": "master",
+        "description": "Easy dependency management for Nix projects",
+        "homepage": "https://github.com/nmattia/niv",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "9cb7ef336bb71fd1ca84fc7f2dff15ef4b033f2a",
+        "sha256": "1ajyqr8zka1zlb25jx1v4xys3zqmdy3prbm1vxlid6ah27a8qnzh",
+        "type": "tarball",
+        "url": "https://github.com/nmattia/niv/archive/9cb7ef336bb71fd1ca84fc7f2dff15ef4b033f2a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nix-darwin": {
+        "branch": "master",
+        "description": "nix modules for darwin",
+        "homepage": "",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "bcdb6022b3a300abf59cb5d0106c158940f5120e",
+        "sha256": "0hdfx1i0vmmk00qfcw5f6nwd7p6jdddngvp7rhx47knnn8anammv",
+        "type": "tarball",
+        "url": "https://github.com/LnL7/nix-darwin/archive/bcdb6022b3a300abf59cb5d0106c158940f5120e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "master",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "78cef06321d4e15e09cefed9ff039cc36201127d",
+        "sha256": "1ar2xqzg5v8yn02m1ijx2ir2j33j17wgsvrj59rffywg3pyjys4r",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/78cef06321d4e15e09cefed9ff039cc36201127d.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs-firefox-darwin": {
+        "branch": "main",
+        "description": "Nixpkgs overlay with Firefox binary builds for macOS",
+        "homepage": null,
+        "owner": "bandithedoge",
+        "repo": "nixpkgs-firefox-darwin",
+        "rev": "4687073c5cb22e59baeaad16575d6c4a6a88aa3a",
+        "sha256": "1bprvd07dg1cy4mycdc4r0ykm95hf0diarsvjxl6blh6hsypknqp",
+        "type": "tarball",
+        "url": "https://github.com/bandithedoge/nixpkgs-firefox-darwin/archive/4687073c5cb22e59baeaad16575d6c4a6a88aa3a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
