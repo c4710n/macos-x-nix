@@ -74,3 +74,22 @@ The option =--darwin-use-unencrypted-nix-store-volume= is no longer needed and w
 #+begin_src sh
 $ nix-env --version
 #+end_src
+
+* Install nix-darwin
+[[https://github.com/LnL7/nix-darwin][nix-darwin]] provides =/etc/nixos/configuration.nix=-like configuration for macOS.
+
+It allows us configure dock, finder, launchd, software update policy with Nix expressions, etc.
+
+Just install it according to official docs.
+
+** (optional) setup shell environment
+=/etc/static/bashrc= which is the bash profile setup by *nix-darwin* will read =/etc/bash.local=. You can create or tweak it by your own.
+
+* Install Homebrew
+Some software, especially the GUI applications are not provided by Nix. [[https://brew.sh][Homebrew]] is a good addition for the missing parts.
+
+Just install it according to official docs with default options. *nix-darwin* will take care of the rest.
+
+#+begin_quote
+You can think of *Homebrew* as an additional source of software for *nix*. We will never call =brew= from CLI directly.
+#+end_quote
