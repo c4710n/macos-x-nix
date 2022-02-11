@@ -5,7 +5,44 @@
 
 Why not enjoy the best parts of them? Then, here *macOS × Nix* comes.
 
-* Install Nix on macOS
+* Choose macOS version
+I'm using macOS Big Sur.
+
+#+begin_quote
+Following steps aren't tested on newer version of macOS.
+#+end_quote
+
+* Install macOS
+First, [[https://support.apple.com/en-us/HT201372][create a bootable installer for macOS]].
+
+Then, use the prepared USB flash drive to install macOS as normal.
+
+Then, enable:
++ FileVault
++ Firewall
+
+#+begin_note
+APFS(encrypted) equals to APFS with File Vault enabled.
+#+end_note
+
+* Misc setup of macOS
+** setup keyboard layout
+If you are using non-standard keyboard layout, such as [[https://www.kaufmann.no/roland/dvorak/][Programmer Dovrak]], etc. It's time to set it up.
+
+*** (optional) setup modifier keys
++ =Caps Lock= -> =Control=
++ =Option= -> =Command=
++ =Command= -> =Option=
+
+*** (options) setup shortcuts for changing input sources
+#+begin_src text
+System Preferences > Keyboard > Shortcuts > Input Sources > Select input source
+#+end_src
+
+** setup global proxy
+If you are in a country whose internet is audited by goverment. You'd better configure a proxy. Or, you will not be able to install Nix.
+
+* Install Nix
 ** download and verify installation script
 From [[https://nixos.org/download.html#nix-verify-installation][official installation]]:
 #+begin_src sh
