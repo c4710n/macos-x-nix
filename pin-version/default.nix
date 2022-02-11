@@ -1,7 +1,7 @@
 { lib, config, pkgs, options, ... }:
 
 let
-  pinned = import ./nix/sources.nix;
+  pinned = import ../nix/sources.nix;
   pinnedNixpkgs = pinned.nixpkgs;
   pinnedNixDarwin = pinned.nix-darwin;
   pinnedHomeManager = pinned.home-manager;
@@ -16,13 +16,11 @@ in
     # Only use paths which are declared at here.
     "darwin=${pinnedNixDarwin}"
     "nixpkgs=${pinnedNixpkgs}"
-    "nixpkgs-overlays=$HOME/.nixpkgs/overlays"
+    "nixpkgs-overlays=$HOME/.nixpkgs/pin-version/overlays"
   ];
 
   # configure home-manager
   imports = [ "${pinnedHomeManager}/nix-darwin" ];
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
 
   # configure overlays
   # + https://github.com/jwiegley/nix-config/blob/ec04d837e8bfae381a9a6ea11ad5f2b1680868c2/config/darwin.nix#L44

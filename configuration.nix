@@ -22,6 +22,8 @@
   system.stateVersion = 4;
 
   imports = [
-    ./pin-version.nix
+    ./packages
+    ./pin-version
+    ./modules/home-manager.nix
   ];
 }

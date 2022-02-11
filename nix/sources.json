@@ -5,10 +5,10 @@
         "homepage": "https://nur.nix-community.org/",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3f2ec86cb89bf46db19192c3eb986aa3682fbded",
-        "sha256": "1nygxin8qnirzn79ax84m3zm6cabla0ca61xv9xcxmzmxxgqsrp9",
+        "rev": "870d562badb35a461867697ec22054a615ea1336",
+        "sha256": "1d9w60ffa21fk21c0b2j5q4y215jmxfklr678abd42vk6lq2a0p3",
         "type": "tarball",
-        "url": "https://github.com/nix-community/NUR/archive/3f2ec86cb89bf46db19192c3eb986aa3682fbded.tar.gz",
+        "url": "https://github.com/nix-community/NUR/archive/870d562badb35a461867697ec22054a615ea1336.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "emacs-overlay": {
@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "da2f552d133497abd434006e0cae996c0a282394",
-        "sha256": "023gamkii7bswk5vxb9dr0v7kq34abk8kj7kfrkzq8s0757r45pc",
+        "rev": "246ff8bf5cd1b83e64377a14fab90d31954837b8",
+        "sha256": "1f62s6c17yia94xszla3iyvam3rmbnqa4mwsfy74m1v7ajdwl97w",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/da2f552d133497abd434006e0cae996c0a282394.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/246ff8bf5cd1b83e64377a14fab90d31954837b8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -60,15 +60,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "master",
+        "branch": "nixpkgs-21.11-darwin",
         "description": "Nix Packages collection",
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "78cef06321d4e15e09cefed9ff039cc36201127d",
-        "sha256": "1ar2xqzg5v8yn02m1ijx2ir2j33j17wgsvrj59rffywg3pyjys4r",
+        "rev": "0d1d5d7e3679fec9d07f2eb804d9f9fdb98378d3",
+        "sha256": "1h07qm69sf9ixfs79hqvacdg1ml7qmgmcvgwsaibqwaypsy5afn6",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/78cef06321d4e15e09cefed9ff039cc36201127d.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/0d1d5d7e3679fec9d07f2eb804d9f9fdb98378d3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-firefox-darwin": {
