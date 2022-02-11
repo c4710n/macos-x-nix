@@ -93,3 +93,14 @@ Just install it according to official docs with default options. *nix-darwin* wi
 #+begin_quote
 You can think of *Homebrew* as an additional source of software for *nix*. We will never call =brew= from CLI directly.
 #+end_quote
+
+* Take a break
+Now, the basic setup has been completed.
+
+If you are an experienced user of Nix, you can ignore the following parts, just write your own Nix expressions. ;)
+
+* Change default shell
+Add =/run/current-system/sw/bin/bash= to =/etc/shells=, then run:
+#+begin_src sh
+$ chsh -s /run/current-system/sw/bin/bash
+#+end_src
