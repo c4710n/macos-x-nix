@@ -1,9 +1,13 @@
 #+TITLE: macOS × Nix
 
-+ macOS is good, but only the GUI-related parts.
-+ Nix and NixOS are good, except for the GUI-related parts, such as X Window System, Wayland, etc.
++ [[https://developer.apple.com/macos/][macOS]] is good, but only the GUI-related parts.
++ [[https://nixos.org/download.html#download-nix][Nix]] and [[https://nixos.org/][NixOS]] are good, except for the GUI-related parts, such as X Window System, Wayland, etc.
 
-Why not enjoy the best parts of them? Then, here *macOS × Nix* comes.
+Why not enjoy the best parts of them? Then, here *macOS × Nix* comes:
++ macOS provides great UI
++ Nix acts as a configuration and package manager, which makes macOS reproducible:
+  + most parts of configurations are managed by Nix
+  + all softwares are managed by Nix
 
 * Choose macOS version
 I'm using macOS Big Sur.
@@ -25,7 +29,7 @@ Then, enable:
 APFS(encrypted) equals to APFS with File Vault enabled.
 #+end_note
 
-* Misc setup of macOS
+* setup macOS
 ** setup keyboard layout
 If you are using non-standard keyboard layout, such as [[https://www.kaufmann.no/roland/dvorak/][Programmer Dovrak]], etc. It's time to set it up.
 
@@ -39,8 +43,13 @@ If you are using non-standard keyboard layout, such as [[https://www.kaufmann.no
 System Preferences > Keyboard > Shortcuts > Input Sources > Select input source
 #+end_src
 
-** setup global proxy
+** (optional) setup global proxy
 If you are in a country whose internet is audited by goverment. You'd better configure a proxy. Or, you will not be able to install Nix.
+
+Possible tools:
++ [[https://nssurge.com/][Surge for Mac]]
++ [[https://github.com/yichengchen/clashX][ClashX]]
++ ...
 
 * Install Nix
 ** download and verify installation script
@@ -56,6 +65,10 @@ If everything is fine, then install it via the recommended [[https://nixos.org/m
 #+begin_src sh
 $ sh ./install-nix-2.6.0 --daemon --darwin-use-unencrypted-nix-store-volume
 #+end_src
+
+#+begin_quote
+The option =--darwin-use-unencrypted-nix-store-volume= is no longer needed and will be removed in the future.
+#+end_quote
 
 ** verify installation
 #+begin_src sh
