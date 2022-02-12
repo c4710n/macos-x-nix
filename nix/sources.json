@@ -5,10 +5,10 @@
         "homepage": "https://nur.nix-community.org/",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "870d562badb35a461867697ec22054a615ea1336",
-        "sha256": "1d9w60ffa21fk21c0b2j5q4y215jmxfklr678abd42vk6lq2a0p3",
+        "rev": "4e0b35adbb9d5864cdfe4bf48120840d1d5a1576",
+        "sha256": "1gmdjzv1waqb37bk911qgc3alxlgv4lbc2fiq4rzx6zrh8dwv8i7",
         "type": "tarball",
-        "url": "https://github.com/nix-community/NUR/archive/870d562badb35a461867697ec22054a615ea1336.tar.gz",
+        "url": "https://github.com/nix-community/NUR/archive/4e0b35adbb9d5864cdfe4bf48120840d1d5a1576.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "emacs-overlay": {
@@ -24,15 +24,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
-        "branch": "master",
+        "branch": "release-21.11",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
         "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6d9d9294d09b5e88df65f8c6651efb8a4d7d2476",
-        "sha256": "08ksdh2bfagxxn8vh540wkfa64547vswrr55lz9zpmn5mwkgydqv",
+        "rev": "2860d7e3bb350f18f7477858f3513f9798896831",
+        "sha256": "0zkhdf3d2pqr6lr2mibrngp0fjcpdjk9abc55kqp43mq05caq6f9",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/6d9d9294d09b5e88df65f8c6651efb8a4d7d2476.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/2860d7e3bb350f18f7477858f3513f9798896831.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {

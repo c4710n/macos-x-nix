@@ -1,4 +1,4 @@
-{ lib, config, pkgs, options, ... }:
+{ pkgs, lib, username, ... }:
 
 let
   pinned = import ../nix/sources.nix;
@@ -18,9 +18,6 @@ in
     "nixpkgs=${pinnedNixpkgs}"
     "nixpkgs-overlays=$HOME/.nixpkgs/pin-version/overlays"
   ];
-
-  # configure home-manager
-  imports = [ "${pinnedHomeManager}/nix-darwin" ];
 
   # configure overlays
   # + https://github.com/jwiegley/nix-config/blob/ec04d837e8bfae381a9a6ea11ad5f2b1680868c2/config/darwin.nix#L44
@@ -45,4 +42,35 @@ in
       (filter
         (n: match ".*\\.nix" n != null)
         (attrNames (readDir path)));
+
+
+  # home-manager
+  imports = [ "${pinnedHomeManager}/nix-darwin" ];
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
+
+  # homebrew
+  homebrew = {
+    enable = true;
+    cleanup = "zap";
+    global.brewfile = true;
+    taps = [
+      "homebrew/cask"
+      "homebrew/cask-versions"
+    ];
+  };
+
+  # other config for home-manager and homebrew
+  home-manager.users."${username}" = {
+    manual.html.enable = true;
+
+    programs.bash.initExtra = ''
+      ,brew-use-path() {
+        eval "$(/usr/libexec/path_helper)"
+      }
+
+      # https://docs.brew.sh/Analytics
+      export HOMEBREW_NO_ANALYTICS=1
+    '';
+  };
 }
