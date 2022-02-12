@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Phoenix LiveView handle_event function
+# key: lv-he
+# --
+def handle_event(${1:event}, _params, socket) do
+  socket = assign(socket, ${2:key}: ${3:value})
+  {:noreply, socket}
+end

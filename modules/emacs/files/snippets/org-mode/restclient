@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: restclient
+# key: restclient
+# --
+
+* general
+#+NAME: base-url
+#+begin_src text
+https://httpbin.org
+#+end_src
+
+#+NAME: headers
+#+begin_src text
+Content-Type: application/json
+Accept: application/json
+#+end_src
+
+#+NAME: dynamic-path
+#+begin_src sh
+echo get
+#+end_src
+
+* requests
+#+begin_src restclient :noweb yes
+GET <<base-url>>/<<dynamic-path()>>
+<<headers>>
+#+end_src
+
+* last
+# local variables:
+# org-adapt-indentation: nil
+# end:

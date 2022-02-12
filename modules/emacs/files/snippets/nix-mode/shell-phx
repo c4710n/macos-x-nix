@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: nix-shell.nix for Phoenix project.
+# key: shell-phx
+# --
+# import current nixpkgs
+{ pkgs ? import <nixpkgs> {} }:
+
+# or import pinning nixpkgs
+# { pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/<hash>.tar.gz") {} }:
+
+with pkgs;
+
+mkShell {
+  buildInputs = [
+    beam.packages.erlangR24.elixir_1_12
+    nodejs-14_x
+  ]
+  ++ lib.optionals stdenv.isLinux [
+    # For ExUnit Notifier on Linux
+    libnotify
+
+    # For file_system on Linux
+    inotify-tools
+  ]
+  ++ lib.optionals stdenv.isDarwin ([
+    # For ExUnit Notifier on macOS
+    terminal-notifier
+
+    # For file_system on macOS
+    darwin.apple_sdk.frameworks.CoreFoundation
+    darwin.apple_sdk.frameworks.CoreServices
+  ]);
+}

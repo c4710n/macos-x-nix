@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+xcode-select --install
+softwareupdate --install -a

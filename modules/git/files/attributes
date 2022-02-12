@@ -1,0 +1,6 @@
+*.gpg filter=gpg diff=gpg
+
+package-lock.json diff=nodiff
+yarn.lock diff=nodiff
+
+mix.lock diff=nodiff

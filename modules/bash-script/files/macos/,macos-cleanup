@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+cwd=$(dirname "$(greadlink -f "$0")")
+. "$cwd"/lib/check_root
+
+ifs=$(df -H / | grep -E '/$' | awk '{print $4}' | cut -d "G" -f 1)
+echo "Total free space before cleanup is $ifs GB."
+
+echo "cleaning caches..."
+rm -rf /Library/Caches/*
+rm -rf ~/Library/Caches/*
+for x in ~/Library/Containers/*; do
+    rm -rf ~/Library/Containers/"$x"/Data/Library/Caches/*
+done
+
+echo "cleaning logs..."
+rm -rf /Library/logs/*
+rm -rf /var/log/*
+rm -rf /private/var/log/*
+rm -rf ~/Library/logs/*
+
+echo "cleaning user preference..."
+#rm -rf ~/Library/Preferences/*
+
+ffs=$(df -H / | grep -E '/$' | awk '{print $4}' | cut -d "G" -f 1)
+echo "Total free space after cleanup is $ffs GB."
+total=$(echo "$ffs - $ifs" | bc)
+if (( total >= 1 )); then
+    echo "You saved a total of $total GB of space"
+else
+    echo "You saved less than 1GB of space"
+fi

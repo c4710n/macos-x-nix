@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+BACKUP_NAME=$1
+BACKUP_PATH=$2
+
+BORG_REPO="/Volumes/BORG-macOS/backups/$BACKUP_NAME"
+
+help() {
+    CMD=$(basename "$0")
+    echo ""
+    echo "$CMD <backup name> <backup path>"
+    echo
+    echo "An example:"
+    echo
+    echo "  $CMD core ~/_BASTION_/_core"
+    echo
+    echo "  $CMD all ~/_BASTION_"
+    echo
+}
+
+msg() {
+    # notify-send "BORG AUTO BACKUP" "$1"
+    echo "$1"
+}
+
+check_borg_repo() {
+    msg "1. Checking Borg repo..."
+    if [ ! -d "$BORG_REPO" ]; then
+        msg "   + missed repo, create one."
+        mkdir -p "$BORG_REPO"
+        borg init --encryption=repokey "$BORG_REPO"
+    else
+        msg "   + existed repo, skip."
+    fi
+}
+
+backup() {
+    msg "2. Creating backups..."
+    export BORG_REPO
+
+    borg create \
+         --stats \
+         --progress \
+         --compression lz4 \
+         --exclude '**/node_modules' \
+         --exclude '**/_build' \
+         --exclude '**/.DS_Store' \
+         ::{now} \
+         "$BACKUP_PATH"
+
+
+    borg list
+}
+
+if [ -z "$BACKUP_NAME" ]; then
+    msg "BACKUP_NAME is not specified, skip."
+    help
+elif [ -z "$BACKUP_PATH" ]; then
+    msg "BACKUP_PATH is not specified, skip."
+    help
+else
+    check_borg_repo
+    backup
+fi

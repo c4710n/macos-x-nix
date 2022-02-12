@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: EEX if
+# key: eif
+# --
+<%= if $1 do %>
+  $2
+<% end %>

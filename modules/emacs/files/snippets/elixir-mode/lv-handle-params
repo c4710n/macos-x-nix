@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Phoenix LiveView handle_params function
+# key: lv-hp
+# --
+def handle_params(params, _url, socket) do
+  {:noreply, socket}
+end

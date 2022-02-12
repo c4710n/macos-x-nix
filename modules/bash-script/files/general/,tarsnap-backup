@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# backup files specified by ~/.tarsnap-paths via tarsnap
+
+BACKUP_PATHS=$HOME/.tarsnap-paths
+
+if [[ ! -e ~/.tarsnaprc ]]; then
+    echo "! missing ~/.tarsnaprc, exit."
+    exit 1
+fi
+
+if [[ ! -e ~/.tarsnap.key ]]; then
+    echo "! missing ~/.tarsnap.key, exit."
+    exit 1
+fi
+
+if [[ ! -e $BACKUP_PATHS ]]; then
+    echo "! missing $BACKUP_PATHS, exit."
+    exit 1
+fi
+
+cd ~/
+
+xargs -a $BACKUP_PATHS \
+      tarsnap -c \
+      -f "$(uname -n)-$(date +%Y-%m-%d_%H-%M-%S)" \
+      -v --humanize-numbers \
+      --exclude .DS_Store \
+      --exclude node_modules \
+      --exclude dist \
+      --exclude build \
+      --exclude _build \
+      --exclude deps \
+      --exclude ".elixir_ls" \
+      --exclude "__pycache__"

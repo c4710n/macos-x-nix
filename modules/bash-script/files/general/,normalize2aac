@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# https://superuser.com/questions/370625/ffmpeg-command-to-convert-mp3-to-aac
+
+INPUT=$1
+OUTPUT=$2
+
+ffmpeg \
+    -i "$INPUT" \
+    -c:a libfdk_aac \
+    "$OUTPUT"

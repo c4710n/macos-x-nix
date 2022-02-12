@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# swap content of two files or two directories
+
+set -e -u
+
+TMP=tmp.$(date +%s)-$$
+
+mv "$1" "$TMP" && \
+    mv "$2" "$1" && \
+    mv "$TMP" "$2"

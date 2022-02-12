@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cwd=$(dirname "$(greadlink -f "$0")")
+. "$cwd"/lib/check_root
+
+spctl --master-disable
+spctl --status

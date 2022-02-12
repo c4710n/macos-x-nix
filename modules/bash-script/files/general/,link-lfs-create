@@ -1,0 +1,31 @@
+#!/usr/bin/env elixir
+
+defmodule LinkLFS do
+  @bastion_env "BASTION_BASE"
+
+  def create() do
+    base_dir = check_env(@bastion_env)
+    store_lfs = Path.join(base_dir, "_store_/_lfs")
+    cwd = File.cwd!()
+
+    dir_name = Path.basename(cwd)
+    link_file = Path.join(cwd, "lfs")
+    dest_path = Path.join(store_lfs, dir_name)
+
+    File.mkdir_p!(dest_path)
+    System.cmd("gln", ["-snr", dest_path, link_file])
+  end
+
+  defp check_env(env) do
+    value = System.get_env(env)
+
+    if (value == "" or value == nil) do
+      IO.puts("error: #{env} is not set, exit.")
+      System.halt(1)
+    else
+      value
+    end
+  end
+end
+
+LinkLFS.create()

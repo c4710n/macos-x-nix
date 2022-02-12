@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: copyright
+# key: copyright
+# --
+Copyright © $0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: EEX <%= %> render block
+# key: erb
+# --
+<%= $1 %>

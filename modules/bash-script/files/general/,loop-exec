@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+usage() {
+  cat > /dev/stdout <<EOF
+  Loop exec command on level 1 directories in cwd
+  Usage: basename($0) 'echo syncing {}; cd {}; git pull; cd ..'
+EOF
+
+if (( $# == 0 )); then
+    usage
+else
+  find . -maxdepth 1 ! -path . -type d -exec bash -c "$@" \;
+fi

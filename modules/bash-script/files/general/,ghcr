@@ -1,0 +1,114 @@
+#!/usr/bin/env elixir
+
+defmodule GHCR.CLI do
+  @host "ghcr.io"
+  @docker_cmd "docker"
+
+  def run(args) do
+    {parsed, _argv, _errors} = OptionParser.parse(args,
+      strict: [owner: :string, repo: :string, image: :string],
+      aliases: [o: :owner, r: :repo, i: :image]
+    )
+
+    with {:ok, {owner, repo}} <- auto_detect_repo_info(),
+         :ok <- check(owner, repo),
+         {:ok, hash} <- get_repo_hash() do
+      date = Date.utc_today()
+      owner = Keyword.get(parsed, :owner, owner)
+      repo = Keyword.get(parsed, :repo, repo)
+      image = Keyword.get(parsed, :image, repo)
+      name = "#{@host}/#{owner}/#{repo}/#{image}:#{date}_#{hash}"
+
+      IO.puts("""
+      Hey, I'm trying to build:
+      + #{name}
+
+      * * *
+      """)
+
+      cmd("#{@docker_cmd} build -t #{name} .")
+      cmd("#{@docker_cmd} push #{name}")
+      IO.puts("""
+
+      * * *
+
+      Image has been built:
+      + #{name}
+      """)
+    else
+      {:error, _, message} ->
+        IO.puts("Error: #{message}")
+      help()
+    end
+  end
+
+  defp help() do
+    IO.puts("""
+
+    Usage:
+
+      #{current_cmd_name()} [--owner owner] [--repo repo] [--image image]
+
+    """)
+  end
+
+  defp check(owner, _repo) do
+    cond do
+      owner not in available_owners() ->
+        {:error, :bad_argv, "unknown owners, available owners are #{inspect(available_owners())}"}
+
+      true ->
+        :ok
+    end
+  end
+
+  defp auto_detect_repo_info() do
+    case cmd("git remote get-url origin") do
+      {url, 0} ->
+        <<"git@github.com:" <> identifier>> = url
+        [owner, repo] = identifier
+        |> String.trim()
+        |> String.trim(".git")
+        |> String.split("/")
+        {:ok, {owner, repo}}
+
+      _ ->
+        {:error, :git, "not a git repo"}
+    end
+  end
+
+  defp get_repo_hash() do
+    case cmd("git rev-parse --short HEAD") do
+      {hash, 0} -> {:ok, String.trim(hash)}
+      _ -> {:error, :git, "not a git repo"}
+    end
+  end
+
+  def current_cmd_name() do
+    Path.basename(__ENV__.file)
+  end
+
+  defp cmd(line) do
+    {command, args} = line
+    |> String.split()
+    |> List.pop_at(0)
+
+    System.cmd(command, args)
+  end
+
+  defp available_owners() do
+    result = "~/.config/#{current_cmd_name()}/available_owners"
+    |> Path.expand()
+    |> File.read()
+
+    case result do
+      {:ok, lines} ->
+        String.split(lines)
+
+      _ ->
+        []
+    end
+  end
+end
+
+GHCR.CLI.run(System.argv())

@@ -1,0 +1,63 @@
+# -*- mode: snippet -*-
+# name: Headers for LaTeX
+# key: latex-header
+# --
+
+* LaTeX 导出设置                              :noexport:
+#+begin_comment
+META INFO
+#+end_comment
+#+TITLE: TITLE
+#+AUTHOR: AUTHOR
+#+DATE: DATE
+
+#+begin_comment
+BASIC SETUP
+#+end_comment
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: article
+#+LATEX_HEADER: \usepackage{xltxtra}
+#+LATEX_HEADER: \usepackage{ctex}
+
+#+begin_comment
+IMPORT COLORS
+https://en.wikibooks.org/wiki/LaTeX/Colors#The_68_standard_colors_known_to_dvips
+#+end_comment
+#+LATEX_HEADER: \usepackage[dvipsnames]{xcolor}
+
+#+begin_comment
+SETUP FONT
+#+end_comment
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{PragmataPro}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setCJKmainfont{PingFang SC}
+
+#+begin_comment
+SETUP PAGE
++ another possible setup: \usepackage[left=2cm,right=2cm,top=1.5cm,bottom=1.5cm]{geometry}
+#+end_comment
+#+LATEX_HEADER: \usepackage[margin=0.7in]{geometry}
+
+#+begin_comment
+remove 2 space at the start of every paragraphs
+#+end_comment
+#+LATEX_HEADER: \usepackage[parfill]{parskip}
+
+#+begin_comment
+change the title of TOC
+#+end_comment
+#+LATEX_HEADER: \renewcommand{\contentsname}{目录}
+
+#+begin_comment
+SETUP HYPERLINKS
+#+end_comment
+#+LATEX_HEADER: \hypersetup{colorlinks = true,allcolors = Maroon,unicode}
+
+#+begin_comment
+SETUP MISC THINGS
+
+not useful for now:
++ \usepackage[utf8]{inputenc}
++ \usepackage{varwidth}
+#+end_comment

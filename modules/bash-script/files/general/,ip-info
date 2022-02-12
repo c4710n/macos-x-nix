@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# ================================================================
+# Usage: Get IP information
+#
+# Current API:  http://ipinfo.io/
+#
+# Alernative API:
+#     curl icanhazip.com
+#     curl ifconfig.me
+#     curl curlmyip.com
+#     curl ip.appspot.com
+#     curl ipinfo.io/ip
+#     curl ipecho.net/plain
+#     curl www.trackip.net/i
+#
+# According to:
+#     http://www.blackmoreops.com/2015/06/14/how-to-get-public-ip-from-linux-terminal/
+# ================================================================
+
+IP=$1
+curl http://ipinfo.io/${IP}
+echo

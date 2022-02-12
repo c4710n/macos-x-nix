@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: pdf
+# key: pdf_
+# --
+#+TITLE: Your Title
+#+AUTHOR:
+#+DATE: 2016 年 9 月
+#+LATEX_CMD: xelatex
+#+LATEX_HEADER: \usepackage{xltxtra}
+#+LATEX_HEADER: \usepackage{ctex}

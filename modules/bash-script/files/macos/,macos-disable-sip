@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+echo '# Enable/Disable System Integrity Protection in macOS
+
+1. Restart, Command + R to enter Recovery Mode.
+2. Open Terminal:
+  + `csrutil disable` to disable SIP.
+  + `csrutil enable` to enable SIP.
+3. Restart again.
+
+> Recommend you keep System Integrity Protection enabled for the best protection against viruses and malicious software.
+'

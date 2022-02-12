@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: EEX for comprehension with items
+# key: efor
+# --
+<%= for ${1:item} <- @$1s do %>
+  $2
+<% end %>

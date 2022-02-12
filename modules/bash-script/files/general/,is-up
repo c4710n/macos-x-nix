@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+DOMAIN=$1
+curl https://isitup.org/${DOMAIN}.json
+echo

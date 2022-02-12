@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Phoenix LiveView Module
+# key: lv-module
+# --
+defmodule $1Web.$2Live do
+  use $1Web, :live_view
+
+  $0
+end

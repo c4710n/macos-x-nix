@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: EEX if for attribute
+# key: eifa
+# --
+<%= if $1, do: "{$1}" %>

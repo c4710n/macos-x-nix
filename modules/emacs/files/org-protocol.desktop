@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Org Protocol Handler
+Icon=emacs
+Exec=emacsclient %u
+Terminal=false
+Categories=System;
+MimeType=x-scheme-handler/org-protocol;

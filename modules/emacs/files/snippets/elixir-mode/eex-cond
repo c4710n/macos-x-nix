@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: EEX cond
+# key: econd
+# --
+<%= cond do %>
+  <% $1 -> %>
+    $2
+  <% true -> %>
+    $3
+<% end %>

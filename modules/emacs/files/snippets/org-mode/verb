@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: FILETAGS for verb
+# key: verb
+# --
+
+#+FILETAGS: :verb:
+
+#+begin_quote
+Get more about =verb= from https://github.com/federicotdn/verb.
+#+end_quote
+
+
+* requests
+template https://reqres.in/api
+Content-Type: application/json
+Accept: application/json
+
+** Get users list
+GET /users
+
+# Local Variables:
+# eval: (verb-mode)
+# End:

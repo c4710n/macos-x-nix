@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# reference:
+# + https://gist.github.com/adamstac/1249295
+
+cwd=$(dirname "$(greadlink -f "$0")")
+. "$cwd"/lib/check_root
+
+# disable
+mdutil -a -E
+mdutil -a -i off
+launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+pkill -f /System/Library/CoreServices/Spotlight.app/Contents/MacOS/Spotlight
+
+# enable
+#launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+#mdutil -a -i on
+#pkill -f /System/Library/CoreServices/Spotlight.app/Contents/MacOS/Spotlight

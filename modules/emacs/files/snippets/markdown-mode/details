@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: details
+# key: details
+# --
+
+<details>
+  <summary></summary>
+  <p></p>
+</details>

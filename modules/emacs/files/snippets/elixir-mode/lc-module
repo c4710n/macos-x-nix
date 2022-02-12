@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Phoenix LiveComponent module
+# key: lc-module
+# --
+defmodule $1Web.$2Component do
+  use $1Web, :live_component
+end

@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+IMAGE=$1
+
+if [[ "$IMAGE" != *.svg ]]; then
+    echo "Please provide a valid SVG file."
+    exit 1
+fi
+
+TMP_PNG="/tmp/$(date +%F-%T)-favicon.png"
+
+convert -background none -resize 512x512 "$IMAGE" "$TMP_PNG"
+
+# an ico file for legacy browsers.
+convert "$TMP_PNG" \
+        \( -clone 0 -resize 16x16 \) \
+        \( -clone 0 -resize 32x32 \) \
+        \( -clone 0 -resize 48x48 \) \
+        \( -clone 0 -resize 64x64 \) \
+        -bordercolor transparent -delete 0 -alpha on \
+        favicon.ico
+
+# a file for modern browsers
+cp "$IMAGE" favicon.svg
+
+# a 180×180 PNG file which Apple devices will use if you add the page to home screen.
+convert "$TMP_PNG" -background transparent -gravity center -scale 140x140 -extent 180x180 apple-touch-icon.png
+
+# files for android devices.
+convert "$TMP_PNG" -resize 512x512 icon-512x512.png
+convert "$TMP_PNG" -resize 192x192 icon-192x192.png
+cat > site.manifest <<EOF
+{
+  "name": "Site Name",
+  "icons": [
+    { "src": "/icon-192x192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512x512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}
+EOF
+
+echo "Inject following contents to the template of HTML file:"
+echo ""
+echo '    <link rel="icon" href="/favicon.ico">'
+echo '    <link rel="icon" href="/favicon.svg" type="image/svg+xml">'
+echo '    <link rel="apple-touch-icon" href="/apple-touch-icon.png">'
+echo '    <link rel="manifest" href="/site.webmanifest">'

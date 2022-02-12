@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: File Local Variables
+# key: file-local-var
+# --
+;; Local Variables:
+;; eval: (eldoc-mode)
+;; eval: (setq org-adapt-indentation nil)
+;; End:

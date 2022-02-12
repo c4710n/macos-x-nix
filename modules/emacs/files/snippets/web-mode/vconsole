@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: vconsole
+# key: vconsole
+# --
+
+<script crossorigin src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+<script>
+  // VConsole will be exported to `window.VConsole` by default.
+  var vConsole = new window.VConsole();
+</script>

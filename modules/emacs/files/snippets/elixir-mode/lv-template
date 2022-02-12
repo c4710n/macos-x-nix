@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Phoenix LiveView inline template
+# key: lv-t
+# --
+~L"""
+$0
+"""

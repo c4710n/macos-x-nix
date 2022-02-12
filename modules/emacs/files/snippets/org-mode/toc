@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: toc
+# key: toc
+# --
+* Table Of Content
+  :PROPERTIES:
+  :toc: this
+  :END:

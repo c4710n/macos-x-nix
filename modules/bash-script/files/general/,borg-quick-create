@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -z "$BORG_REPO" ]; then
+    echo "BORG_REPO must be set before using this script."
+    exit 1
+fi
+
+borg create \
+--stats \
+--progress \
+--compression lz4 \
+--exclude '**/node_modules' \
+--exclude '**/.DS_Store' \
+::{now} \
+$@

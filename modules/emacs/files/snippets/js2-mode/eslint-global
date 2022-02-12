@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ESLint globals
+# key: eslint-global
+# --
+/* global var */

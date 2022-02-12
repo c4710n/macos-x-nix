@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+INPUT=$1
+OUTPUT=$2
+
+ffmpeg \
+    -i "$INPUT" \
+    -pix_fmt yuv420p \
+    -b:v 2M \
+    -b:a 160k \
+    -movflags faststart \
+    "$OUTPUT"

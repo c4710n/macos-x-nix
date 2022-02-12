@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+cat > /dev/stdout <<EOF
+Cheatsheet for borg:
+
+# init repo
+$ borg init --encryption=repokey /path/to/repo
+
+# backup
+$ export BORG_REPO=/path/to/repo
+$ borg-quick-create /path/to/src
+
+EOF

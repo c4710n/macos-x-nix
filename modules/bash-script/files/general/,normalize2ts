@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+INPUT=$1
+OUTPUT=$2
+
+ffmpeg \
+    -i "$INPUT" \
+    -f mpegts -codec:v mpeg1video -b:v 2M -bf 0 \
+    -codec:a mp2 -ar 44100 -ac 1 -b:a 128k \
+    "$OUTPUT"

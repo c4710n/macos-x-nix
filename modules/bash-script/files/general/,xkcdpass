@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+nix-shell -p python39Packages.xkcdpass --run 'xkcdpass -n 12'

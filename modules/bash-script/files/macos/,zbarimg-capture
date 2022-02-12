@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+TIMESTAMP=$(date +%s)
+FILE_SCREENSHOT="/tmp/zbarimage-capture-${TIMESTAMP}"
+
+screencapture -i "$FILE_SCREENSHOT"
+
+if test -e "$FILE_SCREENSHOT"; then
+    zbarimg -q "$FILE_SCREENSHOT" 2> /dev/null
+    rm "$FILE_SCREENSHOT"
+fi

@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+const path = require('path')
+
+const command = path.basename(process.argv[1])
+const args = process.argv.slice(2);
+
+const currentBandwidth = args[0] // Mbps
+
+if (!currentBandwidth) {
+  console.error('错误：未提供带宽值')
+  console.error('')
+  console.error('使用方式：')
+  console.error('')
+  console.error(`  $ ${command} 25`)
+  console.error('')
+  process.exit(1)
+} else if (currentBandwidth < 5) {
+  console.error('错误：带宽值需要大于 5')
+  process.exit(1)
+}
+
+const baseBandwidth = 5 // Mbps
+const priceBaseBandwidth = 0.063
+const priceExceedBaseBandwidth = 0.248
+const hoursInOneMonth = 24 * 30
+
+const price =
+  hoursInOneMonth *
+  (priceBaseBandwidth +
+    (currentBandwidth - baseBandwidth) * priceExceedBaseBandwidth)
+
+const pricePerGB = 0.8
+const dataUsage = price / pricePerGB
+
+const bandwidthWithUnit = `${currentBandwidth} Mbps`
+const priceWithUnit = `${Number.parseInt(price)} 元`
+const dataUsageWithUnit = `${Number.parseInt(dataUsage)} GB`
+
+console.log(`> 按固定带宽计费 —— ${bandwidthWithUnit}`)
+console.log(`  价格：${priceWithUnit} / 月`)
+console.log('')
+console.log('> 以上价格约等于')
+console.log(`  按使用流量计费时，${dataUsageWithUnit} 的价格`)
+console.log('')
+console.log('> 建议：')
+console.log(`1. 如果每月数据量低于 ${dataUsageWithUnit}，推荐使用『按使用流量计费』，带宽值无所谓。`)
+console.log(`2. 如果每月数据量高于 ${dataUsageWithUnit}，推荐使用『按固定带宽 ${bandwidthWithUnit} 计费』。`)
+console.log(`3. 如果峰值带宽明显大于 ${bandwidthWithUnit}，那么当前的带宽已经无法满足服务需求，请使用该计算器重新计算并查看建议。`)

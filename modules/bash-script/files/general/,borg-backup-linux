@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+
+BACKUP_NAME=$1
+BACKUP_PATH=$2
+SHOULD_BACKUP_ALL=$3
+
+BLOCK_DEVICE="/dev/disk/by-partlabel/BORG-BACKUP"
+MOUNTPOINT="/mnt/borg"
+BORG_REPO="$MOUNTPOINT/backups/$BACKUP_NAME"
+USERNAME=$(logname)
+
+HELP=$(cat <<EOF
+
+ $(basename "$0") — backup Linux with Borg.
+
+ Usage:
+   $(basename "$0") <backup name> <backup path> <should backup all>
+
+ Example:
+   $(basename "$0") yang ~/_BASTION_ true
+
+EOF
+)
+
+if [[ $# == 0 ]] || [[ "$1" == "-h" ]]; then
+    echo "$HELP"
+    exit 1
+fi
+
+msg() {
+    # notify-send "BORG AUTO BACKUP" "$1"
+    echo "$1"
+}
+
+reset() {
+    sudo umount --quiet "$BLOCK_DEVICE"
+}
+
+mount_device() {
+    msg "1. Mounting block device..."
+
+    msg "   + creating mountpoint."
+    mkdir -p "$MOUNTPOINT"
+
+    msg "   + mounting."
+    sudo mount "$BLOCK_DEVICE" "$MOUNTPOINT"
+
+    msg "   + fixing permissions."
+    sudo chown "$USERNAME" "$MOUNTPOINT"
+}
+
+check_borg_repo() {
+    msg "2. Checking Borg repo..."
+    if [ ! -d "$BORG_REPO" ]; then
+        msg "   + missed repo, create one."
+        mkdir -p "$BORG_REPO"
+        borg init --encryption=repokey "$BORG_REPO"
+    else
+        msg "   + existed repo, skip."
+    fi
+}
+
+backup() {
+    msg "3. Creating backups..."
+    export BORG_REPO
+
+    if [ -n "$SHOULD_BACKUP_ALL" ]; then
+        borg create \
+          --stats \
+          --progress \
+          --compression lz4 \
+          --exclude '**/node_modules' \
+          --exclude '**/_build' \
+          --exclude '**/.DS_Store' \
+          ::{now} \
+          "$BACKUP_PATH"
+    else
+        borg create \
+          --stats \
+          --progress \
+          --compression lz4 \
+          --exclude '**/node_modules' \
+          --exclude '**/_build' \
+          --exclude '**/.DS_Store' \
+          --exclude '**/zeal' \
+          --exclude '**/books-all' \
+          ::{now} \
+          "$BACKUP_PATH"
+    fi
+
+    borg list
+}
+
+if [ ! -b "$BLOCK_DEVICE" ]; then
+    msg "No suitable device is detected, skip."
+    exit 1
+elif [ -z "$BACKUP_NAME" ]; then
+    msg "BACKUP_NAME is not specified, skip."
+    help
+elif [ -z "$BACKUP_PATH" ]; then
+    msg "BACKUP_PATH is not specified, skip."
+    help
+else
+    reset
+    mount_device
+    check_borg_repo
+    backup
+    reset
+fi

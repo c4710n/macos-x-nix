@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Phoenix LiveView handle_info function
+# key: lv-hi
+# --
+def handle_info(${1:message}, socket) do
+  socket = assign(socket, ${2:key}: ${3:value})
+  {:noreply, socket}
+end

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Phoenix LiveView Test
+# key: lv-test
+# --
+test "${1:description}", %{conn: conn} do
+  {:ok, view, _html} = live(conn, "${2:path}")
+  $0
+end

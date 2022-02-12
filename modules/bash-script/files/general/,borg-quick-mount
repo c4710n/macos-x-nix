@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+borg mount --bypass-lock -o "uid=$(id -u),gid=$(id -g)" "$@"

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+nix-store --optimize
+nix-collect-garbage -d
+
+nix-store --optimize
+sudo nix-collect-garbage -d

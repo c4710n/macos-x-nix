@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: EEX unless
+# key: eunless
+# --
+<%= unless $1 do %>
+  $2
+<% end %>

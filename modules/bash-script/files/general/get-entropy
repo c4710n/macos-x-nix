@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Userful when generating PGP key.
+
+/usr/sbin/rngd -f -r /dev/urandom

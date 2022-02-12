@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: OS-sensitive module
+# key: osm
+# --
+
+{ pkgs, lib, ... }:
+
+with pkgs;
+with lib;
+
+let
+in
+mkMerge [
+
+  (mkIf stdenv.isDarwin {
+  })
+
+  (mkIf stdenv.isLinux {
+  })
+
+]

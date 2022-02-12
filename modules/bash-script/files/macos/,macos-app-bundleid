@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+APP_LOCATION=$1
+mdls -name kMDItemCFBundleIdentifier -r "$APP_LOCATION"

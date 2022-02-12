@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: shebang hack
+# key: shebang-hack
+# --
+#!/bin/sh
+":" // a shebang hack; exec /usr/bin/env <command with arguments> "\$0" "$@"

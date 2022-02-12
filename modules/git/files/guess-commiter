@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+echo 'Guessing git commiter...'
+
+remote=$(git remote -v | awk '/\(push\)$/ {print $2}')
+
+log_error() {
+    echo -e "\e[31m$*\e[0m"
+}
+
+if [[ $remote == *github.com* ]]; then
+    type="GitHub"
+    name="c4710n"
+    email="c4710n@users.noreply.github.com"
+elif [[ $remote == *sr.ht* ]]; then
+    name="c4710n"
+    email="c4710n@users.noreply.sr.ht"
+elif [[ $remote == *gitlab.com* ]]; then
+    name="c4710n"
+    email="c4710n@users.noreply.gitlab.com"
+elif [[ $remote == *zxunity* ]]; then
+    name="douzk"
+    email="douzk@zxunity.com"
+elif [[ $remote == *local* ]]; then
+    # for localhost private repo without pushing to remote
+    name="historian"
+    email="historian@local"
+else
+    log_error "Failed to guess."
+    exit 1
+fi
+
+if [[ $type == "GitHub" ]]; then
+    echo "+ [forge] configure github.user as $name"
+    git config github.user "$name"
+fi
+
+echo "+ [git] configure user.name as $name"
+git config user.name "$name"
+
+echo "+ [git] configure user.email as $email"
+git config user.email "$email"

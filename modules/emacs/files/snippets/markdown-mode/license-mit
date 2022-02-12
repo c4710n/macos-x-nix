@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: license-mit
+# key: license-mit
+# --
+
+## License
+[MIT](https://<domain>/licenses/MIT.txt) © [name](url)

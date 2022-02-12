@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Phoenix LiveView Test Module
+# key: lv-test-module
+# --
+defmodule $1Web.$2Test do
+  use $1Web.ConnCase, async: true
+
+  import Phoenix.LiveViewTest
+
+  $0
+end
