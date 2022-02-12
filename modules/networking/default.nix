@@ -17,10 +17,10 @@ in
     ENHANCED_MODE_DNS="198.18.0.2"
 
     if [ "$CURRENT_DNS" != "$LOCAL_DNS" ] && [ "$CURRENT_DNS" != "$ENHANCED_MODE_DNS" ]; then
-        echo "[DNS] setting up DNS as $LOCAL_DNS"
+        echo "setting DNS as $LOCAL_DNS"
         networksetup -setdnsservers ${networkName} $LOCAL_DNS
     else
-        echo "[DNS] skipping..."
+        echo "skipping DNS setting..."
     fi
   '';
 

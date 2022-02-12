@@ -5,7 +5,7 @@ let
 in
 {
   system.activationScripts.extraActivation.text = ''
-    echo "[Terminal] setting up..."
+    echo "setting up terminal..."
     plutil -replace "Window Settings".Basic.useOptionAsMetaKey -bool YES ${configFile}
     plutil -replace "Window Settings".Basic.Bell -bool NO ${configFile}
     plutil -replace "Window Settings".Basic.Bell -bool NO ${configFile}

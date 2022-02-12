@@ -15,7 +15,7 @@ in
   };
 
   system.activationScripts.extraActivation.text = ''
-    echo "[RIME] cleaning ~/${path}/build ..."
+    echo "cleaning ~/${path}/build ..."
     rm -rf ${homeDir}/${path}/build
   '';
 }
