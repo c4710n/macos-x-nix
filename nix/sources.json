@@ -35,6 +35,18 @@
         "url": "https://github.com/nix-community/home-manager/archive/2860d7e3bb350f18f7477858f3513f9798896831.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "morph": {
+        "branch": "master",
+        "description": "NixOS deployment tool",
+        "homepage": null,
+        "owner": "DBCDK",
+        "repo": "morph",
+        "rev": "2b7e9eda43bca93010e917b541f19ab3972484e1",
+        "sha256": "0078bwyva2v15lyrm94cv9kwlhy3f7s2w0w84npwjmi91cdi7585",
+        "type": "tarball",
+        "url": "https://github.com/DBCDK/morph/archive/2b7e9eda43bca93010e917b541f19ab3972484e1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",

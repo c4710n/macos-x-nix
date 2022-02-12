@@ -11,6 +11,9 @@ in
 
     # the tool for managing secrets
     git-crypt
+
+    # the tool for manageing local virtual machines
+    morph
   ];
 
   # Auto upgrade nix package and the daemon service.
