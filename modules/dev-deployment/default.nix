@@ -7,6 +7,11 @@ lib.mkMerge [
     homebrew.brews = [ "flyctl" ];
   }
 
+  # virtualbox
+  {
+    homebrew.casks = [ "virtualbox" ];
+  }
+
   # docker
   {
     home-manager.users."${username}" = {
