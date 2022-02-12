@@ -64,6 +64,8 @@ in
     ./modules/tmux
     # ./modules/texlive
 
+    ./modules/nix-builder
+
     ./modules/app-necessary
     ./modules/app-terminal
     ./modules/app-input-method
