@@ -50,7 +50,7 @@ System Preferences > Keyboard > Shortcuts > Input Sources > Select input source
 #+end_src
 
 ** (optional) setup global proxy
-If you are in a country whose internet is audited by goverment. You'd better configure a proxy. Or, you will not be able to install Nix.
+In my country, the internet is audited by goverment. I would like to configure a proxy. Or, I can't install Nix.
 
 Possible tools:
 + [[https://nssurge.com/][Surge for Mac]]
@@ -89,7 +89,7 @@ It allows us configure dock, finder, launchd, software update policy with Nix ex
 Just install it according to official docs.
 
 ** (optional) setup shell environment
-=/etc/static/bashrc= which is the bash profile setup by *nix-darwin* will read =/etc/bash.local=. You can create or tweak it by your own.
+=/etc/static/bashrc= which is the bash profile setup by *nix-darwin* will read =/etc/bash.local=.
 
 * Install Homebrew
 Some software, especially the GUI applications are not provided by Nix. [[https://brew.sh][Homebrew]] is a good addition for the missing parts.
@@ -97,13 +97,11 @@ Some software, especially the GUI applications are not provided by Nix. [[https:
 Just install it according to official docs with default options. *nix-darwin* will take care of the rest.
 
 #+begin_quote
-You can think of *Homebrew* as an additional source of software for *nix*. We will never call =brew= from CLI directly.
+Think of *Homebrew* as an additional source of software for *nix*. =brew= will never be called  from CLI directly.
 #+end_quote
 
 * Take a break
 Now, the basic setup has been completed.
-
-If you are an experienced user of Nix, you can ignore the following parts, just write your own Nix expressions. ;)
 
 * Change default shell
 Add =/run/current-system/sw/bin/bash= to =/etc/shells=, then run:
@@ -111,9 +109,54 @@ Add =/run/current-system/sw/bin/bash= to =/etc/shells=, then run:
 $ chsh -s /run/current-system/sw/bin/bash
 #+end_src
 
+* Use sample configurations
+Link config to =~/.nixpkgs= with following command:
+#+begin_src sh
+$ ./bootstrap.sh
+#+end_src
 
-* Good stuff of Nix
-** Ad-hoc shell environments
-Check out https://nix.dev/tutorials/ad-hoc-developer-environments.
+Rebuild system with =darwin-rebuild=:
+#+begin_src sh
+$ darwin-rebuild switch -I darwin-config=$HOME/.nixpkgs/configuration.nix
+#+end_src
 
-* Use Nix as deployment tools for remote servers
+After that, you can rebuild system as normal:
+#+begin_src sh
+$ darwin-rebuild switch
+#+end_src
+
+* Fine-tune the system manually
+#+begin_quote
+Not everything can be done automatically.
+#+end_quote
+
+** disable spotlight
+#+begin_src sh
+$ sudo ,macos-disable-spotlight
+#+end_src
+
+** adjust Terminal
++ =View > Hide Tab Bar= - Prevent Terminal.app from displaying a tab bar when there is only one tab open.
++ =Preferences > Profiles > Keyboard > Use Options as Meta key= - Help me to input faster.
+
+* Restore Backups
+Install =osxfuse= before mounting backups:
+#+begin_src sh
+$ brew install --cask macfuse
+#+end_src
+
+Reboot to active macfuse.
+
+Restore backups:
+#+begin_src sh
+$ export BORG_REPO=/path/to/borg-repo
+$ borg mount ::2021-04-21T11:34:37 /path/to/mount/point
+$ cp -rp <...> <...>
+#+end_src
+
+* More
++ [[https://nixos.org/manual/nixpkgs/stable/][Nixpkgs Manual]]
++ [[https://nix.dev/][nix.dev]]
+
+* Last
+Have fun!
