@@ -154,9 +154,12 @@ $ borg mount ::2021-04-21T11:34:37 /path/to/mount/point
 $ cp -rp <...> <...>
 #+end_src
 
-* More
-+ [[https://nixos.org/manual/nixpkgs/stable/][Nixpkgs Manual]]
-+ [[https://nix.dev/][nix.dev]]
+* Learn More
++ Tutorials:
+  - [[https://nixos.org/manual/nixpkgs/stable/][Nixpkgs Manual]]
+  - [[https://nix.dev/][nix.dev]] - use Nix in your daily development
++ Others' Nix config
+  - [[https://github.com/cmacrae/config][cmacrae's config]]
 
 * Last
 Have fun!
