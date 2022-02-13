@@ -21,11 +21,10 @@ lib.mkMerge [
   (
     let
       hostName = "nix-builder";
-      ip = "192.168.56.128";
+      host = "192.168.56.128";
       sshPort = 22;
       sshUser = "root";
-      sshKeyName = "nix/ssh_key_for_build_machines";
-      sshKeyPath = "/etc/${sshKeyName}";
+      sshKeyPath = "/etc/nix/ssh_key_for_build_machines";
     in
     {
       # Step 1 - configure a build machine for x86_64-linux.
@@ -38,14 +37,23 @@ lib.mkMerge [
         chmod 0600 ${sshKeyPath}
       '';
 
+      home-manager.users."root" = {
+        home.file.".ssh/config".text = ''
+          Host ${hostName}
+            User ${sshUser}
+            HostName ${host}
+            Port ${toString sshPort}
+            IdentityFile ${sshKeyPath}
+            IdentitiesOnly yes
+        '';
+      };
+
       # Step 3 - setup this machine as a build machine.
       nix.distributedBuilds = true;
       nix.buildMachines = [
         {
           hostName = hostName;
-          sshUser = sshUser;
-          sshKey = sshKeyPath;
-          systems = [ "x86_64-linux" ];
+          system = "x86_64-linux";
           maxJobs = 2;
         }
       ];
@@ -57,7 +65,7 @@ lib.mkMerge [
       #   This is useful when you have lots of keys in SSH Agent, which will trigger
       #   the login failure due to exceeding the maximum number of attempts.
       home-manager.users."${username}".programs.bash.shellAliases = {
-        ",enter-nix-builder" = "sudo -p 'root password on macOS: ' ssh -o IdentitiesOnly=yes -i ${sshKeyPath} -p ${toString sshPort} ${sshUser}@${ip}";
+        ",enter-nix-builder" = "sudo -p 'root password on macOS: ' ssh ${hostName}";
       };
     }
   )
