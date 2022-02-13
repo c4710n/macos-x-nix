@@ -71,6 +71,18 @@
         "url": "https://github.com/LnL7/nix-darwin/archive/bcdb6022b3a300abf59cb5d0106c158940f5120e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nixos": {
+        "branch": "nixos-21.11",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7adc9c14ec74b27358a8df9b973087e351425a79",
+        "sha256": "09dpk1c06jjcvxccgsgaz6a843vjgaglqpyix07fdc34hcrs5zmh",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/7adc9c14ec74b27358a8df9b973087e351425a79.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixpkgs": {
         "branch": "nixpkgs-21.11-darwin",
         "description": "Nix Packages collection",
