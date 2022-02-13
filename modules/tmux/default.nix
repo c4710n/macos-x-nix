@@ -1,6 +1,24 @@
-{ username, pkgs, ... }:
+# Usage:
+#
+# Start this command `/run/current-system/sw/bin/tmux new-session -A -s main` in terminal.
+#
+{ config, username, pkgs, ... }:
 
 {
+  environment.systemPackages = [
+    # link tmux installed by home-manager to /run/current-system/sw/bin/tmux
+    (
+      let
+        tmux = config.home-manager.users."${username}".programs.tmux.package;
+      in
+      pkgs.writeScriptBin "tmux" ''
+        #!${pkgs.stdenv.shell}
+
+        exec ${tmux}/bin/tmux $@
+      ''
+    )
+  ];
+
   home-manager.users."${username}" = {
     # tmux
     programs.tmux = {
