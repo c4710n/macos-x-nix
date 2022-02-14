@@ -16,6 +16,6 @@
     "colorpicker-skalacolor"
 
     # better browser for developing web page
-    # "sizzy"
+    # "sizzy" - currently, sizzy's download link is broken.
   ];
 }
