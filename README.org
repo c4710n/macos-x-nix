@@ -5,7 +5,7 @@
 
 Why not enjoy the best parts of them? Then, here *macOS × Nix* comes:
 + macOS provides great UI.
-+ Nix acts as a configuration and package manager, which makes macOS reproducible:
++ Nix acts as a configuration and package manager, which makes macOS *reproducible*:
   + most parts of configurations are managed by Nix.
   + all softwares are managed by Nix.
 
@@ -13,7 +13,18 @@ This repo will:
 + Introduce how to install Nix-related tools.
 + Manage dependencies with [[https://github.com/nmattia/niv/][niv]].
 + Manage sensitive information with [[https://github.com/AGWA/git-crypt][git-crypt]].
-+ Provide sample configurations that can be used on a daily basis.
++ Provide a working configuration that I use.
+
+* Hold on, do I need Nix, really?
+In the past:
++ I managed my dotfiles via homemade scripts or some other existing tools, such as [[https://github.com/andsens/homeshick][homeshick]], [[https://www.gnu.org/software/stow/][stow]], [[https://yadm.io/][yadm]], etc.
++ I managed packages via system package manager when I use Linux, via Homebrew when I use macOS.
+
+The experience is not bad, but it's not good either.
+
+Now, I manage everything with one tool - Nix. In addition to these, it is also possible to manage macOS preferences, launchd, etc.
+
+I'm not sure that you need it, but I promise that you will like it.
 
 * Choose macOS version
 I'm using macOS Big Sur.
@@ -135,6 +146,10 @@ Not everything can be done automatically.
 $ sudo ,macos-disable-spotlight
 #+end_src
 
+#+begin_quote
+Spoltlight is useless for an old-fashion guy. 😳
+#+end_quote
+
 ** adjust Terminal
 + =View > Hide Tab Bar= - Prevent Terminal.app from displaying a tab bar when there is only one tab open.
 + =Preferences > Profiles > Keyboard > Use Options as Meta key= - Help me to input faster.
@@ -156,8 +171,9 @@ $ cp -rp <...> <...>
 
 * Learn More
 + Tutorials:
-  - [[https://nixos.org/manual/nixpkgs/stable/][Nixpkgs Manual]]
   - [[https://nix.dev/][nix.dev]] - use Nix in your daily development
+  - [[https://nixos.org/manual/nixpkgs/stable/][Nixpkgs Manual]]
+
 + Others' Nix config
   - [[https://github.com/cmacrae/config][cmacrae's config]]
 
