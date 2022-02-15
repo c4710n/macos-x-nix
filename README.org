@@ -93,7 +93,7 @@ $ nix-env --version
 #+end_src
 
 * Install nix-darwin
-[[https://github.com/LnL7/nix-darwin][nix-darwin]] provides =/etc/nixos/configuration.nix=-like configuration for macOS.
+[[https://github.com/LnL7/nix-darwin][nix-darwin]] turns macOS into an emulated NixOS.
 
 It allows us configure dock, finder, launchd, software update policy with Nix expressions, etc.
 
@@ -147,7 +147,7 @@ $ sudo ,macos-disable-spotlight
 #+end_src
 
 #+begin_quote
-Spoltlight is useless for an old-fashion guy. 😳
+Spotlight is useless for an old-fashion guy. 😳
 #+end_quote
 
 ** adjust Terminal
@@ -167,15 +167,19 @@ $ borg mount ::2021-04-21T11:34:37 /path/to/mount/point
 $ cp -rp <...> /path/to/your/home
 #+end_src
 
-* Learn More
-+ Tutorials:
-  - [[https://nix.dev/][nix.dev]] - use Nix in your daily development
-  - [[https://nixos.org/manual/nixpkgs/stable/][Nixpkgs Manual]]
-+ Code organization:
-  - [[https://nixos.wiki/wiki/Module][module]]
+* Release more power of Nix
++ [[https://nix.dev/][use Nix in your daily development]].
++ manage virtual machine for local development with [[https://github.com/NixOS/nixops][NixOps]].
++ [[https://github.com/tazjin/nix-1p][learn Nix language]] as you need it.
++ [[https://github.com/justinwoo/nix-shorts/blob/master/posts/inspecting-values-with-repl.md][learn Nix REPL a little bit]]
++ [[https://nixos.org/guides/nix-pills/][understand the fundamental ideas of Nix]]
++ read official docs:
+   - [[https://nixos.org/manual/nix/stable/][Nix Manual]]
+   - [[https://nixos.org/manual/nixpkgs/stable/][Nixpkgs Manaual]]
+   - [[https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs][Pinning Nixpkgs]]
 
-+ Others' Nix config
-  - [[https://github.com/cmacrae/config][cmacrae's config]]
+* Others' config
++ [[https://github.com/cmacrae/config][cmacrae's config]]
 
 * Last
 Have fun!
