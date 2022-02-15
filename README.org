@@ -154,25 +154,25 @@ Spoltlight is useless for an old-fashion guy. 😳
 + =View > Hide Tab Bar= - Prevent Terminal.app from displaying a tab bar when there is only one tab open.
 + =Preferences > Profiles > Keyboard > Use Options as Meta key= - Help me to input faster.
 
-* Restore Backups
-Install =osxfuse= before mounting backups:
-#+begin_src sh
-$ brew install --cask macfuse
-#+end_src
+* Reboot
 
-Reboot to active macfuse.
+Reboot is required for some packages, such as =macfuse=.
+
+* Restore Backups
 
 Restore backups:
 #+begin_src sh
 $ export BORG_REPO=/path/to/borg-repo
 $ borg mount ::2021-04-21T11:34:37 /path/to/mount/point
-$ cp -rp <...> <...>
+$ cp -rp <...> /path/to/your/home
 #+end_src
 
 * Learn More
 + Tutorials:
   - [[https://nix.dev/][nix.dev]] - use Nix in your daily development
   - [[https://nixos.org/manual/nixpkgs/stable/][Nixpkgs Manual]]
++ Code organization:
+  - [[https://nixos.wiki/wiki/Module][module]]
 
 + Others' Nix config
   - [[https://github.com/cmacrae/config][cmacrae's config]]
