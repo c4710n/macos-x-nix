@@ -1095,6 +1095,10 @@ Setup key via built-in functionalities.
 (use-package keychain-environment :ensure t)
 #+end_src
 
+** detach shell
++ https://gitlab.com/niklaseklund/dtache
++ https://niklaseklund.gitlab.io/blog/posts/dtache_vterm/
+
 * Localization
 ** encoding
 #+begin_src emacs-lisp
@@ -3153,6 +3157,36 @@ Read more at [[https://github.com/federicotdn/verb][verb]].
 + Multipart Form Data: ~multipart/form-data~
 *** related tools
 + [[https://github.com/flashcode/impostman][impostman]] - Import of Postman collections in Emacs
+** Search Engine
+#+begin_src emacs-lisp
+(use-package engine-mode
+  :defer
+  :config
+  (engine/set-keymap-prefix (kbd "C-x /"))
+
+  (defengine google
+             "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+             :keybinding "g")
+
+  (defengine GitHub
+             "https://github.com/search?ref=simplesearch&q=%s"
+             :keybinding "c")
+
+  (defengine youtube
+             "http://www.youtube.com/results?aq=f&oq=&search_query=%s"
+             :keybinding "y")
+
+  (defengine rfcs
+             "http://pretty-rfc.herokuapp.com/search?q=%s"
+             :keybinding "r")
+
+  (defengine wikipedia
+             "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+             :keybinding "w")
+
+  (engine-mode))
+#+end_src
+
 ** Accounts
 #+begin_src emacs-lisp
 (use-package ledger-mode
