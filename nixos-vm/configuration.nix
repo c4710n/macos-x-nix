@@ -233,12 +233,12 @@ lib.mkMerge [
   # Monitor
   (
     let
-      prometheusDomain = "prometheus.nixos.test";
+      prometheusDomain = "prometheus.in.vm";
       prometheusAddr = "127.0.0.1";
       prometheusPort = 9090;
       prometheusBackend = "${prometheusAddr}:${toString prometheusPort}";
 
-      grafanaDomain = "grafana.nixos.test";
+      grafanaDomain = "grafana.in.vm";
       grafanaAddr = "127.0.0.1";
       grafanaPort = 9080;
       grafanaBackend = "${grafanaAddr}:${toString grafanaPort}";
