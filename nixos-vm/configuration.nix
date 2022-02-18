@@ -123,6 +123,8 @@ lib.mkMerge [
             # enable slow query log
             slow_query_log = true;
             long_query_time = 5;
+
+            max_connections = 250;
           };
         };
 
