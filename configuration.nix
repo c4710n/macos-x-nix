@@ -70,6 +70,7 @@ in
     ./modules/nix-builder
 
     ./modules/app-necessary
+    ./modules/app-security
     ./modules/app-terminal
     ./modules/app-input-method
     ./modules/app-web-browser
@@ -80,6 +81,7 @@ in
     ./modules/app-storage
     ./modules/app-free-world
 
+    ./modules/dev-general
     ./modules/dev-font
     ./modules/dev-web
     ./modules/dev-network
