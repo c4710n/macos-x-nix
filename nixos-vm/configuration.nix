@@ -58,16 +58,23 @@ lib.mkMerge [
   }
 
   # Docker
-  {
-    virtualisation.docker = {
-      enable = true;
-      enableOnBoot = true;
-      storageDriver = "overlay2";
-      logDriver = "journald";
-      autoPrune.enable = true;
-      liveRestore = true;
-    };
-  }
+  (
+    let
+      port = 2375;
+    in
+    {
+      virtualisation.docker = {
+        enable = true;
+        enableOnBoot = true;
+        storageDriver = "overlay2";
+        logDriver = "journald";
+        autoPrune.enable = true;
+        liveRestore = true;
+        extraOptions = "-H tcp://${ip}:${toString port}";
+      };
+      networking.firewall.allowedTCPPorts = [ port ];
+    }
+  )
 
   # PostgreSQL
   {
