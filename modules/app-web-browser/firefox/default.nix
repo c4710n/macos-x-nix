@@ -19,8 +19,14 @@
     # visit `about:config` to show.
     settings = {
       "browser.shell.checkDefaultBrowser" = false;
+
+      # don't prompt to update
       "app.update.auto" = false;
       "app.update.enabled" = false;
+      "app.update.staging.enabled" = false;
+      "app.update.download.promptMaxAttempts" = 0;
+      "app.update.elevation.promptMaxAttempts" = 0;
+
       "browser.startup.homepage" = "about:blank";
       "browser.onboarding.enabled" = false;
       "browser.newtabpage.enabled" = false;

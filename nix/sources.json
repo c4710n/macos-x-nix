@@ -101,10 +101,10 @@
         "homepage": null,
         "owner": "bandithedoge",
         "repo": "nixpkgs-firefox-darwin",
-        "rev": "4687073c5cb22e59baeaad16575d6c4a6a88aa3a",
-        "sha256": "1bprvd07dg1cy4mycdc4r0ykm95hf0diarsvjxl6blh6hsypknqp",
+        "rev": "94734426b30ea5b487ad5f72d364d8c1975f32e8",
+        "sha256": "1hwacz1pcka1xzp9ayala9vpd6iy5hd9pc9j7yzwkcdsl70qs2i8",
         "type": "tarball",
-        "url": "https://github.com/bandithedoge/nixpkgs-firefox-darwin/archive/4687073c5cb22e59baeaad16575d6c4a6a88aa3a.tar.gz",
+        "url": "https://github.com/bandithedoge/nixpkgs-firefox-darwin/archive/94734426b30ea5b487ad5f72d364d8c1975f32e8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
