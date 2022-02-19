@@ -82,6 +82,7 @@ in
     ./modules/app-free-world
 
     ./modules/dev-general
+    ./modules/dev-perf
     ./modules/dev-font
     ./modules/dev-web
     ./modules/dev-network
