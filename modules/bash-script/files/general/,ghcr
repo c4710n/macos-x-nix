@@ -26,8 +26,8 @@ defmodule GHCR.CLI do
       * * *
       """)
 
-      cmd("#{@docker_cmd} build -t #{name} .")
-      cmd("#{@docker_cmd} push #{name}")
+      cmd("#{@docker_cmd} build -t #{name} .", into: IO.stream())
+      cmd("#{@docker_cmd} push #{name}", into: IO.stream())
       IO.puts("""
 
       * * *
@@ -88,12 +88,12 @@ defmodule GHCR.CLI do
     Path.basename(__ENV__.file)
   end
 
-  defp cmd(line) do
+  defp cmd(line, opts \\ []) do
     {command, args} = line
     |> String.split()
     |> List.pop_at(0)
 
-    System.cmd(command, args)
+    System.cmd(command, args, opts)
   end
 
   defp available_owners() do
