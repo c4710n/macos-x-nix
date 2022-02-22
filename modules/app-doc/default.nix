@@ -8,5 +8,5 @@
     ];
   };
 
-  homebrew.casks = [ "monodraw" ];
+  homebrew.casks = [ "monodraw" "calibre" ];
 }
