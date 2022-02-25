@@ -49,7 +49,6 @@ in
       };
     extraConfig = ''
       yabai -m rule --add app=Terminal grid=${gridRightXL}
-      yabai -m rule --add app=Firefox grid=${gridLeftXL}
       yabai -m rule --add app=Preview grid=${gridLeftXL}
 
       yabai -m rule --add app=Feishu grid=${gridCenter}
@@ -103,6 +102,7 @@ in
       cmd + ctrl - n : open -a NetNewsWire
       cmd + ctrl - m : open -a Feishu
       cmd + ctrl - w : open -a Telegram
+      cmd + ctrl - l : open -a Spotify
       cmd + ctrl - v : open -a WeChat
 
       cmd + ctrl - left  : ${pkgs.yabai}/bin/yabai -m window --grid ${gridLeft}
