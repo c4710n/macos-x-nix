@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, system, ... }:
 
 {
   nixpkgs.config = {
@@ -12,7 +12,9 @@
         pragmata-pro-font = pkgs.callPackage ./pragmata-pro-font { };
         macos-chromium = pkgs.callPackage ./macos-chromium { };
 
-        nodePackages = import ./node-packages { };
+        nodePackages = import ./node-packages {
+          inherit pkgs system;
+        };
       };
     };
   };
