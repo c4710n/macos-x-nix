@@ -1470,7 +1470,9 @@ Missing, so far.
 (setq org-startup-with-inline-images "inlineimages")
 (setq org-display-inline-images t)
 (setq org-redisplay-inline-images t)
+
 (setq org-image-actual-width '(500))
+;; image width can be set via `#+ATTR_ORG: :width 200px', also.
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1811,7 +1813,6 @@ References:
   "
     (string-join (cdr (split-string filename "\\.")) "."))
   #+end_src
-
 
 ** Extension - org-agenda
 Org agenda combines relevant TODO items from different org files into a prioritized, chronological display. You can regard org-agenda as a Dashboard for managing TO-DO items and clocking.
@@ -2792,7 +2793,7 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
   :bind (:map elixir-mode-map
               ("C-c C-f" . elixir-format))
   :config
-  (defun mg/elixir-mode-add-buffer-local-format-hook ()
+  (defun mg/elixir-mix-format ()
     (add-hook 'before-save-hook 'mg/elixir-format-silent nil t))
 
   (defun mg/elixir-mode-set-format-arguments ()
@@ -2815,7 +2816,7 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
   :hook
   (elixir-mode . flycheck-mode)
   (elixir-mode . electric-pair-local-mode)
-  (elixir-mode . mg/elixir-mode-add-buffer-local-format-hook)
+  (elixir-mode . mg/elixir-mix-format)
   (elixir-format . mg/elixir-mode-set-format-arguments))
 
 (when (featurep 'eglot)
@@ -2894,7 +2895,6 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
   (("\\.html?\\'" . web-mode))
   ("\\.html\\.eex\\'" . web-mode)
   ("\\.html\\.leex\\'" . web-mode)
-  ("\\.html\\.heex\\'" . web-mode)
   :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -2928,6 +2928,13 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
   (defun mg/highlight-indentation ()
     (interactive)
     (highlight-indent-guides-mode 1)))
+
+;; TODO: improve this mode
+(define-derived-mode phoenix-heex-mode
+  web-mode "phoenix-heex"
+  "Major mode for Phoenix .heex files.")
+(add-hook 'phoenix-heex-mode-hook 'mg/elixir-mix-format)
+(add-to-list 'auto-mode-alist '("\\.heex" . phoenix-heex-mode))
 #+end_src
 
 *** CSS
