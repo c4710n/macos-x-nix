@@ -43,7 +43,6 @@ in
     ./modules/nix-helper.nix
     ./modules/nix-darwin-helper.nix
 
-    ./modules/link-app
     ./modules/ui
     ./modules/timezone
     ./modules/font
