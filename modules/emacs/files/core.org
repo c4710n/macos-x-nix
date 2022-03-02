@@ -487,8 +487,8 @@ Setup UI via external packages.
         modus-themes-bold-constructs nil
         modus-themes-org-blocks 'tinted-background
         modus-themes-mode-line nil
-        modus-themes-region 'bg-only-no-extend
-        modus-themes-paren-match 'intense-bold)
+        modus-themes-region '(bg-only no-extend)
+        modus-themes-paren-match '(bold intense))
   (modus-themes-load-themes)
 
   (defun mg/modus-themes-custom-faces ()
@@ -529,13 +529,7 @@ Auto switching between light and dark theme:
       ('light (load-theme 'modus-operandi t))
       ('dark (load-theme 'modus-vivendi t))))
 
-  (add-hook 'ns-system-appearance-change-functions #'mg/apply-theme)
-
-  ;; it runs for later time
-  (use-package auto-dark-emacs
-    :custom
-    (auto-dark-emacs/dark-theme 'modus-vivendi)
-    (auto-dark-emacs/light-theme 'modus-operandi)))
+  (add-hook 'ns-system-appearance-change-functions #'mg/apply-theme))
 #+end_src
 
 Other themes that I like:
