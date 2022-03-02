@@ -26,6 +26,15 @@ let
   gridFull = "1:1:0:0:1:1";
   displayInternal = "1";
   displayExternal = "2";
+
+  emacsPackage = config.home-manager.users."${username}".programs.emacs.finalPackage;
+  emacsApp = "${emacsPackage}/Applications/Emacs.app";
+
+  firefoxPackage = config.home-manager.users."${username}".programs.firefox.package;
+  firefoxApp = "${firefoxPackage}/Applications/Firefox.app";
+
+  chromiumPackage = pkgs.custom.macos-chromium;
+  chromiumApp = "${chromiumPackage}/Applications/Chromium.app";
 in
 {
   environment.systemPackages = [
@@ -88,12 +97,12 @@ in
       #   not be loaded properly.
       # + If the Emacs is opened, then you can switch to it with a simple 'open' call.
       cmd + ctrl - e : pgrep -f 'Applications/Emacs.app' && \
-                         open -a Emacs || \
-                         bash -i -c 'open -a Emacs.app'
+                         open -a ${emacsApp} || \
+                         bash -i -c 'open -a ${emacsApp}'
 
       cmd + ctrl - f : open -a Finder
-      cmd + ctrl - c : open -a Firefox
-      cmd + ctrl + shift - c : open -a Chromium
+      cmd + ctrl - c : open -a ${firefoxApp}
+      cmd + ctrl + shift - c : open -a ${chromiumApp}
       cmd + ctrl - s : open -a Sizzy
       cmd + ctrl - b : open -a Dash
       cmd + ctrl - d : open -a TablePlus
