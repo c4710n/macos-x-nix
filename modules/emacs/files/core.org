@@ -132,6 +132,21 @@ If you love Emacs, [[SEC:ELISP][remember to learn Elisp]].
   (progn (setq kill-ring nil) (garbage-collect)))
 #+end_src
 
+#+begin_src emacs-lisp
+(defun mg/convert-num-to-icon (num)
+  (cond ((eq num 1) "")
+        ((eq num 2) "")
+        ((eq num 3) "")
+        ((eq num 4) "")
+        ((eq num 5) "")
+        ((eq num 6) "")
+        ((eq num 7) "")
+        ((eq num 8) "")
+        ((eq num 9) "")
+        ((eq num 0) "")
+        ((eq num 9) "")))
+#+end_src
+
 ** site-lisp
 Load site-lisp and its subdirectories.
 
@@ -864,29 +879,15 @@ Ported from =nano-modeline= provided by [[https://github.com/rougier/nano-emacs]
   (let ((buffer-name (format-mode-line "%b"))
         (mode-name   (mg/mode-name))
         (branch      (mg/vc-branch))
-        (eyebrowse-slot (mg/eyebrowse-slot))
         (project-name (mg/project-name))
         (position    (format-mode-line "%l:%c")))
     (mg/modeline-compose (mg/modeline-status)
-                         (format "%s %s" (mg/convert-num-to-icon eyebrowse-slot) buffer-name)
+                         buffer-name
                          (concat (format "[%s]" project-name)
                                  " (" mode-name
                                  (if branch (concat ", " branch))
                                  ")")
                          (format "%s "position))))
-
-(defun mg/convert-num-to-icon (num)
-  (cond ((eq num 1) "")
-        ((eq num 2) "")
-        ((eq num 3) "")
-        ((eq num 4) "")
-        ((eq num 5) "")
-        ((eq num 6) "")
-        ((eq num 7) "")
-        ((eq num 8) "")
-        ((eq num 9) "")
-        ((eq num 0) "")
-        ((eq num 9) "")))
 
 ;; ---------------------------------------------------------------------
 (defun mg/modeline-status ()
@@ -955,6 +956,17 @@ Ported from =nano-modeline= provided by [[https://github.com/rougier/nano-emacs]
 
   :init
   (marginalia-mode))
+#+end_src
+
+** echo bar
+#+begin_src emacs-lisp
+(use-package echo-bar
+  :ensure t
+  :init
+  (defun mg/echo-bar ()
+    (format "%s" (mg/convert-num-to-icon (mg/eyebrowse-slot))))
+  (setq echo-bar-function 'mg/echo-bar)
+  (echo-bar-mode))
 #+end_src
 
 ** alert
