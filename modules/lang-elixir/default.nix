@@ -28,7 +28,7 @@
   home-manager.users."${username}" = {
     home.packages = with pkgs; [
       erlangR24
-      beam.packages.erlangR24.elixir_1_12
+      unstable.beam.packages.erlangR24.elixir_1_13
     ];
 
     programs.bash.profileExtra = ''
