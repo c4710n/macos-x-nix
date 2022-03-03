@@ -106,5 +106,17 @@
         "type": "tarball",
         "url": "https://github.com/bandithedoge/nixpkgs-firefox-darwin/archive/94734426b30ea5b487ad5f72d364d8c1975f32e8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs-unstable": {
+        "branch": "nixpkgs-unstable",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7a3e6d6604ad99c77e7a98943734bdeea564bff2",
+        "sha256": "1vzrxcgkfaip6jfmgjjahxm3b80sv89608d920rzikcq71wvjiaz",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/7a3e6d6604ad99c77e7a98943734bdeea564bff2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

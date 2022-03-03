@@ -1,10 +1,15 @@
 { pkgs, system, ... }:
 
+let
+  pinned = import ../nix/sources.nix;
+in
 {
   nixpkgs.config = {
     allowUnfree = true;
 
     packageOverrides = pkgs: {
+      unstable = import pinned.nixpkgs-unstable { };
+
       custom = {
         mg = pkgs.callPackage ./mg { };
         trojan = pkgs.callPackage ./trojan { };
