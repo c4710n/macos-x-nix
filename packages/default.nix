@@ -1,4 +1,4 @@
-{ pkgs, system, ... }:
+{ config, pkgs, system, ... }:
 
 let
   pinned = import ../nix/sources.nix;
@@ -8,7 +8,9 @@ in
     allowUnfree = true;
 
     packageOverrides = pkgs: {
-      unstable = import pinned.nixpkgs-unstable { };
+      unstable = import pinned.nixpkgs-unstable {
+        config = config.nixpkgs.config;
+      };
 
       custom = {
         mg = pkgs.callPackage ./mg { };
