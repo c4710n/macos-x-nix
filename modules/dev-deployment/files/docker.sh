@@ -30,3 +30,16 @@ alias ,docker-dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock -
         docker images | grep -v 'REPOSITORY' | awk '{print $1":"$2}' | grep -E "$REGEXP" | xargs --no-run-if-empty docker rmi
     fi
 }
+
+,docker-enter-build-context() {
+    DOCKER_IMAGE=build-context
+
+    docker image build --no-cache -t $DOCKER_IMAGE -f - . <<EOF
+FROM busybox
+WORKDIR /build-context
+COPY . .
+CMD find .
+EOF
+
+    docker run -it --rm "$DOCKER_IMAGE" /bin/sh
+}
