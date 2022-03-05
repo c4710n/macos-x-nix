@@ -18,6 +18,7 @@ in
         sarasa-mono-sc-nerd-font = pkgs.callPackage ./sarasa-mono-sc-nerd-font { };
         pragmata-pro-font = pkgs.callPackage ./pragmata-pro-font { };
         macos-chromium = pkgs.callPackage ./macos-chromium { };
+        macos-librewolf = pkgs.callPackage ./macos-librewolf { };
 
         nodePackages = import ./node-packages {
           inherit pkgs system;
