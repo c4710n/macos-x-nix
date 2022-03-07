@@ -86,6 +86,9 @@ in
       # Shortcuts #
       cmd - e        : open -a Launchpad
       cmd + ctrl - t : open -a Terminal
+      cmd + ctrl - f : open -a Finder
+      cmd + ctrl - g : open -a Dictionary
+      cmd + ctrl - p : open -a Preview
 
       # If Emacs is not opened, then open it with a interactive shell,
       # or some functions might not work as expected, such as:
@@ -100,19 +103,17 @@ in
                          open -a ${emacsApp} || \
                          bash -i -c 'open -a ${emacsApp}'
 
-      cmd + ctrl - f : open -a Finder
       cmd + ctrl - c : open -a ${firefoxApp}
       cmd + ctrl + shift - c : open -a ${chromiumApp}
+
       cmd + ctrl - s : open -a Sizzy
-      cmd + ctrl - b : open -a Dash
       cmd + ctrl - d : open -a TablePlus
-      cmd + ctrl - p : open -a Preview
-      cmd + ctrl - i : open -a Figma
       cmd + ctrl - n : open -a NetNewsWire
-      cmd + ctrl - m : open -a Feishu
       cmd + ctrl - w : open -a Telegram
+
       cmd + ctrl - l : open -a Spotify
-      cmd + ctrl - v : open -a WeChat
+      cmd + ctrl - i : open -a Figma
+      cmd + ctrl - m : open -a Feishu
 
       cmd + ctrl - left  : ${pkgs.yabai}/bin/yabai -m window --grid ${gridLeft}
       cmd + ctrl - right : ${pkgs.yabai}/bin/yabai -m window --grid ${gridRight}
