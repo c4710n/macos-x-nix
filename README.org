@@ -167,6 +167,27 @@ $ borg mount ::2021-04-21T11:34:37 /path/to/mount/point
 $ cp -rp <...> /path/to/your/home
 #+end_src
 
+* Using NixOps and NixOps-like tools
+Just as the project name implies, we are running Nix on macOS whose architecture name is =x86_64-darwin=. Because the incompatibility of architecture, I can't build software for my =x86_64-linux= server without any effort.
+
+In order to achieve it, I setup a build machine with [nix-builder](./modules/nix-builder) module.
+
+And, I need to clearly state the architecture of remote machine in the configuration of NixOps or NixOps-like tools, such as [morph](https://github.com/DBCDK/morph), etc. For example:
+
+#+begin_src nix
+{
+  webserver = { config, pkgs, lib, ... }: {
+    deployment.targetHost = "...";
+    nixpkgs.localSystem.system = "x86_64-linux";
+    # ...
+  };
+}
+#+end_src
+
+Then, use NixOps or NixOps-like tools as normal.
+
+It's done.
+
 * Release more power of Nix
 + [[https://nix.dev/][use Nix in your daily development]].
 + manage virtual machine for local development with [[https://github.com/NixOS/nixops][NixOps]].
