@@ -1,18 +1,40 @@
-# 所有虚拟机使用两块网卡：
-# + 第一块网卡，使用 NAT Network 方式（不是默认的 NAT）接入。虚拟机借助该网卡可
-#   以使用宿主机接入的互联网服务。
-# + 第二块网卡，使用 Host-Only 方式接入。宿主机借助该网卡和虚拟机通讯，主要用于
-#   SSH 等服务。另外，还可以为第二块网卡设置固定 IP，方便使用。
+# Just as the name implies, I am running Nix on macOS whose architecture name
+# is `x86_64-darwin`.
+# Because the incompatibility of architecture, I can't build software for my
+# `x86_64-linux` server without any effort.
 #
-# 为第一块网卡创建 NAT Network：
+# The core idea is:
+# 1. run a `x86_64-linux` machine in macOS.
+# 2. set the virtual machine as build machine for Nix.
 #
-#    Preferences > Network
+# > Note: It requires Nix running in daemon mode.
 #
 #
-# 为第二块网卡创建一个 Host Network（用默认的网络地址 192.168.56.1 即可，不然还要
-# 做多余的权限设置）：
+# There are multiple ways to setup a machine:
+# + run a docker container via [Docker Desktop](https://www.docker.com/products/docker-desktop)
+#   and [nix-docker](https://github.com/LnL7/nix-docker).
+# + run a virtual machine via type 2 virtualization software, such as VirtualBox.
 #
-#   File > Host Network Manager
+# Personally, I don't like Docker, because it's using layed file system, and the
+# used disk space that will not be reclaimed. Eventually, the container will take
+# up a lot of space.
+#
+# So, I choose VirtualBox.
+#
+# When I setup a virtual machine, I will create 2 NIC:
+# 1. one for NAT Network (not the default NAT). The virtual machine accesses Internet
+#    through host with the help of this NIC.
+#
+#  > Create a NAT Network before creating any NIC of NAT Network.
+#  > Try click: Preferences > Network
+#
+#
+# 2. one for Host-only Network. The host uses this NIC to communicate with the
+#    virtual machine, mainly for SSH. Generally, I bind a fixed IP for it.
+#
+#  > Create a Host Network before creating any NIC of Host Network.
+#  > (The default network 192.168.56.1 is good)
+#  > Try click: File > Host Network Manager
 #
 
 { pkgs, lib, secrets, username, ... }:
@@ -62,11 +84,25 @@ lib.mkMerge [
       #
       # + -o IdentitiesOnly=yes ::
       #   Ignore SSH Agent, only use the key which is set explicitly.
-      #   This is useful when you have lots of keys in SSH Agent, which will trigger
+      #   This is useful when there're lots of keys in SSH Agent, which will trigger
       #   the login failure due to exceeding the maximum number of attempts.
       home-manager.users."${username}".programs.bash.shellAliases = {
         ",enter-nix-builder" = "sudo -p 'root password on macOS: ' ssh ${hostName}";
       };
+
+      # Step 5 - test
+      #
+      # Try to build `hello` for `x86_64-linux` with `nix-build`:
+      #
+      #   nix-build -E 'with import <nixpkgs> { system = "x86_64-linux"; }; hello.overrideAttrs (drv: { rebuild = builtins.currentTime; })'
+      #
+      #
+      # If everything works fine, similiar logs will be shown:
+      #
+      #   building '/nix/store/dn4ilscxwvl3ir1ajsdxp6j6abr6z2is-hello-2.10.drv' on 'ssh://nix-builder'...
+      #
+      # Notice that, 'ssh://nix-builder' is used.
+      #
     }
   )
 ]
