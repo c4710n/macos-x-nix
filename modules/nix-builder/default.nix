@@ -76,6 +76,7 @@ lib.mkMerge [
         {
           hostName = hostName;
           system = "x86_64-linux";
+          supportedFeatures = [ "kvm" ]; # required by nixos-generators
           maxJobs = 2;
         }
       ];
