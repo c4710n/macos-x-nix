@@ -13,7 +13,7 @@ This repo will:
 + Introduce how to install Nix-related tools.
 + Manage dependencies with [[https://github.com/nmattia/niv/][niv]].
 + Manage sensitive information with [[https://github.com/AGWA/git-crypt][git-crypt]].
-+ Provide a working configuration that I use.
++ Provide a sample configuration that I use.
 
 * Hold on, do I need Nix, really?
 In the past:
