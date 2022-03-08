@@ -120,7 +120,7 @@ Add =/run/current-system/sw/bin/bash= to =/etc/shells=, then run:
 $ chsh -s /run/current-system/sw/bin/bash
 #+end_src
 
-* Use sample configurations
+* Use sample configuration
 Link config to =~/.nixpkgs= with following command:
 #+begin_src sh
 $ ./bootstrap.sh
@@ -156,9 +156,13 @@ Spotlight is useless for an old-fashion guy. 😳
 
 * Reboot
 
-Reboot is required for some packages, such as =macfuse=.
+Reboot is required for some packages, such as =macfuse= which is installed by the sample configuration.
 
 * Restore Backups
+
+> I use [[https://www.borgbackup.org/][BorgBackup]] as my backup tool.
+>
+> Because everything is reproducible, TimeMachine is useless.
 
 Restore backups:
 #+begin_src sh
@@ -170,9 +174,9 @@ $ cp -rp <...> /path/to/your/home
 * Using NixOps and NixOps-like tools
 Just as the project name implies, we are running Nix on macOS whose architecture name is =x86_64-darwin=. Because the incompatibility of architecture, I can't build software for my =x86_64-linux= server without any effort.
 
-In order to achieve it, I setup a build machine with [nix-builder](./modules/nix-builder) module.
+In order to achieve it, I setup a build machine with [[./modules/nix-builder][nix-builder]] module.
 
-And, I need to clearly state the architecture of remote machine in the configuration of NixOps or NixOps-like tools, such as [morph](https://github.com/DBCDK/morph), etc. For example:
+And, I need to clearly state the architecture of remote machine in the configuration of NixOps or NixOps-like tools, such as [[https://github.com/DBCDK/morph][morph]], etc. For example:
 
 #+begin_src nix
 {
