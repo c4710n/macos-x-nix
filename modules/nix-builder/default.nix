@@ -5,7 +5,7 @@
 #
 # The core idea is:
 # 1. run a `x86_64-linux` machine in macOS.
-# 2. set the virtual machine as build machine for Nix.
+# 2. set the machine as the build machine for Nix.
 #
 # > Note: It requires Nix running in daemon mode.
 #
