@@ -33,7 +33,7 @@
 #    virtual machine, mainly for SSH. Generally, I bind a fixed IP for it.
 #
 #  > Create a Host Network before creating any NIC of Host Network.
-#  > (The default network 192.168.56.1 is good)
+#  > (The default subnet 192.168.56.1/24 is good)
 #  > Try to click: File > Host Network Manager
 #
 
