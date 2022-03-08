@@ -92,7 +92,7 @@ lib.mkMerge [
 
       # Step 5 - test
       #
-      # Try to build `hello` for `x86_64-linux` with `nix-build`:
+      # Try to build `hello` package for `x86_64-linux` with `nix-build`:
       #
       #   nix-build -E 'with import <nixpkgs> { system = "x86_64-linux"; }; hello.overrideAttrs (drv: { rebuild = builtins.currentTime; })'
       #
@@ -102,6 +102,8 @@ lib.mkMerge [
       #   building '/nix/store/dn4ilscxwvl3ir1ajsdxp6j6abr6z2is-hello-2.10.drv' on 'ssh://nix-builder'...
       #
       # Notice that, 'ssh://nix-builder' is used.
+      #
+      # And, the `hello` package will be built without any error.
       #
     }
   )
