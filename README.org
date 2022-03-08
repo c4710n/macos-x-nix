@@ -160,9 +160,9 @@ Reboot is required for some packages, such as =macfuse= which is installed by th
 
 * Restore Backups
 
-> I use [[https://www.borgbackup.org/][BorgBackup]] as my backup tool.
->
-> Because everything is reproducible, TimeMachine is useless.
+I use [[https://www.borgbackup.org/][BorgBackup]] as my backup tool.
+
+Because everything is reproducible, TimeMachine is useless.
 
 Restore backups:
 #+begin_src sh
