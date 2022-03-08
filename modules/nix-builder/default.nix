@@ -19,14 +19,14 @@
 # used disk space that will not be reclaimed. Eventually, the container will take
 # up a lot of space.
 #
-# So, I choose VirtualBox.
+# So, I choose VirtualBox, and create a virtual machine within it.
 #
 # When I setup a virtual machine, I will create 2 NIC:
 # 1. one for NAT Network (not the default NAT). The virtual machine accesses Internet
 #    through host with the help of this NIC.
 #
 #  > Create a NAT Network before creating any NIC of NAT Network.
-#  > Try click: Preferences > Network
+#  > Try to click: Preferences > Network
 #
 #
 # 2. one for Host-only Network. The host uses this NIC to communicate with the
@@ -34,7 +34,7 @@
 #
 #  > Create a Host Network before creating any NIC of Host Network.
 #  > (The default network 192.168.56.1 is good)
-#  > Try click: File > Host Network Manager
+#  > Try to click: File > Host Network Manager
 #
 
 { pkgs, lib, secrets, username, ... }:
