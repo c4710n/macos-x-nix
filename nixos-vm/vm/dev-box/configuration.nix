@@ -1,56 +1,8 @@
-{ config, pkgs, lib, secrets, gateway, ... }:
+{ config, pkgs, lib, gateway, ... }:
 
 with lib;
 
-let
-  ip = config.deployment.targetHost;
-in
 lib.mkMerge [
-  {
-    # Set your time zone.
-    time.timeZone = "Asia/Shanghai";
-
-    # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-    # Per-interface useDHCP will be mandatory in the future, so this generated config
-    # replicates the default behaviour.
-    networking.useDHCP = false;
-    networking.enableIPv6 = false;
-    networking.interfaces.enp0s3.useDHCP = true;
-    networking.interfaces.enp0s8 = {
-      useDHCP = false;
-      ipv4.addresses = [
-        {
-          address = ip;
-          prefixLength = 24;
-        }
-      ];
-    };
-
-    # Select internationalisation properties.
-    i18n.defaultLocale = "en_US.UTF-8";
-    console = {
-      font = "Lat2-Terminus16";
-      keyMap = "us";
-    };
-
-    environment.systemPackages = with pkgs; [ mg ];
-
-    # Enable the OpenSSH daemon.
-    services.openssh.enable = true;
-    services.openssh.permitRootLogin = "prohibit-password";
-    users.users.root.openssh.authorizedKeys.keys = [ secrets.nixos-vm-ssh-key-public ];
-
-    networking.firewall.enable = true;
-
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken. It‘s perfectly fine and recommended to leave
-    # this value at the release version of the first install of this system.
-    # Before changing this value read the documentation for this option
-    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "21.11"; # Did you read the comment?
-  }
-
   # Web Server
   {
     services.caddy.enable = true;
@@ -70,7 +22,7 @@ lib.mkMerge [
         logDriver = "journald";
         autoPrune.enable = true;
         liveRestore = true;
-        extraOptions = "-H tcp://${ip}:${toString port}";
+        extraOptions = "-H tcp://0.0.0.0:${toString port}";
       };
       networking.firewall.allowedTCPPorts = [ port ];
     }
@@ -89,8 +41,8 @@ lib.mkMerge [
         "--pwfile=<(echo 'postgres')"
       ];
       authentication = ''
-        # allow connections from local
-        host all all ${gateway}/32 md5
+        # allow all connections. Because I have firewall, so this is fine.
+        host all all 0.0.0.0/0 md5
       '';
     };
 
@@ -101,7 +53,7 @@ lib.mkMerge [
   {
     services.redis = {
       enable = true;
-      bind = ip;
+      bind = "0.0.0.0";
       openFirewall = true;
     };
   }
