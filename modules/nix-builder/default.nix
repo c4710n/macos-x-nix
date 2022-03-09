@@ -22,12 +22,8 @@
 # So, I choose VirtualBox, and create a virtual machine within it.
 #
 # When I setup a virtual machine, I will create 2 NIC:
-# 1. one for NAT Network (not the default NAT). The virtual machine accesses Internet
+# 1. one for NAT (not NAT Network). The virtual machine accesses Internet
 #    through host with the help of this NIC.
-#
-#  > Create a NAT Network before creating any NIC of NAT Network.
-#  > Try to click: Preferences > Network
-#
 #
 # 2. one for Host-only Network. The host uses this NIC to communicate with the
 #    virtual machine, mainly for SSH. Generally, I bind a fixed IP for it.
