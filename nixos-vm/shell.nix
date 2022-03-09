@@ -25,16 +25,12 @@ pkgs.mkShell {
   buildInputs = [
     pkgs.nixos-generators
 
-    (pkgs.writeScriptBin "vm-ssh" ''
-      #!${pkgs.stdenv.shell}
-
-      ${pkgs.openssh}/bin/ssh -i ${sshPrivateKey} $@
-    '')
-
     (pkgs.writeScriptBin "vm-deploy" ''
       #!${pkgs.stdenv.shell}
 
-      morph deploy ./network.nix switch
+      VM_NAME=$1
+
+      morph deploy ./vm/$VM_NAME/morph.nix switch
     '')
   ];
 }
