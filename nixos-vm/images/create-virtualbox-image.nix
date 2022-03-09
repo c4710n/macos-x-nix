@@ -10,11 +10,14 @@
 }:
 
 let
+  secrets = import ../../secrets.nix;
+
   virtualbox-tune = import (../shared/virtualbox-tune.nix) {
     inherit hostName diskSize memorySize;
   };
+
   general-configuration = import (../shared/general-configuration.nix) {
-    inherit hostName ip;
+    inherit hostName ip secrets;
   };
 in
 {

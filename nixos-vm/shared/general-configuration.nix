@@ -1,4 +1,4 @@
-{ hostName, ip, ... }:
+{ hostName, ip, secrets, ... }:
 
 { pkgs, ... }: {
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -41,9 +41,7 @@
   # Setup users
   users.users.root = {
     password = "nixos";
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOZy4GKqYkixMOOKe/+UR78vO1i0THFEZG6z3gDRHcq2 user@nixos-vm"
-    ];
+    openssh.authorizedKeys.keys = [ secrets.nixos-vm-ssh-key-public ];
   };
 
   networking.hostName = hostName;
