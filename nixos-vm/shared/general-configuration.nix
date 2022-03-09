@@ -1,4 +1,4 @@
-{ hostName, ip, secrets, ... }:
+{ hostName, secrets, ... }:
 
 { pkgs, ... }: {
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -6,18 +6,11 @@
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.enableIPv6 = false;
+
   # enp0s3 is the interface for NAT.
   networking.interfaces.enp0s3.useDHCP = true;
   # enp0s8 is the interface for Host-only network.
-  networking.interfaces.enp0s8 = {
-    useDHCP = false;
-    ipv4.addresses = [
-      {
-        address = ip;
-        prefixLength = 24;
-      }
-    ];
-  };
+  networking.interfaces.enp0s8.useDHCP = true;
 
   # Select internationalisation properties.
   time.timeZone = "Asia/Shanghai";

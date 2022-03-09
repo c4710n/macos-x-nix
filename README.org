@@ -206,11 +206,63 @@ $ nixos-generate --format virtualbox --system x86_64-linux -c vm/nix-builder/ima
 
 # build a VirtualBox image for my daily development
 $ nixos-generate --format virtualbox --system x86_64-linux -c vm/dev-box/image.nix
+
+# These two commands will generate .ova files.
+#+end_src
+
+** create required host-only network
+
+Suppose that the interface name is =vboxnet0=.
+
+#+begin_src sh
+# list host-only interface
+$ VBoxManage list hostonlyifs
+# empty ...
+
+# create one host-only interface
+$ VBoxManage hostonlyif create
+Name:            vboxnet0
+GUID:            786f6276-656e-4074-8000-0a0027000000
+DHCP:            Disabled
+IPAddress:       192.168.56.1
+NetworkMask:     255.255.255.0
+IPV6Address:
+IPV6NetworkMaskPrefixLength: 0
+HardwareAddress: 0a:00:27:00:00:00
+MediumType:      Ethernet
+Wireless:        No
+Status:          Down
+VBoxNetworkName: HostInterfaceNetworking-vboxnet0
+
+# enable DHCP server for created interface
+$ VBoxManage list dhcpservers
+$ VBoxManage dhcpserver modify --ifname vboxnet0 --enable
+$ VBoxManage list dhcpservers
 #+end_src
 
 ** import the VirtualBox images
-Import them to VirtualBox with your prefered way.
+Import images to VirtualBox with your prefered way.
 
+I prefer using =VBoxManage=:
+#+begin_src sh
+$ VBoxManage import $OVA_FILE
+#+end_src
+
+** add host-only adapter to virtual machine
+By default the VM has one interface, which is using NAT. In my case, another host-only interface is required.
+
+When building VirtualBox images, I have added this interface into it. But, it seems that there is a bug, I have to refresh the setting again:
+
+#+begin_src sh
+$ VBoxManage list vms
+$ VBoxManage modifyvm $VM_NAME --nic2 hostonly --nictype2 virtio --hostonlyadapter2 vboxnet0
+#+end_src
+
+** start vm
+#+begin_src sh
+$ VBoxManage list vms
+$ VBoxManage startvm $VM_NAME --type headless
+#+end_src
 
 * Release more power of Nix
 + [[https://nix.dev/][use Nix in your daily development]].

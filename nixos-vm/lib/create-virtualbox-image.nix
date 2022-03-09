@@ -3,7 +3,6 @@
 , pkgs
 , lib
 , hostName ? "nixos-vm"
-, ip
 , diskSize ? 20
 , memorySize ? 2
 , ...
@@ -17,7 +16,7 @@ let
   };
 
   general-configuration = import (../shared/general-configuration.nix) {
-    inherit hostName ip secrets;
+    inherit hostName secrets;
   };
 in
 {
