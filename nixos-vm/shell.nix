@@ -23,6 +23,8 @@ pkgs.mkShell {
   # force SSH to use specified SSH private key in this repo, instead of keys
   # in SSH agent.
   buildInputs = [
+    pkgs.nixos-generators
+
     (pkgs.writeScriptBin "vm-ssh" ''
       #!${pkgs.stdenv.shell}
 

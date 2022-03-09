@@ -197,6 +197,21 @@ As you can see in above action, I am using a build machine.
 
 But, how I create and manage the virtual machines? I still use Nix.
 
+** build VirtualBox images
+#+begin_src sh
+$ cd ./nixos-vm
+
+# build a VirtualBox image for nix-bulider
+$ nixos-generate --format virtualbox --system x86_64-linux -c images/nix-builder.nix
+
+# build a VirtualBox image for my daily development
+$ nixos-generate --format virtualbox --system x86_64-linux -c images/nix-builder.nix
+#+end_src
+
+** import the VirtualBox images
+Import them to VirtualBox with your prefered way.
+
+
 * Release more power of Nix
 + [[https://nix.dev/][use Nix in your daily development]].
 + manage virtual machine for local development with [[https://github.com/NixOS/nixops][NixOps]].
