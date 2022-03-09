@@ -67,6 +67,7 @@ in
     # ./modules/texlive
 
     ./modules/nix-builder
+    ./modules/local-dev-vm
 
     ./modules/app-necessary
     ./modules/app-security
