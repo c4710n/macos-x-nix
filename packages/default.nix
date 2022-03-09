@@ -19,6 +19,7 @@ in
         pragmata-pro-font = pkgs.callPackage ./pragmata-pro-font { };
         macos-chromium = pkgs.callPackage ./macos-chromium { };
         macos-librewolf = pkgs.callPackage ./macos-librewolf { };
+        ensure-vbox-host-entry = pkgs.callPackage ./ensure-vbox-host-entry { };
 
         nodePackages = import ./node-packages {
           inherit pkgs system;

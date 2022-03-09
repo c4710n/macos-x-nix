@@ -26,7 +26,7 @@
 #    through host with the help of this NIC.
 #
 # 2. one for Host-only Network. The host uses this NIC to communicate with the
-#    virtual machine, mainly for SSH. Generally, I bind a fixed IP for it.
+#    virtual machine, mainly for SSH.
 #
 #  > Create a Host Network before creating any NIC of Host Network.
 #  > (The default subnet 192.168.56.1/24 is good)
@@ -35,11 +35,32 @@
 
 { pkgs, lib, secrets, username, ... }:
 
+let
+  hostName = "nix-builder";
+in
 lib.mkMerge [
+  ({
+    launchd.daemons."ensure-vbox-host-entry-${hostName}" =
+      let
+        command = "${pkgs.custom.ensure-vbox-host-entry}/bin/ensure-vbox-host-entry";
+      in
+      {
+        serviceConfig.RunAtLoad = true;
+        serviceConfig.KeepAlive = true;
+        serviceConfig.StartInterval = 10;
+        serviceConfig.ProgramArguments = [
+          command
+          username
+          hostName
+          "1"
+        ];
+        serviceConfig.StandardOutPath = "/var/log/ensure-vbox-host-entry.log";
+        serviceConfig.StandardErrorPath = "/var/log/ensure-vbox-host-entry.log";
+      };
+  })
+
   (
     let
-      hostName = "nix-builder";
-      host = "192.168.56.128";
       sshPort = 22;
       sshUser = "root";
       sshKeyPath = "/etc/nix/ssh_key_for_build_machines";
@@ -59,7 +80,6 @@ lib.mkMerge [
         home.file.".ssh/config".text = ''
           Host ${hostName}
             User ${sshUser}
-            HostName ${host}
             Port ${toString sshPort}
             IdentityFile ${sshKeyPath}
             IdentitiesOnly yes
