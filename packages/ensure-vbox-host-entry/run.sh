@@ -19,6 +19,10 @@ function vbox-get-ip() {
     #
     # Use awk match and get the IP.
     #
+    # In case it fails, use following command for troubleshooting, since it lists all guest VM properties:
+    #
+    #   VBoxManage guestproperty enumerate $VM_NAME
+    #
     su ${USERNAME} -c -- "VBoxManage guestproperty get ${VM_NAME} '/VirtualBox/GuestInfo/Net/${INTERFACE_NUM}/V4/IP' | awk '/^Value:/ { print \$2 }'"
 }
 
@@ -28,17 +32,13 @@ function hostname-ensure-entry() {
 
     HOST_FILE=/etc/hosts
 
-    line_pattern="$IP[[:space:]]$HOSTNAME"
+    line_pattern="${IP}[[:space:]]${HOSTNAME}$"
     line_content=$(printf "%s\t%s\n" "$IP" "$HOSTNAME")
-    hostname_pattern="${HOSTNAME}$"
+    hostname_pattern="${HOSTNAME}\$"
 
-    matched_line=$(grep $line_pattern $HOST_FILE)
-    matched_hostname=$(grep $hostname_pattern $HOST_FILE)
-
-    if [ -z "$matched_line" ]; then
-        if [ -n "$matched_hostname" ];then
-            sed -i "/$hostname_pattern/d" /etc/hosts
-        fi
+    matched_hosts=$(grep -c $hostname_pattern $HOST_FILE)
+    if [ $((matched_hosts)) -ne 1 ]; then
+        sed -i "/$hostname_pattern/d" /etc/hosts
 
         echo "[$HOSTNAME] ensure entry: $IP"
         echo "$line_content" >> $HOST_FILE;
@@ -46,8 +46,8 @@ function hostname-ensure-entry() {
         echo "[$HOSTNAME] ensure entry: skip"
     fi
 
-    matched_line=$(grep $line_pattern $HOST_FILE)
-    if [ -z "$matched_line" ]; then
+    matched_lines=$(grep -c $line_pattern $HOST_FILE)
+    if [ $((matched_lines)) -eq 0 ]; then
         echo "Fail to add $line_content";
     fi
 }
