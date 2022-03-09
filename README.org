@@ -202,10 +202,10 @@ But, how I create and manage the virtual machines? I still use Nix.
 $ cd ./nixos-vm
 
 # build a VirtualBox image for nix-bulider
-$ nixos-generate --format virtualbox --system x86_64-linux -c images/nix-builder.nix
+$ nixos-generate --format virtualbox --system x86_64-linux -c vm/nix-builder/image.nix
 
 # build a VirtualBox image for my daily development
-$ nixos-generate --format virtualbox --system x86_64-linux -c images/nix-builder.nix
+$ nixos-generate --format virtualbox --system x86_64-linux -c vm/dev-box/image.nix
 #+end_src
 
 ** import the VirtualBox images

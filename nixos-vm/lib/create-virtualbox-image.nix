@@ -3,7 +3,7 @@
 , pkgs
 , lib
 , hostName ? "nixos-vm"
-, ip ? "192.168.56.2"
+, ip
 , diskSize ? 20
 , memorySize ? 2
 , ...
