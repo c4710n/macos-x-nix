@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+#
+# + https://apple.stackexchange.com/a/103633
+
+usage() {
+    echo "Usage:"
+    echo ""
+    echo "  $(basename $0) [ shutdown | reboot | sleep ]"
+    echo ""
+}
+
+shutdown_vms() {
+    running_vms=$(VBoxManage list runningvms | awk -F'"' '{print $2}')
+
+    for vm in $running_vms; do
+        VBoxManage controlvm $vm acpipowerbutton
+        echo "[VirtualBox] ACPI shutdown: $vm"
+    done
+}
+
+shutdown() {
+    echo "[macOS] shutdown"
+    osascript -e 'tell app "loginwindow" to «event aevtrsdn»'
+}
+
+reboot() {
+    echo "[macOS] reboot"
+    osascript -e 'tell app "loginwindow" to «event aevtrrst»'
+}
+
+sleep() {
+    echo "[macOS] sleep"
+    osascript -e 'tell app "System Events" to sleep'
+}
+
+
+if [[ $# -ne 1 ]]; then
+    usage
+fi
+
+case "$1" in
+    shutdown)
+        shutdown_vms
+        shutdown
+        ;;
+
+    reboot)
+        shutdown_vms
+        reboot
+        ;;
+
+    sleep)
+        sleep
+        ;;
+
+    *)
+        usage
+        ;;
+esac

@@ -12,7 +12,7 @@ lib.mkMerge [
       in
       {
         serviceConfig.RunAtLoad = true;
-        serviceConfig.StartInterval = 10;
+        serviceConfig.StartInterval = 60;
         serviceConfig.ProgramArguments = [
           "/bin/sh"
           "-c"
