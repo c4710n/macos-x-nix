@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-if [ "$(id -u)" != "0" ]; then
-    echo "root permission is required." 1>&2
-    exit 1
-fi
-
-# VBoxManage is managed by homebrew, and the PATH is /usr/local/bin
+# VirtualBox is managed by homebrew, and the PATH is /usr/local/bin
 export PATH=/usr/local/bin:$PATH
+
+VM_MANAGER_CMD=VBoxManage
 
 function vbox-get-ip() {
     USERNAME=$1
@@ -23,7 +20,7 @@ function vbox-get-ip() {
     #
     #   VBoxManage guestproperty enumerate $VM_NAME
     #
-    su ${USERNAME} -c -- "VBoxManage guestproperty get ${VM_NAME} '/VirtualBox/GuestInfo/Net/${INTERFACE_NUM}/V4/IP' | awk '/^Value:/ { print \$2 }'"
+    su ${USERNAME} -c -- "${VM_MANAGER_CMD} guestproperty get ${VM_NAME} '/VirtualBox/GuestInfo/Net/${INTERFACE_NUM}/V4/IP' | awk '/^Value:/ { print \$2 }'"
 }
 
 function hostname-ensure-entry() {
@@ -52,15 +49,30 @@ function hostname-ensure-entry() {
     fi
 }
 
+if [ "$(id -u)" != "0" ]; then
+    echo "root permission is required." 1>&2
+    exit 1
+fi
+
+if ! command -v ${VM_MANAGER_CMD} &> /dev/null; then
+    echo "[error] ${VM_MANAGER_CMD} not found"
+    exit 1
+fi
+
 USERNAME=$1
 VM_NAME=$2
 INTERFACE_NUM=$3
 
-VM_IP=$(vbox-get-ip $USERNAME $VM_NAME $INTERFACE_NUM)
+found_vm=$(su ${USERNAME} -c -- "${VM_MANAGER_CMD} list vms | grep -c '\"${VM_NAME}\"'")
+if [ $((found_vm)) -ne 1 ]; then
+    echo "[$VM_NAME] virtual machine not found"
+    exit 1
+fi
 
-if [ -n "$VM_IP" ]; then
-    echo "[$VM_NAME] find ip: $VM_IP"
-    hostname-ensure-entry $VM_NAME $VM_IP
+vm_ip=$(vbox-get-ip $USERNAME $VM_NAME $INTERFACE_NUM)
+if [ -n "$vm_ip" ]; then
+    echo "[$VM_NAME] find ip: $vm_ip"
+    hostname-ensure-entry $VM_NAME $vm_ip
 else
     echo "[$VM_NAME] find ip: missing"
 fi
