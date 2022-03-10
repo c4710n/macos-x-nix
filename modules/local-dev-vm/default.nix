@@ -5,9 +5,9 @@ let
 in
 lib.mkMerge [
   ({
-    launchd.daemons."ensure-vbox-host-entry-${hostName}" =
+    launchd.daemons."vbox-ensure-host-entry-${hostName}" =
       let
-        command = "${pkgs.custom.ensure-vbox-host-entry}/bin/ensure-vbox-host-entry";
+        command = "${pkgs.custom.vbox-ensure-host-entry}/bin/vbox-ensure-host-entry";
       in
       {
         serviceConfig.RunAtLoad = true;
@@ -19,8 +19,8 @@ lib.mkMerge [
           hostName
           "1"
         ];
-        serviceConfig.StandardOutPath = "/var/log/ensure-vbox-host-entry.log";
-        serviceConfig.StandardErrorPath = "/var/log/ensure-vbox-host-entry.log";
+        serviceConfig.StandardOutPath = "/var/log/vbox-ensure-host-entry.log";
+        serviceConfig.StandardErrorPath = "/var/log/vbox-ensure-host-entry.log";
       };
   })
 
