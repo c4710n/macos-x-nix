@@ -37,25 +37,30 @@ function hostname-ensure-entry() {
     if [ $((matched_hosts)) -ne 1 ]; then
         sed -i "/$hostname_pattern/d" /etc/hosts
 
-        echo "[$HOSTNAME] ensure entry: $IP"
+        log "[$HOSTNAME] ensure entry: $IP"
         echo "$line_content" >> $HOST_FILE;
     else
-        echo "[$HOSTNAME] ensure entry: skip"
+        log "[$HOSTNAME] ensure entry: skip"
     fi
 
     matched_lines=$(grep -c $line_pattern $HOST_FILE)
     if [ $((matched_lines)) -eq 0 ]; then
-        echo "Fail to add $line_content";
+        log "[$HOSTNAME] Fail to add $line_content";
     fi
 }
 
+function log() {
+    content=$1
+    echo "$(date '+%Y-%m-%d %H:%M:%S') $content"
+}
+
 if [ "$(id -u)" != "0" ]; then
-    echo "root permission is required." 1>&2
+    log "root permission is required." 1>&2
     exit 1
 fi
 
 if ! command -v ${VM_MANAGER_CMD} &> /dev/null; then
-    echo "[error] ${VM_MANAGER_CMD} not found"
+    log "[error] ${VM_MANAGER_CMD} not found"
     exit 1
 fi
 
@@ -65,14 +70,14 @@ INTERFACE_NUM=$3
 
 found_vm=$(su ${USERNAME} -c -- "${VM_MANAGER_CMD} list vms | grep -c '\"${VM_NAME}\"'")
 if [ $((found_vm)) -ne 1 ]; then
-    echo "[$VM_NAME] virtual machine not found"
+    log "[$VM_NAME] virtual machine not found"
     exit 1
 fi
 
 vm_ip=$(vbox-get-ip $USERNAME $VM_NAME $INTERFACE_NUM)
 if [ -n "$vm_ip" ]; then
-    echo "[$VM_NAME] find ip: $vm_ip"
+    log "[$VM_NAME] find ip: $vm_ip"
     hostname-ensure-entry $VM_NAME $vm_ip
 else
-    echo "[$VM_NAME] find ip: missing"
+    log "[$VM_NAME] find ip: missing"
 fi
