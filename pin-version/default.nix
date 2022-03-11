@@ -62,6 +62,8 @@ in
 
   # other config for home-manager and homebrew
   home-manager.users."${username}" = {
+    home.enableNixpkgsReleaseCheck = true;
+
     manual.html.enable = true;
 
     programs.bash.initExtra = ''
