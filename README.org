@@ -277,6 +277,7 @@ $ VBoxManage startvm $VM_NAME --type headless
 
 * Others' config
 + [[https://github.com/cmacrae/config][cmacrae's config]]
++ [[https://github.com/lovesegfault/nix-config][lovesegfault's config]]
 
 * References
 + [[https://medium.com/ci-t/set-up-a-virtualbox-vm-with-4-vboxmanage-commands-9266a5ee885d][Set up a VirtualBox VM with 4 VBoxManage commands]]
