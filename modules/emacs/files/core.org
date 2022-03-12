@@ -2452,6 +2452,16 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
 (global-set-key (kbd "C-x |") 'toggle-window-split)
 #+end_src
 
+** use ace-window
+#+begin_src elisp
+(global-unset-key (kbd "C-x o"))
+
+(use-package ace-window
+  :ensure t
+  :init
+  (global-set-key (kbd "M-o") 'ace-window))
+#+end_src
+
 * Management - Workspace
 #+begin_src emacs-lisp
 (use-package eyebrowse
