@@ -108,10 +108,8 @@ in
 
       cmd + ctrl - s : open -a Sizzy
       cmd + ctrl - d : open -a TablePlus
-      cmd + ctrl - n : open -a NetNewsWire
-      cmd + ctrl - w : open -a Telegram
+      cmd + ctrl - n : open -a Telegram
 
-      cmd + ctrl - l : open -a Spotify
       cmd + ctrl - i : open -a Figma
       cmd + ctrl - m : open -a Feishu
 

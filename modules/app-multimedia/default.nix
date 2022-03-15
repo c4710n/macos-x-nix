@@ -19,13 +19,6 @@ mkMerge [
     ];
   }
 
-  # audio
-  {
-    homebrew.casks = [
-      "spotify"
-    ];
-  }
-
   # video
   {
     home-manager.users."${username}" = {
