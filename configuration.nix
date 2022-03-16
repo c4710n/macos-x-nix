@@ -75,6 +75,7 @@ in
     ./modules/app-input-method
     ./modules/app-web-browser
     ./modules/app-multimedia
+    ./modules/app-screencast
     ./modules/app-design
     ./modules/app-im
     ./modules/app-doc
