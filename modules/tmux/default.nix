@@ -56,6 +56,9 @@
         # switch current pane with pane specified by provided pane index
         bind-key h command-prompt -p 'swap current pane with pane # :' "swap-pane -t '%%'"
 
+        # make copy-mode works on macOS
+        bind-key -T copy-mode M-w send-keys -X copy-pipe "${pkgs.reattach-to-user-namespace}/bin/reattach-to-user-namespace pbcopy"
+
         # reload config
         bind-key r source-file ~/.config/tmux/tmux.conf \; display "Config Reloaded!"
       '';
