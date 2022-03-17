@@ -47,7 +47,7 @@ in
     package = pkgs.yabai;
     config =
       let
-        padding = 0;
+        padding = 10;
       in
       {
         top_padding = padding;
