@@ -83,20 +83,11 @@ in
           #   + https://dnscrypt.info/stamps-specifications/
           #   + https://dnscrypt.info/stamps
           #
-          [static.containerpi]
-          stamp = "sdns://AgMAAAAAAAAADDQ1Ljc3LjE4MC4xMCBsA2QQ3lR1Nl9Ygfr8FdBIpL-doxmHECRx3T5NIXYYtxNkbnMuY29udGFpbmVycGkuY29tCi9kbnMtcXVlcnk"
+          [staic.cloudflare]
+          stamp = "sdns://AgcAAAAAAAAABzEuMC4wLjEAEmRucy5jbG91ZGZsYXJlLmNvbQovZG5zLXF1ZXJ5"
 
           [static.geekdns-doh]
           stamp = "sdns://AgcAAAAAAAAAACCi3jNJDEdtNW4tvHN8J3lpIklSa2Wrj7qaNCgEgci9_AtpLjIzM3B5LmNvbQovZG5zLXF1ZXJ5"
-
-          [static.rubyfish]
-          stamp = "sdns://AgUAAAAAAAAAACA-GhoPbFPz6XpJLVcIS1uYBwWe4FerFQWHb9g_2j24OA9kbnMucnVieWZpc2guY24KL2Rucy1xdWVyeQ"
-
-          [static.rubyfish-ea]
-          stamp = "sdns://AgUAAAAAAAAAACA-GhoPbFPz6XpJLVcIS1uYBwWe4FerFQWHb9g_2j24OBJlYS1kbnMucnVieWZpc2guY24KL2Rucy1xdWVyeQ"
-
-          [static.rubyfish-uw]
-          stamp = "sdns://AgUAAAAAAAAAACA-GhoPbFPz6XpJLVcIS1uYBwWe4FerFQWHb9g_2j24OBJ1dy1kbnMucnVieWZpc2guY24KL2Rucy1xdWVyeQ"
         '');
       args = "-config ${configFile}";
     in
