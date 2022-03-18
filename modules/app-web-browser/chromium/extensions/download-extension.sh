@@ -23,9 +23,6 @@ download-extension() {
     fi
 }
 
-download-extension dpjamkmjmigaoobjbekmfgabipmfilij 'Empty New Tab Page'
 download-extension cjpalhdlnbpafiamejdnhcphjbkeiagm 'uBlock Origin'
 download-extension gcbommkclmclpchllfjekcdonpmejbdp 'HTTPS Everywhere'
-download-extension gmegofmjomhknnokphhckolhcffdaihd 'JSONView'
-download-extension gppongmhjkpfnbhagpmjfkannfbllamg 'Wappalyzer'
 download-extension lckanjgmijmafbedllaakclkaicjfmnk 'ClearURLs'

@@ -35,6 +35,22 @@ let
 
   chromiumPackage = pkgs.custom.macos-chromium;
   chromiumApp = "${chromiumPackage}/Applications/Chromium.app";
+  chromiumArgs = [
+    # install extension manually
+    "--extension-mime-request-handling"
+    # remove useless UI
+    "--custom-ntp='about:blank'"
+    "--remove-tabsearch-button"
+    "--show-avatar-button=never"
+    "--bookmark-bar-ntp=never"
+    # privary
+    "--fingerprinting-canvas-image-data-noise"
+    "--fingerprinting-canvas-measuretext-noise"
+    "--fingerprinting-client-rects-noise"
+    # others
+    "--disable-search-engine-collection"
+    "--enable-features=SetIpv6ProbeFalse"
+  ];
 in
 {
   environment.systemPackages = [
@@ -103,7 +119,8 @@ in
                          open -a ${emacsApp} || \
                          bash -i -c 'open -a ${emacsApp}'
 
-      cmd + ctrl - c : open -a ${chromiumApp}
+      # https://github.com/Eloston/ungoogled-chromium/blob/master/docs/flags.md
+      cmd + ctrl - c : open -a ${chromiumApp} --args ${lib.concatStringsSep " " chromiumArgs}
       cmd + ctrl + shift - c : open -a ${firefoxApp}
 
       cmd + ctrl - s : open -a Sizzy
