@@ -103,8 +103,8 @@ in
                          open -a ${emacsApp} || \
                          bash -i -c 'open -a ${emacsApp}'
 
-      cmd + ctrl - c : open -a ${firefoxApp}
-      cmd + ctrl + shift - c : open -a ${chromiumApp}
+      cmd + ctrl - c : open -a ${chromiumApp}
+      cmd + ctrl + shift - c : open -a ${firefoxApp}
 
       cmd + ctrl - s : open -a Sizzy
       cmd + ctrl - d : open -a TablePlus

@@ -1,8 +1,8 @@
 { lib, stdenv, fetchurl, unzip, undmg }:
 
 let
-  _version = "95.0.4638.69";
-  _build = "r920003";
+  _version = "99.0.4844.74";
+  _build = "r961656";
 in
 stdenv.mkDerivation rec {
   pname = "chromium";
@@ -19,15 +19,11 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     url =
       "https://github.com/macchrome/macstable/releases/download/v${_version}-${_build}-Ungoogled-macOS/Chromium.app.ungoogled-${_version}.zip";
-    sha256 = "03y4s22xbygxcacvk331h0pg3jwvw5927k9sqi64xkk1ski8ijr2";
+    sha256 = "sha256:1cg67xdl938ynv2jic13y8ahkcracca5dmrdl7n6yvyqksmjkili";
   };
 
   meta = with lib; {
     description = "Free and open-source web browser.";
-    # ungoogled
-    # widevine
-    # all-codecs+
-    # no-sync
     homepage = "https://chromium.woolyss.com/";
     platforms = platforms.darwin;
   };
