@@ -91,13 +91,49 @@ in
       # complete list of AppleScript key codes
       # https://eastmanreference.com/complete-list-of-applescript-key-codes
 
-      # return
-      # ctrl - m -> : skhd -k 'return'
-      # 0x24      : true # train myself to use ctrl-m
+      # Emulate Emacs keys #
+      ctrl - m  : skhd -k 'return'
+      ctrl - h  : skhd -k 'backspace'
+      ctrl - n [
+        "emacs" ~
+        *       : skhd -k 'down'
+      ]
 
-      # delete
-      # ctrl - h -> : skhd -k 'delete'
-      # 0x33      : true
+      ctrl - p [
+        "emacs" ~
+        *       : skhd -k 'up'
+      ]
+
+      ctrl - b [
+        "emacs" ~
+        *       : skhd -k 'left'
+      ]
+
+      ctrl - f [
+        "emacs" ~
+        *       : skhd -k 'right'
+      ]
+
+      ctrl - v [
+        "emacs" ~
+        "terminal" ~
+        *       : skhd -k 'pagedown'
+      ]
+
+      alt - v [
+        "terminal" ~
+        *       : skhd -k 'pageup'
+      ]
+
+      alt + shift - 0x0D [
+        "emacs" ~
+        *       : skhd -k 'home'
+      ]
+
+      alt + shift - 0x0E [
+        "emacs" ~
+        *       : skhd -k 'end'
+      ]
 
       # Shortcuts #
       cmd - e        : open -a Launchpad
@@ -149,7 +185,11 @@ in
       cmd + ctrl - r: pkill skhd; pkill yabai
 
       # disable default keybindings
-      cmd - w : true
+      cmd - w [
+        "chromium" ~
+        *       : true
+      ]
+
       cmd - q : true
       cmd - h : true
     '';
