@@ -30,9 +30,6 @@ let
   emacsPackage = config.home-manager.users."${username}".programs.emacs.finalPackage;
   emacsApp = "${emacsPackage}/Applications/Emacs.app";
 
-  firefoxPackage = config.home-manager.users."${username}".programs.firefox.package;
-  firefoxApp = "${firefoxPackage}/Applications/Firefox.app";
-
   chromiumPackage = pkgs.custom.macos-chromium;
   chromiumApp = "${chromiumPackage}/Applications/Chromium.app";
   chromiumArgs = [
@@ -51,6 +48,10 @@ let
     "--disable-search-engine-collection"
     "--enable-features=SetIpv6ProbeFalse"
   ];
+  openMainBrowser = "open -a ${chromiumApp} --args ${lib.concatStringsSep " " chromiumArgs}";
+
+  libreWolfApp = "${pkgs.custom.macos-librewolf}/Applications/LibreWolf.app";
+  openAltBrowser = "open -a ${libreWolfApp}";
 in
 {
   environment.systemPackages = [
@@ -156,8 +157,8 @@ in
                          bash -i -c 'open -a ${emacsApp}'
 
       # https://github.com/Eloston/ungoogled-chromium/blob/master/docs/flags.md
-      cmd + ctrl - c : open -a ${chromiumApp} --args ${lib.concatStringsSep " " chromiumArgs}
-      cmd + ctrl + shift - c : open -a ${firefoxApp}
+      cmd + ctrl - c : ${openMainBrowser}
+      cmd + ctrl + shift - c : ${openAltBrowser}
 
       cmd + ctrl - s : open -a Sizzy
       cmd + ctrl - d : open -a TablePlus
