@@ -289,15 +289,25 @@ x×X
   (cdr (assq font-en-size
              ;; tune the sizes manually.
              '((10 . 10)
+               (11 . 12)
                (12 . 12)
+               (13 . 14)
                (14 . 14)
+               (15 . 16)
                (16 . 16)
+               (17 . 18)
                (18 . 18)
+               (19 . 20)
                (20 . 20)
+               (21 . 22)
                (22 . 22)
+               (23 . 24)
                (24 . 24)
+               (25 . 26)
                (26 . 26)
+               (27 . 28)
                (28 . 28)
+               (29 . 30)
                (30 . 30)))))
 
 (defun mg/font-set-default-family (size)
@@ -328,12 +338,12 @@ x×X
                         charset (font-spec :family font-base :size size)))))
 
 (defun mg/font-setup (action)
-  (setq mg/font-size-default 18)
+  (setq mg/font-size-default 15)
   (setq mg/font-size-en-current
         (cond ((eq action :increase)
-               (+ 2 (or mg/font-size-en-current mg/font-size-default)))
+               (+ 1 (or mg/font-size-en-current mg/font-size-default)))
               ((eq action :decrease)
-               (max 10 (- (or mg/font-size-en-current mg/font-size-default) 2)))
+               (max 10 (- (or mg/font-size-en-current mg/font-size-default) 1)))
               ((eq action :init)
                (if (boundp 'mg/font-size-en-current)
                    mg/font-size-en-current
@@ -342,7 +352,7 @@ x×X
   (setq mg/font-size-cn-current (mg/font-calc-cn-size mg/font-size-en-current))
 
   (mg/font-set-default-family mg/font-size-en-current)
-  (mg/font-set-cjk-family mg/font-size-en-current)
+  (mg/font-set-cjk-family mg/font-size-cn-current)
 
   (setq mg/font-size-en mg/font-size-en-current)
   (setq mg/font-size-cn mg/font-size-cn-current)
@@ -2542,14 +2552,20 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
   (corfu-quit-no-match 'separator)
   (tab-always-indent 'complete))
 
+;; company-mode won't be enabled.
+;; the functions will be used by cape-company-to-capf
+(use-package company :ensure t)
+
 (use-package cape
   :ensure t
   :after (corfu)
   :init
-  (dolist (backend '(cape-dabbrev
-                     cape-keyword
-                     cape-file))
-    (add-to-list 'completion-at-point-functions backend)))
+  (setq-default completion-at-point-functions
+        (list
+         #'cape-keyword
+         (cape-company-to-capf #'company-dabbrev-code)
+         #'cape-file
+         (cape-company-to-capf #'company-yasnippet))))
 #+end_src
 
 ** Syntax Checking
