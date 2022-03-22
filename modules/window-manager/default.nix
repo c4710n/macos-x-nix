@@ -136,6 +136,26 @@ in
         *       : skhd -k 'end'
       ]
 
+      # make Terminal has the same keybindings for adjusting font size #
+
+      # (alt + ctrl - +) -> (cmd - +)
+      alt + ctrl - 0x19 [
+        "terminal" : skhd -k 'cmd - 0x19'
+        * ~
+      ]
+
+      # (alt + ctrl - -) -> (cmd - -)
+      alt + ctrl - 0x27 [
+        "terminal" : skhd -k 'cmd - 0x27'
+        * ~
+      ]
+
+      # (alt + ctrl - *) -> (cmd - 0)
+      alt + ctrl - 0x1A [
+        "terminal" : skhd -k 'cmd + shift - 0x1A'
+        * ~
+      ]
+
       # Shortcuts #
       cmd - e        : open -a Launchpad
       cmd + ctrl - t : open -a Terminal
