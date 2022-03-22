@@ -2537,6 +2537,9 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
   :init
   (corfu-global-mode)
   :custom
+  ;; Enable auto completion and configure quitting
+  (corfu-auto t)
+  (corfu-quit-no-match 'separator)
   (tab-always-indent 'complete))
 
 (use-package cape
@@ -2544,7 +2547,8 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
   :after (corfu)
   :init
   (dolist (backend '(cape-dabbrev
-                     cape-keyword))
+                     cape-keyword
+                     cape-file))
     (add-to-list 'completion-at-point-functions backend)))
 #+end_src
 
