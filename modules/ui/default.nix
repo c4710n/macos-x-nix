@@ -10,7 +10,7 @@ lib.mkMerge [
   # wallpaper
   (
     let
-      wallpaper = ./wallpaper/deep-blue.png;
+      wallpaper = ./wallpaper/dual-side.jpg;
     in
     {
       system.activationScripts.extraActivation.text = ''
