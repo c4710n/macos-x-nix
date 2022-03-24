@@ -6,17 +6,17 @@ in
 {
   system.activationScripts.extraActivation.text = ''
     echo "setting up terminal..."
-    plutil -replace "Window Settings".Basic.useOptionAsMetaKey -bool YES ${configFile}
-    plutil -replace "Window Settings".Basic.Bell -bool NO ${configFile}
-    plutil -replace "Window Settings".Basic.Bell -bool NO ${configFile}
-    plutil -replace "Window Settings".Basic.ShowActiveProcessInTitle -bool NO ${configFile}
-    plutil -replace "Window Settings".Basic.ShowCommandKeyInTitle -bool NO ${configFile}
-    plutil -replace "Window Settings".Basic.ShowDimensionsInTitle -bool NO ${configFile}
-    plutil -replace "Window Settings".Basic.ShowWindowSettingsNameInTitle -bool NO ${configFile}
-    plutil -replace "Window Settings".Basic.ShowRepresentedURLInTitle -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.useOptionAsMetaKey -bool YES ${configFile}
+    plutil -replace "Window Settings".modus-operandi.Bell -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.Bell -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.ShowActiveProcessInTitle -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.ShowCommandKeyInTitle -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.ShowDimensionsInTitle -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.ShowWindowSettingsNameInTitle -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.ShowRepresentedURLInTitle -bool NO ${configFile}
 
-    plutil -replace "Window Settings".Basic.ShowActivityIndicatorInTab -bool NO ${configFile}
-    plutil -replace "Window Settings".Basic.ShowActiveProcessInTabTitle -bool NO ${configFile}
-    plutil -replace "Window Settings".Basic.ShowRepresentedURLInTabTitle -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.ShowActivityIndicatorInTab -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.ShowActiveProcessInTabTitle -bool NO ${configFile}
+    plutil -replace "Window Settings".modus-operandi.ShowRepresentedURLInTabTitle -bool NO ${configFile}
   '';
 }
