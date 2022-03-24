@@ -25,6 +25,18 @@ lib.mkMerge [
           export BASTION_CORE=$HOME/_BASTION_/_core
           export BASTION_PLUGINS=$BASTION_CORE/plugins
           export PATH=$BASTION_CORE/bin:$PATH
+
+          # load bin from plugins
+          plugins=$(command ls $BASTION_PLUGINS)
+          for plugin in $plugins; do
+            bin_dir=$BASTION_PLUGINS/$plugin/bin
+            if [[ -d "$bin_dir" ]]; then
+              export PATH=$bin_dir:$PATH
+            fi
+          done
+          unset plugins
+          unset plugin
+          unset bin_dir
         '';
 
         sessionVariables = {
