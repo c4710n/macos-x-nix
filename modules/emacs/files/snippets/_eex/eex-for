@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: EEX for comprehension with items
+# name: EEx - insert <%= for ...
 # key: efor
 # --
 <%= for ${1:item} <- @$1s do %>

@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: EEX cond
+# name: EEx - insert <%= cond do ...
 # key: econd
 # --
 <%= cond do %>

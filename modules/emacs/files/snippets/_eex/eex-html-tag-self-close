@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: EEx - insert self-closed HTML tag
+# key: ete
+# --
+<${1:tag} />

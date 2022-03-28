@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: EEX <% end %>
+# name: EEx - insert <% end %>
 # key: eend
 # --
 <% end %>

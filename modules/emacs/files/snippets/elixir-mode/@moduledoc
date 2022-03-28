@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: @moduledoc
-# key: @moduledoc
-# --
-@moduledoc """
-$0
-"""

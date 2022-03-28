@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: EEX unless
+# name: EEx - insert <%= unless ...
 # key: eunless
 # --
 <%= unless $1 do %>

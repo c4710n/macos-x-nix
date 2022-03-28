@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: insert <%# %> for EEx
+# name: EEx - insert <%# %>
 # key: ec
 # --
 <%# $0 %>

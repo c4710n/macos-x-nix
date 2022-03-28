@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: EEx - insert HTML tag
+# key: et
+# --
+<${1:tag}>
+</$1>

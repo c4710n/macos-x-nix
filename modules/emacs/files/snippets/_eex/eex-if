@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: EEX if
+# name: EEx - insert <%= if ...
 # key: eif
 # --
 <%= if $1 do %>
