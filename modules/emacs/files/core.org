@@ -1242,7 +1242,10 @@ How to use:
 (use-package super-save
   :ensure t
   :config
+  (setq auto-save-default nil) ;; disable built-in auto-save-mode
   (setq super-save-auto-save-when-idle t)
+  (setq super-save-remote-files nil) ;; disable super-save for remote files
+  (setq super-save-exclude '(".gpg")) ;; disable super-save for .gpg files
   (super-save-mode))
 #+end_src
 
@@ -2478,7 +2481,9 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
 (use-package ace-window
   :ensure t
   :init
-  (global-set-key (kbd "M-o") 'ace-window))
+  (global-set-key (kbd "M-o") 'ace-window)
+  :config
+  (add-to-list 'super-save-triggers 'ace-window))
 #+end_src
 
 * Management - Workspace
