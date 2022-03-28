@@ -70,7 +70,7 @@ in
     '';
 
     programs.bash.shellAliases = {
-      ",emacs-reset" = ''pkill -f skhd; pkill -f emacs'';
+      ",emacs-reset" = ''skhd -r; pkill -f emacs'';
     };
   };
 }
