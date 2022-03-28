@@ -85,4 +85,8 @@ in
       subversion # `svn export` is useful
     ];
   };
+
+  homebrew.casks = [
+    "gitup"
+  ];
 }
