@@ -3163,26 +3163,8 @@ Currently, I don't handle email frequently. So, It is enough to use the client i
   :ensure t
   :config
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
-  (defun verb-part (&optional name filename)
-    "Start a new multipart form part.
-Use NAME as the 'name' parameter, and FILENAME as the 'filename'
-parameter in the Content-Disposition header.
-If neither NAME nor FILENAME are specified, instead of starting a new
-part, insert the final boundary delimiter."
-    (unless verb--multipart-boundary
-      (user-error "%s" (concat "No multipart boundary defined\n"
-                               "Please ensure you have called "
-                               "(verb-boundary) first within this "
-                               "requests tree")))
-    (if name
-        (concat "--" verb--multipart-boundary "\r\n" ;; replace \n with \r\n
-                "Content-Disposition: form-data; name=\"" name "\""
-                (when filename (concat "; filename=\"" filename "\"")))
-      (let (boundary)
-        (setq boundary verb--multipart-boundary
-              verb--multipart-boundary nil)
-        (concat "--" boundary "--"))))
   (defun verb-store/json-body-get (store-name &rest path)
+    "Get value by a given path from a JSON object."
     (apply #'verb-json-get (oref (verb-stored-response store-name) body) path)))
 #+end_src
 
