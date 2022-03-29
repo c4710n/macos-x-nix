@@ -1824,12 +1824,21 @@ References:
         (set-buffer-modified-p nil)))
     (add-hook 'after-save-hook 'mg/org-roam-rename-to-new-title))
 
+  (use-package org-roam-ui
+    :ensure t
+    :after org-roam
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start nil))
+
   (defun mg/file-name-extension (filename)
     "Get the extension name of a file with multi level extname support.
-  For example:
-  + file.org -> org
-  + file.org.gpg -> org.gpg
-  "
+    For example:
+    + file.org -> org
+    + file.org.gpg -> org.gpg
+    "
     (string-join (cdr (split-string filename "\\.")) "."))
   #+end_src
 
