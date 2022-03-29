@@ -18,12 +18,49 @@ let
     fi
   '';
 
-  gridLeft = "1:2:0:0:1:1";
-  gridLeftXL = "1:7:0:0:5:1";
-  gridRight = "1:2:1:0:1:1";
-  gridRightXL = "1:7:2:0:5:1";
-  gridCenter = "12:12:2:2:8:8";
-  gridFull = "1:1:0:0:1:1";
+  mdSize = {
+    gridLeft = "1:2:0:0:1:1";
+    gridLeftXL = "1:7:0:0:5:1";
+    gridRight = "1:2:1:0:1:1";
+    gridRightXL = "1:7:2:0:5:1";
+    gridCenter = "12:12:2:2:8:8";
+    gridFull = "1:1:0:0:1:1";
+  };
+
+
+  xlSize = rec {
+    xTotal = 41;
+    xEdgeGap = 4;
+    xMidGap = 1;
+    width = (xTotal - xMidGap) / 2 - xEdgeGap;
+
+    yTotal = 10;
+    yEdgeGap = 1;
+    height = (yTotal - 2 * yEdgeGap);
+
+    gridCenter =
+      let
+        xOffset = 4;
+        x = (xTotal - width) / 2 + xOffset;
+        y = 0;
+      in
+      "${toString yTotal}:${toString xTotal}:${toString x}:${toString y}:${toString width}:${toString height}";
+
+    gridLeft =
+      let
+        x = xEdgeGap;
+        y = yEdgeGap;
+      in
+      "${toString yTotal}:${toString xTotal}:${toString x}:${toString y}:${toString width}:${toString height}";
+
+    gridRight =
+      let
+        x = xEdgeGap + width + xMidGap;
+        y = yEdgeGap;
+      in
+      "${toString yTotal}:${toString xTotal}:${toString x}:${toString y}:${toString width}:${toString height}";
+  };
+
   displayInternal = "1";
   displayExternal = "2";
 
@@ -73,14 +110,14 @@ in
         right_padding = padding;
         window_gap = padding;
       };
-    extraConfig = ''
-      yabai -m rule --add app=Terminal grid=${gridRightXL}
-      yabai -m rule --add app=Preview grid=${gridLeftXL}
+    #extraConfig = ''
+    # yabai -m rule --add app=Terminal grid=${gridRightXL}
+    # yabai -m rule --add app=Preview grid=${gridLeftXL}
 
-      yabai -m rule --add app=Feishu grid=${gridCenter}
-      yabai -m rule --add app=NetNewsWire grid=${gridRightXL}
-      yabai -m rule --add app=VSCodium grid=${gridRightXL}
-    '';
+    # yabai -m rule --add app=Feishu grid=${gridCenter}
+    # yabai -m rule --add app=NetNewsWire grid=${gridRightXL}
+    # yabai -m rule --add app=VSCodium grid=${gridRightXL}
+    #'';
   };
 
   services.skhd = {
@@ -187,10 +224,17 @@ in
       cmd + ctrl - i : open -a Figma
       cmd + ctrl - m : open -a Feishu
 
-      cmd + ctrl - left  : ${pkgs.yabai}/bin/yabai -m window --grid ${gridLeft}
-      cmd + ctrl - right : ${pkgs.yabai}/bin/yabai -m window --grid ${gridRight}
-      cmd + ctrl - up    : ${pkgs.yabai}/bin/yabai -m window --grid ${gridFull}
-      cmd + ctrl - down  : ${pkgs.yabai}/bin/yabai -m window --grid ${gridRightXL}
+      # position window on normal size display
+      cmd + ctrl - left  : ${pkgs.yabai}/bin/yabai -m window --grid ${mdSize.gridLeft}
+      cmd + ctrl - right : ${pkgs.yabai}/bin/yabai -m window --grid ${mdSize.gridRight}
+      cmd + ctrl - up    : ${pkgs.yabai}/bin/yabai -m window --grid ${mdSize.gridFull}
+      cmd + ctrl - down  : ${pkgs.yabai}/bin/yabai -m window --grid ${mdSize.gridRightXL}
+
+      # position window on big size display
+      cmd + ctrl + shift - left  : ${pkgs.yabai}/bin/yabai -m window --grid ${xlSize.gridLeft}
+      cmd + ctrl + shift - right : ${pkgs.yabai}/bin/yabai -m window --grid ${xlSize.gridRight}
+      cmd + ctrl + shift - down : ${pkgs.yabai}/bin/yabai -m window --grid ${xlSize.gridCenter}
+
       cmd - up           : ${pkgs.yabai}/bin/yabai -m display --focus ${displayExternal}
       cmd - down         : ${pkgs.yabai}/bin/yabai -m display --focus ${displayInternal}
       cmd + shift - up   : ${pkgs.yabai}/bin/yabai -m window --display ${displayExternal} && \
