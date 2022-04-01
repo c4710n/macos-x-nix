@@ -15,6 +15,7 @@ lib.mkMerge [
         pv
 
         jq
+        unstable.fq # jq for binary formats
 
         dos2unix
 
