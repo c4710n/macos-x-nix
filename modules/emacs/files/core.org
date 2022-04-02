@@ -2552,7 +2552,9 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
 (setq-default tab-width 2)
 
 (electric-indent-mode -1)
+(setq-default electric-indent-inhibit t) ; don't indent preceding line
 (add-hook 'prog-mode-hook 'electric-indent-local-mode)
+
 (defun mg/disable-auto-indentation ()
   (interactive)
   (electric-indent-local-mode -1))
