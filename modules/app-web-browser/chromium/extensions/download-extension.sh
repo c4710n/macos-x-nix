@@ -26,4 +26,3 @@ download-extension() {
 download-extension cjpalhdlnbpafiamejdnhcphjbkeiagm 'uBlock Origin'
 download-extension gcbommkclmclpchllfjekcdonpmejbdp 'HTTPS Everywhere'
 download-extension lckanjgmijmafbedllaakclkaicjfmnk 'ClearURLs'
-download-extension hnlkiofnhhoahaiimdicppgemmmomijo 'Qwant'
