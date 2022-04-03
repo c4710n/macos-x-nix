@@ -46,6 +46,10 @@ Then, enable:
 APFS(encrypted) equals to APFS with File Vault enabled.
 #+end_note
 
+#+begin_note
+If you care about security, read [[https://github.com/drduh/macOS-Security-and-Privacy-Guide][macOS-Security-and-Privacy-Guide]], too.
+#+end_note
+
 * Setup macOS
 ** setup keyboard layout
 If you are using non-standard keyboard layout, such as [[https://www.kaufmann.no/roland/dvorak/][Programmer Dovrak]], etc. It's time to set it up.
