@@ -4,15 +4,15 @@ ssh() {
     SSH_DIR=$HOME/.ssh
     SSH_CONFIG=$SSH_DIR/config
     KEYLIST_FILE=$SSH_DIR/keychain_helper
-    PLUGINS=$(command ls $BASTION_PLUGINS)
+    SLOTS=$(command ls $BASTION_SLOTS)
 
     mkdir -p $SSH_DIR
 
     echo "" > $SSH_CONFIG
     echo "" > $KEYLIST_FILE
 
-    for PLUGIN in $PLUGINS; do
-        CURRENT_DIR=$BASTION_PLUGINS/$PLUGIN/ssh
+    for SLOT in $SLOTS; do
+        CURRENT_DIR=$BASTION_SLOTS/$SLOT/ssh
         CONFIG=$CURRENT_DIR/config
         KEY_DIR=$CURRENT_DIR/keys
 
@@ -24,7 +24,7 @@ ssh() {
         fi
 
         if [[ -d "$KEY_DIR" ]]; then
-            find $KEY_DIR -type f  | egrep -v '\.pub$' >> $KEYLIST_FILE
+            find $KEY_DIR -type f  | egrep -v '\.pub$' | egrep -v '\.DS_Store$' >> $KEYLIST_FILE
         fi
     done
 

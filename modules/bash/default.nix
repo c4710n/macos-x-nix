@@ -22,20 +22,20 @@ lib.mkMerge [
           # BASTION
           # - a directory for storing miscellaneous data.
           export BASTION_BASE=$HOME/_BASTION_
-          export BASTION_CORE=$HOME/_BASTION_/_core
-          export BASTION_PLUGINS=$BASTION_CORE/plugins
+          export BASTION_ROOT=$HOME/_BASTION_/root
+          export BASTION_SLOTS=$BASTION_ROOT/slots
           export PATH=$BASTION_CORE/bin:$PATH
 
-          # load bin from plugins
-          plugins=$(command ls $BASTION_PLUGINS)
-          for plugin in $plugins; do
-            bin_dir=$BASTION_PLUGINS/$plugin/bin
+          # load bin from slots
+          slots=$(command ls $BASTION_SLOTS)
+          for slot in $slots; do
+            bin_dir=$BASTION_SLOTS/$slot/bin
             if [[ -d "$bin_dir" ]]; then
               export PATH=$bin_dir:$PATH
             fi
           done
-          unset plugins
-          unset plugin
+          unset slots
+          unset slot
           unset bin_dir
         '';
 
