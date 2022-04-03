@@ -4,7 +4,6 @@
   home-manager.users."${username}" = {
     programs.gpg = {
       enable = true;
-      homedir = "${homeDir}/.gnupg";
       settings = {
         # when outpputting certificates, view user IDs distinctly from keys
         "fixed-list-mode" = true;
