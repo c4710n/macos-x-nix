@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Get directory path of current script
+# key: script-dir
+# --
+
+# + no metter from where we will execute script, $SCRIPT_DIR will indicate directory
+#   where script is located.
+# + the solution is not working if last component of the script path is a symlink,
+#   but it is enough for most cases.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
