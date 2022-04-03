@@ -3,7 +3,8 @@
 BACKUP_NAME=$1
 BACKUP_PATH=$2
 
-BORG_REPO="/Volumes/BORG-macOS/backups/$BACKUP_NAME"
+MEDIA_ROOT="/Volumes/BORG-macOS"
+BORG_REPO="$MEDIA_ROOT/backups/$BACKUP_NAME"
 
 help() {
     CMD=$(basename "$0")
@@ -12,9 +13,7 @@ help() {
     echo
     echo "An example:"
     echo
-    echo "  $CMD core ~/_BASTION_/_core"
-    echo
-    echo "  $CMD all ~/_BASTION_"
+    echo "  $CMD bastion ~/_BASTION_"
     echo
 }
 
@@ -48,8 +47,12 @@ backup() {
          ::{now} \
          "$BACKUP_PATH"
 
-
     borg list
+}
+
+sync_genesis() {
+    msg "3. Sync genesis..."
+    rsync -av --delete $BACKUP_PATH/genesis "$MEDIA_ROOT"/
 }
 
 if [ -z "$BACKUP_NAME" ]; then
@@ -61,4 +64,5 @@ elif [ -z "$BACKUP_PATH" ]; then
 else
     check_borg_repo
     backup
+    sync_genesis
 fi
