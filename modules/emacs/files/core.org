@@ -1781,7 +1781,7 @@ References:
     :hook
     (after-init . org-roam-mode)
     :custom
-    (org-roam-directory (mg/bastion-expand-file-name "_core/store/second-brain"))
+    (org-roam-directory (mg/bastion-expand-file-name "genesis/0-base/second-brain"))
     (org-roam-dailies-directory "daily/")
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
@@ -2793,8 +2793,11 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
   (defun mg/projectile-rescan-projects ()
     (interactive)
     (setq projectile-project-search-path
-          (mg/path-filter-directories
-           (mg/bastion-expand-file-name "_core/store/git-repos/")))
+          (mapcan 'mg/path-filter-directories
+                  (list
+                   (mg/bastion-expand-file-name "genesis")
+                   (mg/bastion-expand-file-name "root/src")
+                   (mg/bastion-expand-file-name "store/src"))))
     (projectile-cleanup-known-projects)
     (projectile-discover-projects-in-search-path)
     (message "Projects found."))
