@@ -43,3 +43,7 @@ EOF
 
     docker run -it --rm "$DOCKER_IMAGE" /bin/sh
 }
+
+,docker-debug-network() {
+    docker run -it --rm mbentley/bind-tools /bin/sh
+}
