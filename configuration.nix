@@ -2,6 +2,18 @@
 
 let
   secrets = import ./secrets.nix;
+
+  # source code from https://github.com/NixOS/nixpkgs/blob/1c00bf394867b07ed7a908408d8bc1d0afd9fa49/lib/strings.nix#L709
+  readPathsFromFile = rootPath: file:
+    let
+      lines = lib.splitString "\n" (lib.readFile file);
+      removeComments = lib.filter (line: line != "" && !(lib.hasPrefix "#" line));
+      relativePaths = removeComments lines;
+      paths = map (path: rootPath + "/${path}") relativePaths;
+    in
+    paths;
+
+  privateExtensionsListFile = ./private-extensions.list;
 in
 {
   # Necessary packages for managing this repo.
@@ -36,7 +48,7 @@ in
   _module.args.homeDir = "/Users/${secrets.username}";
   _module.args.hostConfig = import ./hosts/current.nix;
 
-  imports = [
+  imports = ([
     ./packages
     ./pin-version
 
@@ -95,5 +107,11 @@ in
     ./modules/lang-python
 
     ./modules/app-work
-  ];
+  ] ++ (
+    # import private extensions
+    if lib.pathExists privateExtensionsListFile then
+      readPathsFromFile /. privateExtensionsListFile
+    else
+      [ ]
+  ));
 }
