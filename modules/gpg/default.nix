@@ -14,6 +14,10 @@
       };
     };
 
+    programs.bash.sessionVariables = {
+      "GNUPGHOME" = "${homeDir}/.gnupg";
+    };
+
     home.packages = with pkgs; [
       paperkey
     ];
