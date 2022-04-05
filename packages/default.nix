@@ -26,6 +26,8 @@ in
         nodePackages = import ./node-packages {
           inherit pkgs system;
         };
+
+        plds = pkgs.callPackage ./plds { };
       };
     };
   };
