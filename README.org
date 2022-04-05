@@ -1,5 +1,7 @@
 #+TITLE: macOS × Nix
 
+[[https://builtwithnix.org][https://img.shields.io/badge/Built_With-Nix-5277C3.svg?logo=nixos&labelColor=73C3D5]]
+
 #+begin_quote
 Reproducible, declarative and reliable macOS with Nix.
 #+end_quote
