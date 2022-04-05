@@ -151,6 +151,11 @@ $ darwin-rebuild switch
 Not everything can be done automatically.
 #+end_quote
 
+** link ~/Desktop to a custom place
+#+begin_src sh
+$ ,macos-link-desktop
+#+end_src
+
 ** disable spotlight
 #+begin_src sh
 $ sudo ,macos-disable-spotlight

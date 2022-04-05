@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# https://stackoverflow.com/a/61624048
+
+DEFAULT_DESKTOP_DIR=~/Desktop
+CUSTOM_DESKTOP_DIR=~/_BASTION_/desktop
+
+mkdir -p $CUSTOM_DESKTOP_DIR
+sudo rm -rf $DEFAULT_DESKTOP_DIR
+ln -snf $CUSTOM_DESKTOP_DIR $DEFAULT_DESKTOP_DIR
+
+# prevent the system from deleting your symlink and creating a blank Desktop
+# folder after every system restart, change the flag of the symlink:
+#
+# 'sudo chflags -h noschg ~/Desktop' for unlock it.
+#
+sudo chflags -h schg $DEFAULT_DESKTOP_DIR
