@@ -211,7 +211,10 @@ lib.mkMerge [
     {
       services.prometheus = {
         enable = true;
-        extraFlags = [ "--web.enable-admin-api" ];
+        extraFlags = [
+          "--storage.local.retention.size 1GB"
+          "--web.enable-admin-api"
+        ];
         listenAddress = prometheusAddr;
         port = prometheusPort;
 
