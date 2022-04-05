@@ -29,6 +29,7 @@
     home.packages = with pkgs; [
       erlangR24
       unstable.beam.packages.erlangR24.elixir_1_13
+      custom.plds
     ];
 
     programs.bash.profileExtra = ''
