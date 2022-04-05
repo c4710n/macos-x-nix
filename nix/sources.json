@@ -35,6 +35,18 @@
         "url": "https://github.com/nix-community/home-manager/archive/2860d7e3bb350f18f7477858f3513f9798896831.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "mix-to-nix": {
+        "branch": "master",
+        "description": "Generate sandbox buildable Nix expression from Mix lock file",
+        "homepage": "https://gitlab.com/transumption/mix-to-nix",
+        "owner": "serokell",
+        "repo": "mix-to-nix",
+        "rev": "f6f0172b3ac4d32c0e6050a7d805734de0b7adef",
+        "sha256": "1r0sg4xwb02pazn0h6jv9g6qzxb3vg1p6k0mwr2rh31abwa4ir87",
+        "type": "tarball",
+        "url": "https://github.com/serokell/mix-to-nix/archive/f6f0172b3ac4d32c0e6050a7d805734de0b7adef.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "morph": {
         "branch": "master",
         "description": "NixOS deployment tool",
