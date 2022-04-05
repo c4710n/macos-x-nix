@@ -1,5 +1,9 @@
 #+TITLE: macOS × Nix
 
+#+begin_quote
+Reproducible, declarative and reliable macOS with Nix.
+#+end_quote
+
 + [[https://developer.apple.com/macos/][macOS]] is good, but only the GUI-related parts.
 + [[https://nixos.org/download.html#download-nix][Nix]] and [[https://nixos.org/][NixOS]] are good, except for the GUI-related parts, such as X Window System, Wayland, etc.
 
@@ -42,13 +46,13 @@ Then, enable:
 + FileVault
 + Firewall
 
-#+begin_note
+#+begin_quote
 APFS(encrypted) equals to APFS with File Vault enabled.
-#+end_note
+#+end_quote
 
-#+begin_note
+#+begin_quote
 If you care about security, read [[https://github.com/drduh/macOS-Security-and-Privacy-Guide][macOS-Security-and-Privacy-Guide]], too.
-#+end_note
+#+end_quote
 
 * Setup macOS
 ** setup keyboard layout
