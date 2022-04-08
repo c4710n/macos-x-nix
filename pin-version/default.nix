@@ -59,6 +59,11 @@ in
       "homebrew/cask-versions"
     ];
   };
+  environment.variables = {
+    HOMEBREW_NO_ANALYTICS = "1";
+    HOMEBREW_NO_INSECURE_REDIRECT = "1";
+    HOMEBREW_CASK_OPTS = "--require-sha";
+  };
 
   # other config for home-manager and homebrew
   home-manager.users."${username}" = {
@@ -70,9 +75,6 @@ in
       ,brew-use-path() {
         eval "$(/usr/libexec/path_helper)"
       }
-
-      # https://docs.brew.sh/Analytics
-      export HOMEBREW_NO_ANALYTICS=1
     '';
   };
 }
