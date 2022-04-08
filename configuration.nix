@@ -89,7 +89,7 @@ in
     ./modules/app-multimedia
     ./modules/app-screencast
     ./modules/app-design
-    ./modules/app-im
+    ./modules/app-communication
     ./modules/app-doc
     ./modules/app-storage
     ./modules/app-free-world
