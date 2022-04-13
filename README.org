@@ -40,13 +40,16 @@ Following steps aren't tested on newer version of macOS.
 #+end_quote
 
 * Install macOS
-First, [[https://support.apple.com/en-us/HT201372][create a bootable installer for macOS]].
-
-Then, use the prepared USB flash drive to install macOS as normal.
-
-Then, enable:
-+ FileVault
-+ Firewall
+1. [[https://support.apple.com/en-us/HT201372][create a bootable installer for macOS]].
+2. enter macOS Recovery:
+   - [[https://support.apple.com/en-us/HT204455][set a firmware password]].
+   - earse the disk.
+3. installing macOS with the bootable installer.
+4. after installation:
+   - [[https://support.apple.com/en-us/HT204063][clear NVRAM]]
+   - use strong password without a hint.
+   - enable FileVault
+   - enable Firewall
 
 #+begin_quote
 APFS(encrypted) equals to APFS with File Vault enabled.
@@ -56,46 +59,21 @@ APFS(encrypted) equals to APFS with File Vault enabled.
 If you care about security, read [[https://github.com/drduh/macOS-Security-and-Privacy-Guide][macOS-Security-and-Privacy-Guide]], too.
 #+end_quote
 
-* Setup macOS
-** setup keyboard layout
-If you are using non-standard keyboard layout, such as [[https://www.kaufmann.no/roland/dvorak/][Programmer Dovrak]], etc. It's time to set it up.
-
-*** (optional) setup modifier keys
-+ =Caps Lock= -> =Control=
-+ =Option= -> =Command=
-+ =Command= -> =Option=
-
-*** (options) setup shortcuts for changing input sources
-#+begin_src text
-System Preferences > Keyboard > Shortcuts > Input Sources > Select input source
-#+end_src
-
-** (optional) setup global proxy
-In my country, the internet is audited by goverment. I would like to configure a proxy. Or, I can't install Nix.
-
-Possible tools:
-+ [[https://nssurge.com/][Surge for Mac]]
-+ [[https://github.com/yichengchen/clashX][ClashX]]
-+ ...
-
 * Install Nix
 ** download and verify installation script
 From [[https://nixos.org/download.html#nix-verify-installation][official installation]]:
 #+begin_src sh
-$ curl -o install-nix-2.6.0 https://releases.nixos.org/nix/nix-2.6.0/install
-$ curl -o install-nix-2.6.0.asc https://releases.nixos.org/nix/nix-2.6.0/install.asc
+$ curl -o install-nix-2.7.0 https://releases.nixos.org/nix/nix-2.7.0/install
+$ curl -o install-nix-2.7.0.asc https://releases.nixos.org/nix/nix-2.7.0/install.asc
 $ gpg2 --keyserver hkps://keyserver.ubuntu.com --recv-keys B541D55301270E0BCF15CA5D8170B4726D7198DE
-$ gpg2 --verify ./install-nix-2.6.0.asc
+$ gpg2 --verify ./install-nix-2.7.0.asc
+$ sh ./install-nix-2.7.0
 #+end_src
 
-If everything is fine, then install it via the recommended [[https://nixos.org/manual/nix/stable/installation/multi-user.html][multi-user installation]], and with macOS limited options:
+If everything is fine, then install it via the recommended [[https://nixos.org/manual/nix/stable/installation/multi-user.html][multi-user installation]]:
 #+begin_src sh
-$ sh ./install-nix-2.6.0 --daemon --darwin-use-unencrypted-nix-store-volume
+$ sh ./install-nix-2.7.0 --daemon
 #+end_src
-
-#+begin_quote
-The option =--darwin-use-unencrypted-nix-store-volume= is no longer needed and will be removed in the future.
-#+end_quote
 
 ** verify installation
 #+begin_src sh
