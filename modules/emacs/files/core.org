@@ -1967,7 +1967,7 @@ Now, I got agenda files from =org-roam-directory=. Read more at [[https://d12fro
 
 + =INTR= ::
   Tasks that are interruptions.
-  They are urgent things that I should drop everything else and work on it. For example, production issues.
+  There are urgent things that I should drop everything else and work on it. For example, production issues.
 
 + =DONE= ::
   The tasks that are completed.
