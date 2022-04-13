@@ -67,7 +67,7 @@ let
   emacsPackage = config.home-manager.users."${username}".programs.emacs.finalPackage;
   emacsApp = "${emacsPackage}/Applications/Emacs.app";
 
-  chromiumPackage = pkgs.custom.macos-chromium;
+  chromiumPackage = pkgs.custom.marmaduke-chromium;
   chromiumApp = "${chromiumPackage}/Applications/Chromium.app";
   chromiumArgs = [
     # install extension manually

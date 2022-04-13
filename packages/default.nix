@@ -17,7 +17,7 @@ in
         trojan = pkgs.callPackage ./trojan { };
         sarasa-mono-sc-nerd-font = pkgs.callPackage ./sarasa-mono-sc-nerd-font { };
         pragmata-pro-font = pkgs.callPackage ./pragmata-pro-font { };
-        macos-chromium = pkgs.callPackage ./macos-chromium { };
+        marmaduke-chromium = pkgs.callPackage ./marmaduke-chromium { };
         macos-librewolf = pkgs.callPackage ./macos-librewolf { };
 
         vbox-ensure-host-entry = pkgs.callPackage ./vbox-ensure-host-entry { };
