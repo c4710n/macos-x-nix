@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# From https://www.simonewebdesign.it/how-to-enable-dark-mode-macos-command-line/
+
+osascript -e \
+          'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
