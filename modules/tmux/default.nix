@@ -38,7 +38,7 @@
 
         # adjust position and style for default status bar
         set-option -g status-position top
-        set-option -g status-style fg=black,bg=#efefef # use the same bg of emacs modeline
+        set-option -g status-style fg=black,bg=default
 
         # adjust style for message
         set-option -g message-style fg=magenta,bg=#efefef
