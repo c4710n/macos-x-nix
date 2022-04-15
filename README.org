@@ -143,10 +143,6 @@ $ sudo ,macos-disable-spotlight
 Spotlight is useless for an old-fashion guy. 😳
 #+end_quote
 
-** adjust Terminal
-+ =View > Hide Tab Bar= - Prevent Terminal.app from displaying a tab bar when there is only one tab open.
-+ =Preferences > Profiles > Keyboard > Use Options as Meta key= - Help me to input faster.
-
 * Reboot
 
 Reboot is required for some packages, such as =macfuse= which is installed by the sample configuration.

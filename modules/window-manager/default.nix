@@ -1,23 +1,5 @@
 { config, pkgs, lib, username, ... }:
 let
-  launchTerminal = pkgs.writeScriptBin "terminal" ''
-    #!${pkgs.stdenv.shell}
-
-    function pgrep() {
-      ps aux | grep $1 | grep -v grep
-    }
-
-    # pgrep provided by macOS is invalid for Terminal,
-    # I have to use a customized pgrep at here. ;(
-    if pgrep 'MacOS/Terminal'; then
-      exec osascript -e 'tell application "System Events"
-        set frontmost of process "Terminal" to true
-      end tell'
-    else
-      exec open -a Terminal ~
-    fi
-  '';
-
   mdSize = {
     gridLeft = "1:2:0:0:1:1";
     gridLeftXL = "1:7:0:0:5:1";
@@ -195,7 +177,7 @@ in
 
       # Shortcuts #
       cmd - e        : open -a Launchpad
-      cmd + ctrl - t : open -a Terminal
+      cmd + ctrl - t : open -a WezTerm
       cmd + ctrl - f : open -a Finder
       cmd + ctrl - g : open -a Dictionary
       cmd + ctrl - p : open -a Preview
