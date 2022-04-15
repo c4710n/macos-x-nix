@@ -2936,6 +2936,13 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
  (push '(elixir . t) org-babel-load-languages))
 #+end_src
 
+*** Lua
+#+begin_src emacs-lisp
+(use-package lua-mode
+  :ensure t
+  :mode ("\\.lua\\'"))
+#+end_src
+
 *** Go
 #+begin_src emacs-lisp
 (use-package go-mode
