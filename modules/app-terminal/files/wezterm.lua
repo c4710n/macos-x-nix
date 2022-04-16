@@ -19,8 +19,10 @@ wezterm.on("window-config-reloaded", function(window, pane)
 end)
 
 return {
-   font = wezterm.font("PragmataPro Mono", {weight="Bold"}),
+   font = wezterm.font("PragmataPro Mono"),
    font_size = 15.0,
+   freetype_load_flags = "NO_HINTING",
+
    default_prog = {"/run/current-system/sw/bin/tmux", "new-session", "-A", "-s", "main"},
 
    keys = {
