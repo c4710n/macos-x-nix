@@ -31,5 +31,12 @@ return {
       {key="-", mods="CTRL|ALT", action="DecreaseFontSize"},
    },
 
+   audible_bell = "Disabled",
+   visual_bell = {
+      fade_in_duration_ms = 75,
+      fade_out_duration_ms = 75,
+      target = "CursorColor",
+   },
+
    hide_tab_bar_if_only_one_tab = true
 }
