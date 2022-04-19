@@ -398,7 +398,7 @@ x×X
 ** cursor
 #+begin_src emacs-lisp
 (setq-default cursor-type 'box)
-(setq blink-cursor-mode t)
+(setq blink-cursor-mode nil)
 #+END_SRC
 
 ** frame
@@ -489,7 +489,6 @@ Setup UI via external packages.
 
 (advice-add 'enable-theme :after #'run-after-enable-theme-hook)
 
-;; themes
 (use-package modus-themes
   :ensure t
   :init
