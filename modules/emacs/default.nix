@@ -2,6 +2,37 @@
 let
   inherit (pkgs) lib stdenv fetchFromGitHub;
   emacsclientWrapped = pkgs.callPackage ./emacsclient.nix { };
+
+  tree-sitter-grammars = pkgs.stdenv.mkDerivation rec {
+    name = "tree-sitter-grammars";
+    version = "0.11.4";
+    src = pkgs.fetchzip {
+      url = "https://github.com/emacs-tree-sitter/tree-sitter-langs/releases/download/${version}/tree-sitter-grammars-macos-${version}.tar.gz";
+      stripRoot = false;
+      sha256 = "sha256:03arb8agspmfvhm76djb6lwfj2xrcxqzcgsc08d771y7kasw79hq";
+    };
+    installPhase = ''
+      install -d $out/langs/bin
+      install -m444 * $out/langs/bin
+    '';
+  };
+
+  tree-sitter-elixir = pkgs.stdenv.mkDerivation rec {
+    name = "tree-sitter-elixir";
+    version = "0.19.0";
+    commit = "ec1c4cac1b2f0290c53511a72fbab17c47815d2b";
+    src = pkgs.fetchzip {
+      url = "https://github.com/elixir-lang/tree-sitter-elixir/archive/${commit}.zip";
+      sha256 = "sha256:1knbazn7wcl69n6dzbyalvhf60h4r4s5npcyxri535ix2s335q2i";
+    };
+
+    phases = [ "unpackPhase" "installPhase" ];
+
+    installPhase = ''
+      install -d $out/share/queries
+      install ${name}-${commit}/queries/* $out/share/queries
+    '';
+  };
 in
 {
   imports = [
@@ -26,6 +57,20 @@ in
             ./patches/system-appearance.patch
           ];
         });
+        override = epkgs: epkgs // {
+          tree-sitter-langs = epkgs.tree-sitter-langs.overrideAttrs (oldAttrs: {
+            postPatch = oldAttrs.postPatch or "" + ''
+              # fix prebuilt grammar files
+              substituteInPlace ./tree-sitter-langs-build.el \
+              --replace "tree-sitter-langs-grammar-dir tree-sitter-langs--dir"  "tree-sitter-langs-grammar-dir \"${tree-sitter-grammars}/langs\""
+            '';
+            #  + ''
+            #   # patch elixir related files
+            #   mkdir -p queries/elixir
+            #   install -m444 ${tree-sitter-elixir}/share/queries/* queries/elixir
+            # '';
+          });
+        };
       };
     };
 

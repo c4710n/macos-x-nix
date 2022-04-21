@@ -2397,7 +2397,7 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
   :ensure nil
   :config
   (setq insert-directory-program "gls")
-  (setq dired-listing-switches "-agho --group-directories-first"))
+  (setq dired-listing-switches "-agho"))
 
 (use-package dired-single
   :ensure t
@@ -2406,14 +2406,6 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
              ("^" . dired-single-up-directory)
              ("<return>" . dired-single-buffer)
              ("RET" . dired-single-buffer)))
-
-(use-package dired-subtree
-  :ensure t
-  :config
-  (bind-keys :map dired-mode-map
-             ("<tab>" . dired-subtree-toggle)
-             ("<C-tab>" . dired-subtree-cycle)
-             ("<S-tab>" . dired-subtree-remove)))
 
 (use-package dired-open
   :ensure t
@@ -2590,6 +2582,18 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
          (cape-company-to-capf #'company-dabbrev-code)
          #'cape-file
          (cape-company-to-capf #'company-yasnippet))))
+#+end_src
+
+** Syntax
+#+begin_src emacs-lisp
+(use-package tree-sitter
+  :ensure t
+  :init
+  (global-tree-sitter-mode)
+  :hook
+  (tree-sitter-after-on . tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs :ensure t)
 #+end_src
 
 ** Syntax Checking
