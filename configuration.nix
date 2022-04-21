@@ -76,7 +76,7 @@ in
     ./modules/emacs
     ./modules/direnv
     ./modules/tmux
-    # ./modules/texlive
+    ./modules/texlive
 
     ./modules/nix-builder
     ./modules/local-dev-vm
