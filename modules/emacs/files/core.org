@@ -967,7 +967,9 @@ Ported from =nano-modeline= provided by [[https://github.com/rougier/nano-emacs]
   :ensure t
   :init
   (defun mg/echo-bar ()
-    (format "%s" (mg/convert-num-to-icon (mg/eyebrowse-slot))))
+    (format "%s %s"
+            (format-time-string "%H:%M")
+            (mg/convert-num-to-icon (mg/eyebrowse-slot))))
   (setq echo-bar-function 'mg/echo-bar)
   (echo-bar-mode))
 #+end_src
