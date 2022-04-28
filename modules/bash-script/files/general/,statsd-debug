@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-
 # https://gist.github.com/taavi/5c9c9b3a24ee97840f68
 # From https://wiki.python.org/moin/UdpCommunication modified for Statsd + debugging usage
+#
+# An example to check if it works:
+#
+#   echo "foo:1|c" | nc -u -w0 127.0.0.1 8125
+#
+
 import datetime
 import socket
 
