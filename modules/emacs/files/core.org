@@ -1424,6 +1424,7 @@ Missing, so far.
 #+begin_src emacs-lisp
 (use-package org
   :ensure t
+  :mode ("\\.org\\'" . org-mode)
   :bind (:map org-mode-map
               ("M-h" . backward-kill-word)
               ("C-c C-f" . org-reveal)))
@@ -1735,7 +1736,9 @@ Previously, I am using [[https://github.com/alphapapa/org-make-toc][org-make-toc
 
 ** Extension - org-tree-slide
 #+begin_src emacs-lisp
-(use-package org-present :ensure t)
+(use-package org-present
+  :ensure t
+  :after org)
 #+end_src
 
 ** Extension - org-protocol
@@ -3108,7 +3111,9 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
 
 *** Nginx
 #+begin_src emacs-lisp
-(use-package nginx-mode :ensure t)
+(use-package nginx-mode
+  :ensure t
+  :mode ("nginx\\.conf\\'" "/nginx/.+\\.conf\\'"))
 #+end_src
 
 *** SQL
@@ -3203,6 +3208,7 @@ Currently, I don't handle email frequently. So, It is enough to use the client i
 #+begin_src emacs-lisp
 (use-package verb
   :ensure t
+  :after org
   :config
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
   (defun verb-store/json-body-get (store-name &rest path)
@@ -3371,7 +3377,9 @@ It's usable, but I don't need it for now.
 
 ** Don't show my code
 #+begin_src emacs-lisp
-(use-package redacted :ensure t)
+(use-package redacted
+  :ensure t
+  :commands redacted-mode)
 #+end_src
 
 * Misc
