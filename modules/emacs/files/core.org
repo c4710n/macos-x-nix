@@ -1601,7 +1601,7 @@ And, you can also toggle this feature by using following keybinding - =C-c C-x \
 
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-(add-to-list 'org-structure-template-alist '("ex" . "src elixir"))
+(add-to-list 'org-structure-template-alist '("elixir" . "src elixir"))
 (add-to-list 'org-structure-template-alist '("sql" . "src sql"))
 
 (add-to-list 'org-structure-template-alist '("html" . "src html"))
