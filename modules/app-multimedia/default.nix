@@ -24,7 +24,8 @@ mkMerge [
     home-manager.users."${username}" = {
       home.packages = with pkgs; [
         ffmpeg
-        youtube-dl
+        youtube-dl # download speed is limited by YouTube
+        unstable.yt-dlp
       ];
 
       programs.bash.shellAliases = {
