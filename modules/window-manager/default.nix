@@ -201,7 +201,8 @@ in
 
       cmd + ctrl - s : open -a Sizzy
       cmd + ctrl - d : open -a TablePlus
-      cmd + ctrl - n : open -a Telegram
+      cmd + ctrl - w : open -a Telegram
+      cmd + ctrl - r : open -a NetNewsWire
 
       cmd + ctrl - i : open -a Figma
       cmd + ctrl - m : open -a Feishu
