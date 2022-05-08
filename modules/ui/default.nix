@@ -22,13 +22,26 @@ lib.mkMerge [
   # finder
   {
     system.defaults.finder = {
+      # show file extensions
       AppleShowAllExtensions = true;
 
-      # show full POSIX path as Finder window title
-      _FXShowPosixPathInTitle = true;
+      # use list view
+      FXPreferredViewStyle = "Nlsv";
 
       # disable the warning when changing a file extension
       FXEnableExtensionChangeWarning = false;
+
+      # Change the default search scope to current directory
+      FXDefaultSearchScope = "SCcf";
+
+      # show full POSIX path as Finder window title
+      _FXShowPosixPathInTitle = false;
+
+      # Show path breadcrumbs in finder windows
+      ShowPathbar = true;
+
+      # Show status bar at bottom of finder windows with item/disk space stats.
+      ShowStatusBar = true;
     };
 
     # show file extensions in Finder

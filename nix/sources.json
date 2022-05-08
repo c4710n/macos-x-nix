@@ -77,10 +77,10 @@
         "homepage": "",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "bcdb6022b3a300abf59cb5d0106c158940f5120e",
-        "sha256": "0hdfx1i0vmmk00qfcw5f6nwd7p6jdddngvp7rhx47knnn8anammv",
+        "rev": "2f2bdf658d2b79bada78dc914af99c53cad37cba",
+        "sha256": "07mjslw2hcsrhnvlwp0z5kn6dr3fk3ac2yj5ahp856q6wn8zvq2j",
         "type": "tarball",
-        "url": "https://github.com/LnL7/nix-darwin/archive/bcdb6022b3a300abf59cb5d0106c158940f5120e.tar.gz",
+        "url": "https://github.com/LnL7/nix-darwin/archive/2f2bdf658d2b79bada78dc914af99c53cad37cba.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos": {
