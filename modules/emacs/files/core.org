@@ -2692,8 +2692,8 @@ I am using ~electric-pair-mode~, but not globally.
   (setq magit-diff-highlight-indentation nil)
   (setq magit-diff-highlight-trailing nil)
   (setq magit-diff-paint-whitespace nil)
-  (setq magit-diff-highlight-hunk-body nil)
-  (setq magit-diff-refine-hunk nil)
+  (setq magit-diff-highlight-hunk-body t)
+  (setq magit-diff-refine-hunk t)
   (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1))
 #+end_src
 
