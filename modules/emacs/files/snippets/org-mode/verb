@@ -18,6 +18,7 @@ Accept: application/json
 ** Get users list
 GET /users
 
+* org-mode variables
 # Local Variables:
 # eval: (verb-mode)
 # End:
