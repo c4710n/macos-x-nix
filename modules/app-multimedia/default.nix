@@ -15,7 +15,7 @@ mkMerge [
 
     homebrew.casks = [
       "imageoptim"
-      "texturepacker"
+      # "texturepacker"
     ];
   }
 
