@@ -182,6 +182,9 @@ in
       cmd + ctrl - g : open -a Dictionary
       cmd + ctrl - p : open -a Preview
 
+      cmd + ctrl - 0x0E : open -a Telegram
+      cmd + ctrl - d : open -a TablePlus
+
       # If Emacs is not opened, then open it with a interactive shell,
       # or some functions might not work as expected, such as:
       # + `direnv` will not load PATH
@@ -199,13 +202,11 @@ in
       cmd + ctrl - c : ${openMainBrowser}
       cmd + ctrl + shift - c : ${openAltBrowser}
 
-      cmd + ctrl - s : open -a Sizzy
-      cmd + ctrl - d : open -a TablePlus
-      cmd + ctrl - w : open -a Telegram
-      cmd + ctrl - r : open -a NetNewsWire
+      # cmd + ctrl - s : open -a Sizzy
+      # cmd + ctrl - r : open -a NetNewsWire
 
       cmd + ctrl - i : open -a Figma
-      cmd + ctrl - m : open -a Feishu
+      cmd + ctrl - w : open -a Feishu
 
       # position window on normal size display
       cmd + ctrl - left  : ${pkgs.yabai}/bin/yabai -m window --grid ${mdSize.gridLeft}
