@@ -4,7 +4,11 @@ let
 in
 {
   home-manager.users."${username}" = {
-    home.packages = with pkgs; [ nodejs-16_x yarn ];
+    home.packages = with pkgs; [
+      custom.nodePackages.pnpm
+      yarn
+      nodejs-16_x
+    ];
 
     programs.bash.shellAliases = {
       # show v8 version

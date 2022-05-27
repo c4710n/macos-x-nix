@@ -34,13 +34,31 @@ let
   };
 in
 {
+  pnpm = nodeEnv.buildNodePackage {
+    name = "pnpm";
+    packageName = "pnpm";
+    version = "7.1.6";
+    src = fetchurl {
+      url = "https://registry.npmjs.org/pnpm/-/pnpm-7.1.6.tgz";
+      sha512 = "ZReCitIDPkdJ8DcKqJ2CLvl7FhwOJiDiTN1c5ElaxmCvivptJaRIDd3IDTnydDhVUWk1rtaP5/mK6oktD5WH9A==";
+    };
+    buildInputs = globalBuildInputs;
+    meta = {
+      description = "Fast, disk space efficient package manager";
+      homepage = "https://pnpm.io";
+      license = "MIT";
+    };
+    production = true;
+    bypassCache = true;
+    reconstructLock = true;
+  };
   speedscope = nodeEnv.buildNodePackage {
     name = "speedscope";
     packageName = "speedscope";
-    version = "1.13.0";
+    version = "1.14.0";
     src = fetchurl {
-      url = "https://registry.npmjs.org/speedscope/-/speedscope-1.13.0.tgz";
-      sha512 = "PCrDVb3i/68U92DyiXBYP9NEVycnVczdNb+S5rlOiBdGMkX6qPlsir5U8rBtXx9kW8pYHkm4U+1nVtpx729Cfg==";
+      url = "https://registry.npmjs.org/speedscope/-/speedscope-1.14.0.tgz";
+      sha512 = "qz5eGE1OfkjshWyI4OLmMI0yzFg3fzlHKM96oAFFAaF8od4g6O5DdVi5IlX67q84irdK2aNB4gL7XMGao9mI7Q==";
     };
     dependencies = [
       sources."is-docker-2.2.1"
@@ -49,7 +67,7 @@ in
     ];
     buildInputs = globalBuildInputs;
     meta = {
-      description = "A fast, interactive web-based viewer for performance profiles. An alternative viewer for [FlameGraphs][1]. Will happily display multi-megabyte profiles without crashing your browser.";
+      description = "English | [简体中文](./README-zh_CN.md) # 🔬speedscope";
       homepage = "https://github.com/jlfwong/speedscope#readme";
       license = "MIT";
     };
