@@ -1240,14 +1240,7 @@ How to use:
 ** file saving
 *** save automatically
 #+begin_src emacs-lisp
-(use-package super-save
-  :ensure t
-  :config
-  (setq auto-save-default nil) ;; disable built-in auto-save-mode
-  (setq super-save-auto-save-when-idle t)
-  (setq super-save-remote-files nil) ;; disable super-save for remote files
-  (setq super-save-exclude '(".gpg")) ;; disable super-save for .gpg files
-  (super-save-mode))
+(auto-save-visited-mode t)
 #+end_src
 
 *** cleanup before saving
@@ -2486,9 +2479,7 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
 (use-package ace-window
   :ensure t
   :init
-  (global-set-key (kbd "M-o") 'ace-window)
-  :config
-  (add-to-list 'super-save-triggers 'ace-window))
+  (global-set-key (kbd "M-o") 'ace-window))
 #+end_src
 
 * Management - Workspace
@@ -3086,6 +3077,12 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
   :ensure t
   :mode ("\\.yml\\'"
          "\\.yaml\\'"))
+#+end_src
+
+*** GraphQL
+#+begin_src emacs-lisp
+(use-package graphql-mode :ensure t)
+(use-package request :ensure t)
 #+end_src
 
 *** Nix
