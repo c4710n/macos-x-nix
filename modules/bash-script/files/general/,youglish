@@ -1,0 +1,15 @@
+#!/usr/bin/env elixir
+
+defmodule Youglish.CLI do
+  def run(args) do
+    url = args
+    |> Enum.join(" ")
+    |> then(&"https://youglish.com/pronounce/#{&1}/english")
+    |> URI.encode()
+
+    System.cmd("open", [url])
+  end
+end
+
+
+Youglish.CLI.run(System.argv())
