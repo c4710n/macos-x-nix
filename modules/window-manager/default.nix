@@ -83,7 +83,7 @@ in
     package = pkgs.yabai;
     config =
       let
-        padding = 10;
+        padding = 0;
       in
       {
         top_padding = padding;
@@ -203,7 +203,7 @@ in
       cmd + ctrl + shift - c : ${openAltBrowser}
 
       # cmd + ctrl - s : open -a Sizzy
-      # cmd + ctrl - r : open -a NetNewsWire
+      cmd + ctrl - r : open -a NetNewsWire
 
       cmd + ctrl - i : open -a Figma
       cmd + ctrl - w : open -a Feishu
