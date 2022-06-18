@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sigil LEEx
+# key: ~L
+# --
+~L"""
+$0
+"""

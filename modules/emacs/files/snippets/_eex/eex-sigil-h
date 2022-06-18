@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sigil HEEx
+# key: ~H
+# --
+~H"""
+$0
+"""

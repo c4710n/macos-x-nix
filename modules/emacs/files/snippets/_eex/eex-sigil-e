@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sigil EEx
+# key: ~E
+# --
+~E"""
+$0
+"""
