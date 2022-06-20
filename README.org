@@ -46,10 +46,10 @@ Following steps aren't tested on newer version of macOS.
    - earse the disk.
 3. installing macOS with the bootable installer.
 4. after installation:
-   - [[https://support.apple.com/en-us/HT204063][clear NVRAM]]
+   - [[https://support.apple.com/en-us/HT204063][clear NVRAM]].
    - use strong password without a hint.
-   - enable FileVault
-   - enable Firewall
+   - enable FileVault.
+   - enable Firewall.
 
 #+begin_quote
 APFS(encrypted) equals to APFS with File Vault enabled.
