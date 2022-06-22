@@ -1,0 +1,14 @@
+#!/usr/bin/env elixir
+
+defmodule BundlePhobia.CLI do
+  def run(args) do
+    url = args
+    |> Enum.join(" ")
+    |> then(&"https://bundlephobia.com/package/#{&1}")
+    |> URI.encode()
+
+    System.cmd("open", [url])
+  end
+end
+
+BundlePhobia.CLI.run(System.argv())
