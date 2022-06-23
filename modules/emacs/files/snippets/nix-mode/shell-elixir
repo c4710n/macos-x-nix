@@ -38,9 +38,11 @@ mkShell {
     export HEX_HOME=$PWD/.nix-hex
     export ERL_LIBS=$HEX_HOME/lib/erlang/lib
 
-    # make shell more friendly
+    # concat PATH
     export PATH=$MIX_HOME/bin:$PATH
     export PATH=$HEX_HOME/bin:$PATH
+
+    # enable history for IEx
     export ERL_AFLAGS="-kernel shell_history enabled"
   '';
 }
