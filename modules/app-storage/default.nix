@@ -25,7 +25,5 @@ lib.mkMerge [
         rclone
       ];
     };
-
-    homebrew.casks = [ "resilio-sync" ];
   }
 ]
