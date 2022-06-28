@@ -2839,8 +2839,18 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
 *** Erlang
 #+begin_src emacs-lisp
 (use-package erlang
-  :mode ("\\.erl\\'")
-  :ensure t)
+  :ensure t
+  :mode (("\\.erl?$" . erlang-mode)
+         ("rebar\\.config$" . erlang-mode)
+         ("relx\\.config$" . erlang-mode)
+         ("sys\\.config\\.src$" . erlang-mode)
+         ("sys\\.config$" . erlang-mode)
+         ("\\.config\\.src?$" . erlang-mode)
+         ("\\.config\\.script?$" . erlang-mode)
+         ("\\.hrl?$" . erlang-mode)
+         ("\\.app?$" . erlang-mode)
+         ("\\.app.src?$" . erlang-mode)
+         ("\\Emakefile" . erlang-mode)))
 #+end_src
 
 *** Elixir
