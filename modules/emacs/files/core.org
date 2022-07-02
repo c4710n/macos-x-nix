@@ -3345,19 +3345,6 @@ It has been integrated into Emacs. Just enable it:
 (auth-source-pass-enable)
 #+end_src
 
-** PDF Reader
-It's usable, but I don't need it for now.
-
-#+begin_src emacs-lisp
-(use-package pdf-tools
-  :ensure t
-  :disabled
-  :mode ("\\.pdf\\'" . pdf-view-mode)
-  :config
-  (setq pdf-view-display-size 'fit-width)
-  (setq pdf-view-use-scaling t))
-#+end_src
-
 ** Don't show my code
 #+begin_src emacs-lisp
 (use-package redacted
