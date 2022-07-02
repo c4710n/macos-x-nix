@@ -376,8 +376,8 @@ x×X
   (mg/font-setup :init))
 
 (bind-keys*
- ("C-M-*" . mg/font-reset-size)
- ("C-M-+" . mg/font-increase-size)
+ ("C-M-0" . mg/font-reset-size)
+ ("C-M-=" . mg/font-increase-size)
  ("C-M--" . mg/font-decrease-size))
 
 ;; When running Emacs in terminal, users can't set fonts for it.

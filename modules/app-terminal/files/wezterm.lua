@@ -56,8 +56,8 @@ return {
    default_prog = {"/run/current-system/sw/bin/tmux", "new-session", "-A", "-s", "main"},
 
    keys = {
-      {key="*", mods="CTRL|ALT", action="ResetFontSize"},
-      {key="+", mods="CTRL|ALT", action="IncreaseFontSize"},
+      {key="0", mods="CTRL|ALT", action="ResetFontSize"},
+      {key="=", mods="CTRL|ALT", action="IncreaseFontSize"},
       {key="-", mods="CTRL|ALT", action="DecreaseFontSize"},
    },
 
