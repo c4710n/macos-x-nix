@@ -3358,31 +3358,6 @@ It's usable, but I don't need it for now.
   (setq pdf-view-use-scaling t))
 #+end_src
 
-** RSS
-#+begin_src emacs-lisp
-(use-package elfeed
-  :ensure t
-  :bind (:map mg/launcher-prefix-map
-              ("r" . elfeed))
-  :config
-  (setq elfeed-use-curl t)
-  (elfeed-set-timeout 36000)
-  (setq elfeed-feeds '(("fever+https://c4710n@rss.2nd-spine.com"
-                       :api-url "https://rss.2nd-spine.com/api/fever.php"
-                       ;; password is stored as `c4710n@rss.2nd-spine.com:443' in password-store
-                       :use-authinfo t))))
-
-(use-package elfeed-protocol :ensure t
-  :config
-  (setq elfeed-protocol-enabled-protocols '(fever))
-  (elfeed-protocol-enable))
-
-;; (setq elfeed-log-level 'debug)
-;; (toggle-debug-on-error)
-;; (setq elfeed-protocol-log-trace t)
-;; (setq elfeed-protocol-fever-maxsize 10)
-#+end_src
-
 ** Don't show my code
 #+begin_src emacs-lisp
 (use-package redacted
