@@ -659,7 +659,10 @@ Ported from =nano-modeline= provided by [[https://github.com/rougier/nano-emacs]
     "-"))
 
 (defun mg/project-name ()
-  (projectile-project-name (projectile-project-root)))
+  (let ((project-name (project-current nil)))
+    (if project-name
+        (file-name-nondirectory (directory-file-name (project-root project-name)))
+      "-")))
 
 ;; From https://amitp.blogspot.com/2011/08/emacs-custom-mode-line.html
 ;; ---------------------------------------------------------------------
@@ -1205,17 +1208,17 @@ How to use:
 2. type =e= for editing
 3. type =C-x C-s= for saving
 
-   #+begin_src emacs-lisp
-   ;; edit a grep buffer and apply those changes to the file buffer.
-   (use-package wgrep :ensure t)
+#+begin_src emacs-lisp
+;; edit a grep buffer and apply those changes to the file buffer.
+(use-package wgrep :ensure t)
 
-   ;; interface for ripgrep
-   ;; - support wgrep by default, cool.
-   (use-package rg
-     :ensure t
-     :init
-     (rg-enable-default-bindings))
-   #+end_src
+;; interface for ripgrep
+;; - support wgrep by default, cool.
+(use-package rg
+  :ensure t
+  :init
+  (rg-enable-default-bindings))
+#+end_src
 
 ** wrap region
 #+begin_src emacs-lisp
@@ -2686,7 +2689,13 @@ I am using ~electric-pair-mode~, but not globally.
   (setq magit-diff-paint-whitespace nil)
   (setq magit-diff-highlight-hunk-body t)
   (setq magit-diff-refine-hunk t)
-  (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1))
+  (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
+  :init
+  (set 'project-switch-commands
+       (list
+        '(project-find-file "Find file")
+        '(project-find-dir "Find directory")
+        '(magit-project-status "Magit"))))
 #+end_src
 
 *** magit cookbook
@@ -2768,45 +2777,38 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
 
 ** Projectile
 #+begin_src emacs-lisp
-(use-package projectile
-  :ensure t
+(defun mg/project-scan-projects ()
+  (interactive)
+  (let ((dirs
+         (mapcan 'mg/path-filter-directories
+                 (list
+                  (mg/bastion-expand-file-name "genesis")
+                  (mg/bastion-expand-file-name "root/src")
+                  (mg/bastion-expand-file-name "store/src")))))
+    (project-forget-zombie-projects)
+    (dolist (dir dirs)
+      (project-remember-projects-under dir))
+    (message "Projects scanned.")))
+
+(rg-define-search mg/project-rg
+  :query ask
+  :format regexp
+  :files "everything"
+  :case-fold-search smart
+  :dir
+  (if (project-current) (project-root (project-current))
+    default-directory)
+  :confirm prefix :flags
+  ("--hidden -g !.git"))
+
+(use-package project
   :bind-keymap
-  ("C-c p" . projectile-command-map)
-
+  ("C-c p" . project-prefix-map)
   :bind
-  (:map projectile-mode-map
-        ("C-x C-b" . projectile-switch-to-buffer)
-        :map projectile-command-map
-        ("s s" . projectile-ripgrep)
-        ("I" . mg/projectile-rescan-projects))
-
-  :init
-  ;; ignore remote file,
-  ;; or it will slow down tramp
-  (defadvice projectile-project-root (around ignore-remote first activate)
-    (unless (file-remote-p default-directory) ad-do-it))
-
-  (setq projectile-switch-project-action 'projectile-vc)
-  (projectile-mode)
-
-  :config
-  (defun mg/projectile-rescan-projects ()
-    (interactive)
-    (setq projectile-project-search-path
-          (mapcan 'mg/path-filter-directories
-                  (list
-                   (mg/bastion-expand-file-name "genesis")
-                   (mg/bastion-expand-file-name "root/src")
-                   (mg/bastion-expand-file-name "store/src"))))
-    (projectile-cleanup-known-projects)
-    (projectile-discover-projects-in-search-path)
-    (message "Projects found."))
-
-  (defun mg/projectile-ripgrep ()
-    "Call projectile-ripgrep with prefix which will enable regexp by default."
-    (interactive)
-    (let ((current-prefix-arg t))
-      (call-interactively 'projectile-ripgrep))))
+  (:map project-prefix-map
+        ("I" . mg/project-scan-projects)
+        ("s" . mg/project-rg)
+        ("v" . magit-project-status)))
 #+end_src
 
 ** Direnv
@@ -2868,7 +2870,7 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
     (add-hook 'before-save-hook 'mg/elixir-format-silent nil t))
 
   (defun mg/elixir-mode-set-format-arguments ()
-    (if (projectile-project-p)
+    (if (project-current)
         (setq elixir-format-arguments
               (list "--dot-formatter"
                     (concat (locate-dominating-file buffer-file-name ".formatter.exs") ".formatter.exs")))
