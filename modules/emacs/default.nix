@@ -14,7 +14,7 @@ in
       package = pkgs.emacsWithPackagesFromUsePackage {
         config = ./files/core.org;
         alwaysTangle = true;
-        package = pkgs.emacsGit.overrideAttrs (oldAttrs: rec {
+        package = pkgs.emacs.overrideAttrs (oldAttrs: rec {
           patches = oldAttrs.patches ++ [
             ./patches/no-frame-refocus-cocoa.patch
 
