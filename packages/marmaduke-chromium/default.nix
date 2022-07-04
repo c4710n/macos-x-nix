@@ -1,8 +1,8 @@
 { lib, stdenv, fetchurl, unzip, undmg }:
 
 let
-  _version = "100.0.4896.75";
-  _build = "r972766";
+  _version = "103.0.5060.53";
+  _build = "r1002911";
 in
 stdenv.mkDerivation rec {
   pname = "chromium";
@@ -19,7 +19,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     url =
       "https://github.com/macchrome/macstable/releases/download/v${_version}-${_build}-Ungoogled-macOS/Chromium.app.ungoogled-${_version}.zip";
-    sha256 = "sha256:16i2y0xsn20rljlwg9y4kpbbwsvnyz3fkvw1ynclg9jiwgjhjnzc";
+    sha256 = "sha256-6Ug0SzcRg/P1oFfikQEPYV9Nn6hiCTJAKRVw+ejkUZI=";
   };
 
   meta = with lib; {
