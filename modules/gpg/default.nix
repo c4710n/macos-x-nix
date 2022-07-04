@@ -4,6 +4,7 @@
   home-manager.users."${username}" = {
     programs.gpg = {
       enable = true;
+      homedir = "${homeDir}/.gnupg";
       settings = {
         # when outpputting certificates, view user IDs distinctly from keys
         "fixed-list-mode" = true;
@@ -12,10 +13,6 @@
         # it's trivial to make a key with any desired short keyid
         "keyid-format" = "0xlong";
       };
-    };
-
-    programs.bash.sessionVariables = {
-      "GNUPGHOME" = "${homeDir}/.gnupg";
     };
 
     home.packages = with pkgs; [

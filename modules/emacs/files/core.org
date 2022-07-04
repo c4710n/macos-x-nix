@@ -2557,7 +2557,7 @@ Read more at [[https://org-babel.readthedocs.io/en/latest/header-args/#noweb][he
 (use-package corfu
   :ensure t
   :init
-  (corfu-global-mode)
+  (global-corfu-mode)
   :custom
   ;; Enable auto completion and configure quitting
   (corfu-auto t)

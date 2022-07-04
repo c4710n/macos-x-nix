@@ -46,7 +46,7 @@ lib.mkMerge [
       home.packages = with pkgs; [
         frp
         v2ray
-        wireguard
+        wireguard-tools
       ];
     };
   }
