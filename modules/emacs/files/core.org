@@ -1241,6 +1241,11 @@ How to use:
 #+end_src
 
 ** file saving
+*** save silently
+#+begin_quote
+(setq save-silently t)
+#+end_quote
+
 *** save automatically
 #+begin_src emacs-lisp
 (auto-save-visited-mode t)
