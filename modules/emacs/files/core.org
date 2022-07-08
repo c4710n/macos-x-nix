@@ -951,19 +951,6 @@ Ported from =nano-modeline= provided by [[https://github.com/rougier/nano-emacs]
 (add-hook 'after-enable-theme-hook #'mg/modeline-setup)
 #+end_src
 
-** minibuffer
-#+begin_src emacs-lisp
-(use-package marginalia
-  :ensure t
-  ;; Either bind `marginalia-cycle` globally or only in the minibuffer
-  :bind (("M-A" . marginalia-cycle)
-         :map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
-
-  :init
-  (marginalia-mode))
-#+end_src
-
 ** echo bar
 #+begin_src emacs-lisp
 (use-package echo-bar
@@ -1014,10 +1001,6 @@ Add pinyin support:
   (advice-add 'orderless-regexp :around #'mg/orderless-regexp))
 #+end_src
 
-** help - function & variable
-#+begin_src emacs-lisp
-(use-package helpful :ensure t)
-#+end_src
 ** help - key
 #+begin_src emacs-lisp
 (use-package which-key
@@ -1242,9 +1225,9 @@ How to use:
 
 ** file saving
 *** save silently
-#+begin_quote
+#+begin_src emacs-lisp
 (setq save-silently t)
-#+end_quote
+#+end_src
 
 *** save automatically
 #+begin_src emacs-lisp
