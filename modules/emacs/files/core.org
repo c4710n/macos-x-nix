@@ -2763,7 +2763,7 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
                     '("git\\.zxunity\\.com" git-link-gitlab)))))
 #+end_src
 
-** Projectile
+** Project
 #+begin_src emacs-lisp
 (defun mg/project-scan-projects ()
   (interactive)
@@ -2778,7 +2778,18 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
       (project-remember-projects-under dir))
     (message "Projects scanned.")))
 
-(rg-define-search mg/project-rg
+(rg-define-search mg/project-rg-literal
+  :query ask
+  :format literal
+  :files "everything"
+  :case-fold-search smart
+  :dir
+  (if (project-current) (project-root (project-current))
+    default-directory)
+  :confirm prefix :flags
+  ("--hidden -g !.git"))
+
+(rg-define-search mg/project-rg-regexp
   :query ask
   :format regexp
   :files "everything"
@@ -2795,7 +2806,8 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
   :bind
   (:map project-prefix-map
         ("I" . mg/project-scan-projects)
-        ("s" . mg/project-rg)
+        ("s" . mg/project-rg-literal)
+        ("g" . mg/project-rg-regexp)
         ("v" . magit-project-status)))
 #+end_src
 
