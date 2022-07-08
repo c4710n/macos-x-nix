@@ -203,6 +203,7 @@ in
       cmd + ctrl + shift - c : ${openAltBrowser}
 
       # cmd + ctrl - s : open -a Sizzy
+      cmd + ctrl - m : open -a Mail
       cmd + ctrl - r : open -a NetNewsWire
 
       cmd + ctrl - i : open -a Figma
