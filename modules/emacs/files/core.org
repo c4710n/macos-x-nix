@@ -2786,7 +2786,8 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
   :dir
   (if (project-current) (project-root (project-current))
     default-directory)
-  :confirm prefix :flags
+  :confirm prefix
+  :flags
   ("--hidden -g !.git"))
 
 (rg-define-search mg/project-rg-regexp
@@ -2797,7 +2798,8 @@ Use =global-blamer-mode= or =blamer-mode= when you want to blame some code.
   :dir
   (if (project-current) (project-root (project-current))
     default-directory)
-  :confirm prefix :flags
+  :confirm prefix
+  :flags
   ("--hidden -g !.git"))
 
 (use-package project
