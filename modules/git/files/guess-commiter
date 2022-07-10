@@ -46,6 +46,11 @@ if [[ -n $signingkey ]]; then
     echo "+ [git] configure user.signingkey as $signingkey"
     git config user.signingkey "$signingkey"
 
+    echo "+ [git] configure commit.gpgsign as true"
+    git config commit.gpgsign true
+
     echo ""
+    echo ""
+    echo "[The info of GPG key]"
     gpg --list-secret-keys --keyid-format=long $signingkey
 fi
