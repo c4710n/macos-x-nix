@@ -12,6 +12,7 @@ if [[ $remote == *github.com* ]]; then
     type="GitHub"
     name="c4710n"
     email="c4710n@users.noreply.github.com"
+    signingkey="CA64A1BE51CB6DA2"
 elif [[ $remote == *sr.ht* ]]; then
     name="c4710n"
     email="c4710n@users.noreply.sr.ht"
@@ -40,3 +41,11 @@ git config user.name "$name"
 
 echo "+ [git] configure user.email as $email"
 git config user.email "$email"
+
+if [[ -n $signingkey ]]; then
+    echo "+ [git] configure user.signingkey as $signingkey"
+    git config user.signingkey "$signingkey"
+
+    echo ""
+    gpg --list-secret-keys --keyid-format=long $signingkey
+fi
