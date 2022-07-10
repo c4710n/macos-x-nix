@@ -1,7 +1,7 @@
 { pkgs, username, ... }:
 
 let
-  guess-commiter-bin = ".config/git/guess-commiter";
+  guess-repo-config-bin = ".config/git/guess-repo-config";
 in
 {
   home-manager.users."${username}" = {
@@ -32,8 +32,7 @@ in
         # reauthor
         quick-reauthor = "reauthor -c";
 
-        # guess commiter
-        guess-commiter = "!~/${guess-commiter-bin}";
+        guess-repo-config = "!~/${guess-repo-config-bin}";
       };
 
       lfs.enable = true;
@@ -68,9 +67,9 @@ in
     xdg.configFile."git/ignore".source = ./files/ignore;
     xdg.configFile."git/attributes".source = ./files/attributes;
 
-    home.file."${guess-commiter-bin}" = {
+    home.file."${guess-repo-config-bin}" = {
       executable = true;
-      source = ./files/guess-commiter;
+      source = ./files/guess-repo-config;
     };
 
     programs.bash.initExtra = (builtins.readFile ./files/bashrc.sh);

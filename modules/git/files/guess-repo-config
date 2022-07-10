@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo 'Guessing git commiter...'
+echo 'Guessing repo config...'
 
 remote=$(git remote -v | awk '/\(push\)$/ {print $2}')
 
