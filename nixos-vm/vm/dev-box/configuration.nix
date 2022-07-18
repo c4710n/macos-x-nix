@@ -2,6 +2,9 @@
 
 with lib;
 
+let
+  secrets = import ../../../secrets.nix;
+in
 lib.mkMerge [
   # Web Server
   {
@@ -20,9 +23,13 @@ lib.mkMerge [
         enableOnBoot = true;
         storageDriver = "overlay2";
         logDriver = "journald";
-        autoPrune.enable = true;
+        autoPrune = {
+          enable = true;
+          flags = [ "--all" ];
+          dates = "weekly";
+        };
         liveRestore = true;
-        extraOptions = "-H tcp://0.0.0.0:${toString port}";
+        extraOptions = "-H tcp://0.0.0.0:${toString port} --insecure-registry=${secrets.insecure-registry}";
       };
       networking.firewall.allowedTCPPorts = [ port ];
     }
