@@ -1,14 +1,19 @@
-#!/usr/bin/env elixir
+#! /usr/bin/env nix-shell
+#! nix-shell -i elixir -p elixir
 
-defmodule GHCR.CLI do
-  @host "ghcr.io"
+Mix.install([
+  {:jason, "> 0.0.0"}
+])
+
+defmodule DHub.CLI do
   @docker_cmd "docker"
 
   def run(args) do
-    {parsed, _argv, _errors} = OptionParser.parse(args,
-      strict: [owner: :string, repo: :string, image: :string],
-      aliases: [o: :owner, r: :repo, i: :image]
-    )
+    {parsed, _argv, _errors} =
+      OptionParser.parse(args,
+        strict: [owner: :string, repo: :string, image: :string],
+        aliases: [o: :owner, r: :repo, i: :image]
+      )
 
     with {:ok, {owner, repo}} <- auto_detect_repo_info(),
          :ok <- check(owner, repo),
@@ -17,7 +22,8 @@ defmodule GHCR.CLI do
       owner = Keyword.get(parsed, :owner, owner)
       repo = Keyword.get(parsed, :repo, repo)
       image = Keyword.get(parsed, :image, repo)
-      name = "#{@host}/#{owner}/#{repo}/#{image}:#{date}_#{hash}"
+      host = find_host(owner)
+      name = "#{host}/#{owner}/#{repo}/#{image}:#{date}_#{hash}"
 
       IO.puts("""
       Hey, I'm trying to build:
@@ -28,6 +34,7 @@ defmodule GHCR.CLI do
 
       cmd("#{@docker_cmd} build -t #{name} .", into: IO.stream())
       cmd("#{@docker_cmd} push #{name}", into: IO.stream())
+
       IO.puts("""
 
       * * *
@@ -38,7 +45,7 @@ defmodule GHCR.CLI do
     else
       {:error, _, message} ->
         IO.puts("Error: #{message}")
-      help()
+        help()
     end
   end
 
@@ -66,10 +73,13 @@ defmodule GHCR.CLI do
     case cmd("git remote get-url origin") do
       {url, 0} ->
         <<"git@github.com:" <> identifier>> = url
-        [owner, repo] = identifier
-        |> String.trim()
-        |> String.trim(".git")
-        |> String.split("/")
+
+        [owner, repo] =
+          identifier
+          |> String.trim()
+          |> String.trim(".git")
+          |> String.split("/")
+
         {:ok, {owner, repo}}
 
       _ ->
@@ -85,25 +95,45 @@ defmodule GHCR.CLI do
   end
 
   def current_cmd_name() do
-    Path.basename(__ENV__.file)
+    filename = __ENV__.file
+    Path.basename(filename, Path.extname(filename))
   end
 
   defp cmd(line, opts \\ []) do
-    {command, args} = line
-    |> String.split()
-    |> List.pop_at(0)
+    {command, args} =
+      line
+      |> String.split()
+      |> List.pop_at(0)
 
     System.cmd(command, args, opts)
   end
 
+  def find_host(owner) do
+    config()
+    |> Enum.find(fn section ->
+      owner in Map.fetch!(section, "available_owners")
+    end)
+    |> get_in(["host"])
+  end
+
   defp available_owners() do
-    result = "~/.config/#{current_cmd_name()}/available_owners"
+    config()
+    |> Enum.map(fn section ->
+      Map.fetch!(section, "available_owners")
+    end)
+    |> Enum.reduce([], fn owners, acc ->
+      owners ++ acc
+    end)
+    |> Enum.uniq()
+  end
+
+  defp config() do
+    "~/.config/#{current_cmd_name()}/hosts.json"
     |> Path.expand()
     |> File.read()
-
-    case result do
-      {:ok, lines} ->
-        String.split(lines)
+    |> case do
+      {:ok, result} ->
+        Jason.decode!(result)
 
       _ ->
         []
@@ -111,4 +141,4 @@ defmodule GHCR.CLI do
   end
 end
 
-GHCR.CLI.run(System.argv())
+DHub.CLI.run(System.argv())
