@@ -107,18 +107,6 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/9de9ed11062d4519527e20c54c11e387c5b227fe.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "nixpkgs-firefox-darwin": {
-        "branch": "main",
-        "description": "Nixpkgs overlay with Firefox binary builds for macOS",
-        "homepage": null,
-        "owner": "bandithedoge",
-        "repo": "nixpkgs-firefox-darwin",
-        "rev": "d7280a5adef8e9e0e8c7c59cafd703a08fec5965",
-        "sha256": "0cssn2jl6k3w40fgiqc30p0dvf8gb3y6v2ys4mbangnv6wz3ih85",
-        "type": "tarball",
-        "url": "https://github.com/bandithedoge/nixpkgs-firefox-darwin/archive/d7280a5adef8e9e0e8c7c59cafd703a08fec5965.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "nixpkgs-unstable": {
         "branch": "nixpkgs-unstable",
         "description": "Nix Packages collection",
