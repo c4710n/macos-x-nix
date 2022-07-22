@@ -19,6 +19,12 @@ mkMerge [
     ];
   }
 
+  # music
+  # {
+  #   homebrew.taps = [ "clangen/musikcube" ];
+  #   homebrew.brews = [ "musikcube" ];
+  # }
+
   # video
   {
     home-manager.users."${username}" = {
