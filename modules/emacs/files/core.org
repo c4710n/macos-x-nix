@@ -956,6 +956,7 @@ Ported from =nano-modeline= provided by [[https://github.com/rougier/nano-emacs]
 (use-package echo-bar
   :ensure t
   :init
+  (setq echo-bar-minibuffer nil)
   (defun mg/echo-bar ()
     (format "%s %s"
             (format-time-string "%H:%M")
