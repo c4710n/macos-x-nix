@@ -417,7 +417,6 @@ Get more details at [[https://www.wisdomandwonder.com/emacs/13168/make-your-emac
                '(min-width  . 1)
                '(min-height . 1)
                '(width . 80)
-               '(height . 45)
                '(vertical-scroll-bars . nil)
                '(internal-border-width . 16)
                '(left-fringe    . 8)
