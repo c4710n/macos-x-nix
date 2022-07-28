@@ -55,11 +55,8 @@ in
     ./modules/nix-helper.nix
     ./modules/nix-darwin-helper.nix
 
-    ./modules/ui
-    ./modules/gpg
-
-    ./modules/password
-    ./modules/ssh
+    ./modules/system
+    ./modules/secret
 
     ./modules/cli-base
     ./modules/bash
