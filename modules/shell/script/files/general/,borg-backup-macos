@@ -41,9 +41,19 @@ backup() {
          --stats \
          --progress \
          --compression lz4 \
-         --exclude '**/node_modules' \
-         --exclude '**/_build' \
+
          --exclude '**/.DS_Store' \
+
+         --exclude '**/.direnv' \
+
+         --exclude '**/.gcroots' \
+
+         --exclude '**/_build' \
+         --exclude '**/.elixir_ls' \
+
+         --exclude '**/node_modules' \
+
+         --exclude '**/venv' \
          ::{now} \
          "$BACKUP_PATH"
 
