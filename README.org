@@ -33,7 +33,7 @@ Now, I manage everything with one tool - Nix. In addition to these, it is also p
 I'm not sure that you need it, but I promise that you will like it.
 
 * Choose macOS version
-I'm using macOS Big Sur.
+I'm using macOS Monterey.
 
 #+begin_quote
 Following steps aren't tested on newer version of macOS.
@@ -50,6 +50,7 @@ Following steps aren't tested on newer version of macOS.
    - use strong password without a hint.
    - enable FileVault.
    - enable Firewall.
+   - setup =System Preferences > Security & Privacy > General > Require password *immediately* after sleep or screen saver begins=.
 
 #+begin_quote
 APFS(encrypted) equals to APFS with File Vault enabled.
@@ -60,20 +61,16 @@ If you care about security, read [[https://github.com/drduh/macOS-Security-and-P
 #+end_quote
 
 * Install Nix
-** download and verify installation script
-From [[https://nixos.org/download.html#nix-verify-installation][official installation]]:
+** installation
+
+From [[https://nixos.org/download.html#nix-install-macos][official installation]]:
 #+begin_src sh
-$ curl -o install-nix-2.7.0 https://releases.nixos.org/nix/nix-2.7.0/install
-$ curl -o install-nix-2.7.0.asc https://releases.nixos.org/nix/nix-2.7.0/install.asc
-$ gpg2 --keyserver hkps://keyserver.ubuntu.com --recv-keys B541D55301270E0BCF15CA5D8170B4726D7198DE
-$ gpg2 --verify ./install-nix-2.7.0.asc
-$ sh ./install-nix-2.7.0
+$ sh <(curl -L https://nixos.org/nix/install)
 #+end_src
 
-If everything is fine, then install it via the recommended [[https://nixos.org/manual/nix/stable/installation/multi-user.html][multi-user installation]]:
-#+begin_src sh
-$ sh ./install-nix-2.7.0 --daemon
-#+end_src
+#+begin_quote
+If you care about security, read [[https://nixos.org/download.html#nix-verify-installation][verify installation]].
+#+end_quote
 
 ** verify installation
 #+begin_src sh
@@ -86,9 +83,6 @@ $ nix-env --version
 It allows us configure dock, finder, launchd, software update policy with Nix expressions, etc.
 
 Just install it according to official docs.
-
-** (optional) setup shell environment
-=/etc/static/bashrc= which is the bash profile setup by *nix-darwin* will read =/etc/bash.local=.
 
 * Install Homebrew
 Some software, especially the GUI applications are not provided by Nix. [[https://brew.sh][Homebrew]] is a good addition for the missing parts.
@@ -129,7 +123,7 @@ $ darwin-rebuild switch
 Not everything can be done automatically.
 #+end_quote
 
-** link ~/Desktop to a custom place
+** link =~/Desktop= to a custom place
 #+begin_src sh
 $ ,macos-link-desktop
 #+end_src
