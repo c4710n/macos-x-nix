@@ -1,0 +1,4 @@
+{
+  computerName = "Dust";
+  hostName = "dust";
+}
