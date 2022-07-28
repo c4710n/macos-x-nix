@@ -105,6 +105,10 @@ lib.mkMerge [
         wireguard-tools
       ];
     };
+
+    homebrew.masApps = {
+      WireGuard = 1451685025;
+    };
   }
 
   # local web server
