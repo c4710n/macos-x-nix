@@ -1,0 +1,8 @@
+{ ... }:
+
+{
+  imports = [
+    ./wzterm
+    ./multiplexer.nix
+  ];
+}

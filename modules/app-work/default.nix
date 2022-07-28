@@ -1,8 +1,0 @@
-{ ... }:
-
-{
-  homebrew.casks = [
-    "feishu"
-    "zoom"
-  ];
-}

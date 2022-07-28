@@ -7,9 +7,9 @@ lib.mkMerge [
     homebrew.brews = [ "flyctl" ];
   }
 
-  # virtualbox
+  # virtual machine
   {
-    homebrew.casks = [ "virtualbox" ];
+    homebrew.casks = [ "virtualbox" "utm" ];
   }
 
   # docker

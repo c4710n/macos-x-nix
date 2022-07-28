@@ -1,6 +1,71 @@
-{ pkgs, lib, username, mkHM, ... }:
+{ pkgs, lib, username, ... }:
 
 lib.mkMerge [
+  {
+    home-manager.users."${username}" = {
+      home.packages = with pkgs; [
+        cmake
+      ];
+    };
+  }
+
+  # system monitoring
+  {
+    home-manager.users."${username}" = {
+      home.packages = with pkgs; [
+        htop
+      ];
+    };
+
+    homebrew.brews = [ "btop" ];
+
+    homebrew.casks = [ "sloth" ];
+  }
+
+  # performance analyzing
+  {
+    home-manager.users."${username}" = {
+      home.packages = with pkgs; [
+        # most of the time, use speedscope
+        custom.nodePackages.speedscope
+
+        # when the file is too large to load in speedscope, use flamegraph
+        flamegraph
+      ];
+    };
+  }
+
+  # font processing
+  {
+    home-manager.users."${username}" = {
+      home.packages = with pkgs; [
+        python39Packages.fonttools
+        fontforge
+      ];
+    };
+  }
+
+  # load testing
+  {
+    home-manager.users."${username}" = {
+      home.packages = with pkgs; [
+        wrk
+        tsung
+      ];
+    };
+  }
+
+  # web development
+  {
+    homebrew.casks = [
+      # color picker
+      "pika"
+
+      # better browser for developing web page
+      # "sizzy" - currently, sizzy's download link is broken.
+    ];
+  }
+
   # DNS
   {
     home-manager.users."${username}" = {
@@ -8,22 +73,13 @@ lib.mkMerge [
     };
   }
 
-  # Download tools
-  {
-    home-manager.users."${username}" = {
-      home.packages = with pkgs; [
-        wget
-        aria
-      ];
-    };
-  }
-
-  # HTTP tools
+  # request tools
   {
     home-manager.users."${username}" = {
       home.packages = with pkgs; [
         curl
-        httpie
+        wget
+        aria
       ];
 
       programs.bash.shellAliases = {
@@ -62,5 +118,23 @@ lib.mkMerge [
         ",serve" = "${pkgs.python3}/bin/python3 -m http.server";
       };
     };
+  }
+
+  # database
+  {
+    home-manager.users."${username}" = {
+      home.packages = with pkgs; [
+        postgresql_14
+        mysql80
+        redis
+
+        pgcli
+        mycli
+      ];
+    };
+
+    homebrew.casks = [
+      "tableplus"
+    ];
   }
 ]

@@ -57,45 +57,23 @@ in
 
     ./modules/system
     ./modules/secret
-
-    ./modules/cli-base
-    ./modules/bash
-    ./modules/bash-script
+    ./modules/shell
     ./modules/git
+
+    ./modules/terminal
     ./modules/emacs
-    ./modules/direnv
-    ./modules/tmux
-    #    ./modules/texlive
+    ./modules/web-browser
 
-    #    ./modules/nix-builder
-    #    ./modules/local-dev-vm
+    ./modules/dev
 
-    #    ./modules/app-necessary
-    #    ./modules/app-security
-    #   ./modules/app-terminal
-    #    ./modules/app-input-method
-    #    ./modules/app-web-browser
-    #    ./modules/app-multimedia
-    #    ./modules/app-screencast
-    #    ./modules/app-design
-    #    ./modules/app-communication
-    #    ./modules/app-doc
-    #    ./modules/app-storage
-    #    ./modules/app-free-world
+    ./modules/application
 
-    #    ./modules/dev-general
-    #    ./modules/dev-perf
-    #    ./modules/dev-font
-    #    ./modules/dev-web
-    #    ./modules/dev-network
-    #    ./modules/dev-database
-    #    ./modules/dev-deployment
-    #    ./modules/dev-system-monitor
-    #    ./modules/lang-elixir
-    #    ./modules/lang-nodejs
-    #    ./modules/lang-python
+    # ./modules/texlive
 
-    #    ./modules/app-work
+    # ./modules/nix-builder
+    # ./modules/local-dev-vm
+
+    # ./modules/dev-deployment
   ] ++ (
     # import private extensions
     if lib.pathExists privateExtensionsListFile then
