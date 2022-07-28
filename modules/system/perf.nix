@@ -1,7 +1,7 @@
 { username, ... }:
 
 {
-  # /etc/sysctl.conf is no longer supported with Big Sur.
+  # /etc/sysctl.conf is no longer supported after Big Sur.
   # To make persistent changes systctl can be issued on boot time using a launch daemon
   launchd.daemons.sysctl.serviceConfig = {
     RunAtLoad = true;

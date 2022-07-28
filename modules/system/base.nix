@@ -1,4 +1,4 @@
-{ lib, username, homeDir, ... }:
+{ pkgs, lib, username, homeDir, ... }:
 
 lib.mkMerge [
   # login window
@@ -18,6 +18,22 @@ lib.mkMerge [
       '';
     }
   )
+
+  # font
+  {
+    fonts = {
+      fontDir.enable = true;
+      fonts = with pkgs; [
+        custom.pragmata-pro-font
+        custom.sarasa-mono-sc-nerd-font
+      ];
+    };
+  }
+
+  # timezone
+  {
+    time.timeZone = "Asia/Shanghai";
+  }
 
   # finder
   {
@@ -57,10 +73,10 @@ lib.mkMerge [
     '';
   }
 
-  # menu bar
-  # auto hide it. It requires relogin after switching this option.
+  # auto hide menu bar
+  # It requires relogin after switching this option.
   {
-    system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+    system.defaults.NSGlobalDomain._HIHideMenuBar = false;
   }
 
   # dock
@@ -86,6 +102,14 @@ lib.mkMerge [
     };
   }
 
+  # disable software auto-update
+  {
+    system.defaults.SoftwareUpdate = {
+      AutomaticallyInstallMacOSUpdates = false;
+    };
+  }
+
+
   # misc
   {
     # disable autocomplete of native UI
@@ -96,5 +120,11 @@ lib.mkMerge [
       NSAutomaticQuoteSubstitutionEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
     };
+
+    # disable Handoff
+    system.activationScripts.extraActivation.text = ''
+      su ${username} -c 'defaults write "${homeDir}/Library/Preferences/ByHost/com.apple.coreservices.useractivityd.plist" ActivityAdvertisingAllowed -bool no'
+      su ${username} -c 'defaults write "${homeDir}/Library/Preferences/ByHost/com.apple.coreservices.useractivityd.plist" ActivityReceivingAllowed -bool no'
+    '';
   }
 ]

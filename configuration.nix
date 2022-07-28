@@ -56,16 +56,8 @@ in
     ./modules/nix-darwin-helper.nix
 
     ./modules/ui
-    ./modules/timezone
-    ./modules/font
-    ./modules/input-device
-    ./modules/perf
-    ./modules/window-manager
-    ./modules/networking
-    ./modules/disable-useless-feature
-    ./modules/software-update
-
     ./modules/gpg
+
     ./modules/password
     ./modules/ssh
 
@@ -76,37 +68,37 @@ in
     ./modules/emacs
     ./modules/direnv
     ./modules/tmux
-    ./modules/texlive
+    #    ./modules/texlive
 
-    ./modules/nix-builder
-    ./modules/local-dev-vm
+    #    ./modules/nix-builder
+    #    ./modules/local-dev-vm
 
-    ./modules/app-necessary
-    ./modules/app-security
-    ./modules/app-terminal
-    ./modules/app-input-method
-    ./modules/app-web-browser
-    ./modules/app-multimedia
-    ./modules/app-screencast
-    ./modules/app-design
-    ./modules/app-communication
-    ./modules/app-doc
-    ./modules/app-storage
-    ./modules/app-free-world
+    #    ./modules/app-necessary
+    #    ./modules/app-security
+    #   ./modules/app-terminal
+    #    ./modules/app-input-method
+    #    ./modules/app-web-browser
+    #    ./modules/app-multimedia
+    #    ./modules/app-screencast
+    #    ./modules/app-design
+    #    ./modules/app-communication
+    #    ./modules/app-doc
+    #    ./modules/app-storage
+    #    ./modules/app-free-world
 
-    ./modules/dev-general
-    ./modules/dev-perf
-    ./modules/dev-font
-    ./modules/dev-web
-    ./modules/dev-network
-    ./modules/dev-database
-    ./modules/dev-deployment
-    ./modules/dev-system-monitor
-    ./modules/lang-elixir
-    ./modules/lang-nodejs
-    ./modules/lang-python
+    #    ./modules/dev-general
+    #    ./modules/dev-perf
+    #    ./modules/dev-font
+    #    ./modules/dev-web
+    #    ./modules/dev-network
+    #    ./modules/dev-database
+    #    ./modules/dev-deployment
+    #    ./modules/dev-system-monitor
+    #    ./modules/lang-elixir
+    #    ./modules/lang-nodejs
+    #    ./modules/lang-python
 
-    ./modules/app-work
+    #    ./modules/app-work
   ] ++ (
     # import private extensions
     if lib.pathExists privateExtensionsListFile then
