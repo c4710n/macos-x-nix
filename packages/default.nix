@@ -21,9 +21,6 @@ in
         thorium-chromium = pkgs.callPackage ./thorium-chromium { };
         macos-librewolf = pkgs.callPackage ./macos-librewolf { };
 
-        vbox-ensure-host-entry = pkgs.callPackage ./vbox-ensure-host-entry { };
-        vbox-ensure-headless-run = pkgs.callPackage ./vbox-ensure-headless-run { };
-
         nodePackages = import ./node-packages {
           inherit pkgs system;
         };
