@@ -193,4 +193,17 @@ lib.mkMerge [
       programs.autojump.enable = true;
     };
   }
+
+  # homebrew related settings
+  {
+    home-manager.users."${username}" = {
+      programs.bash = {
+        profileExtra = ''
+          if [[ -f /opt/homebrew/bin/brew ]]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+          fi
+        '';
+      };
+    };
+  }
 ]
