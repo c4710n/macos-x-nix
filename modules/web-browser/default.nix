@@ -3,7 +3,7 @@
 {
   home-manager.users."${username}" = {
     home.packages = with pkgs; [
-      custom.marmaduke-chromium
+      custom.thorium-chromium
     ];
   };
 }
