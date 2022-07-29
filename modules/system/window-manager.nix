@@ -49,8 +49,8 @@ let
   emacsPackage = config.home-manager.users."${username}".programs.emacs.finalPackage;
   emacsApp = "${emacsPackage}/Applications/Emacs.app";
 
-  chromiumPackage = pkgs.custom.marmaduke-chromium;
-  chromiumApp = "${chromiumPackage}/Applications/Chromium.app";
+  chromiumPackage = pkgs.custom.thorium-chromium;
+  chromiumApp = "${chromiumPackage}/Applications/Thorium.app";
   chromiumArgs = [
     # install extension manually
     "--extension-mime-request-handling"
@@ -59,6 +59,7 @@ let
     "--remove-tabsearch-button"
     "--show-avatar-button=never"
     "--bookmark-bar-ntp=never"
+    "--hide-sidepanel-button"
     # privary
     "--fingerprinting-canvas-image-data-noise"
     "--fingerprinting-canvas-measuretext-noise"
