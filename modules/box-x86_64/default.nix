@@ -40,7 +40,7 @@ lib.mkMerge [
 
       # Step 2 - copy SSH private key.
       system.activationScripts.extraActivation.text = ''
-        echo '${secrets.nixos-vm-ssh-key-private}' > ${sshKeyPath}
+        echo '${secrets.nixos-vm-ssh-key}' > ${sshKeyPath}
         chmod 0600 ${sshKeyPath}
       '';
 
@@ -65,13 +65,14 @@ lib.mkMerge [
         }
       ];
 
-      # Step 4 - create a shortcut for entering this machine
+      # Step 4 - create a shortcut for booting and entering this machine
       #
       # + -o IdentitiesOnly=yes ::
       #   Ignore SSH Agent, only use the key which is set explicitly.
       #   This is useful when there're lots of keys in SSH Agent, which will trigger
       #   the login failure due to exceeding the maximum number of attempts.
       home-manager.users."${username}".programs.bash.shellAliases = {
+        ",boot-box-x86_64" = "open utm://start?name=box-x86_64";
         ",enter-box-x86_64" = "sudo -p 'root password on macOS: ' ssh ${hostName}";
       };
 
