@@ -22,7 +22,7 @@ lib.mkMerge [
 
       programs.bash.initExtra = ''
         # my docker daemon is running in a virtual machine.
-        export DOCKER_HOST="tcp://dev-box:2375"
+        export DOCKER_HOST="tcp://box-x86_64:2375"
       '' + builtins.readFile ./files/docker.sh;
     };
   }
