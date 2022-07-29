@@ -9,7 +9,7 @@ lib.mkMerge [
 
   # virtual machine
   {
-    homebrew.casks = [ "virtualbox" "utm" ];
+    homebrew.casks = [ "utm" ];
   }
 
   # docker
@@ -18,7 +18,6 @@ lib.mkMerge [
       home.packages = with pkgs; [
         docker-client
         docker-compose_2
-        dive
       ];
 
       programs.bash.initExtra = ''

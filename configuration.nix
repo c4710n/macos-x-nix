@@ -71,8 +71,6 @@ in
 
     # ./modules/nix-builder
     # ./modules/local-dev-vm
-
-    # ./modules/dev-deployment
   ] ++ (
     # import private extensions
     if lib.pathExists privateExtensionsListFile then
