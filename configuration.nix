@@ -68,8 +68,6 @@ in
     ./modules/application
 
     ./modules/box-x86_64
-
-    # ./modules/local-dev-vm
   ] ++ (
     # import private extensions
     if lib.pathExists privateExtensionsListFile then
