@@ -1,7 +1,7 @@
-# Just as the name implies, I am running Nix on macOS whose architecture name
-# is `x86_64-darwin`.
+# I am running Nix on M1 macOS.
+#
 # Because the incompatibility of architecture, I can't build software for my
-# `x86_64-linux` server without any effort.
+# `x86_64-linux` machines.
 #
 # The core idea is:
 # 1. run a `x86_64-linux` machine in macOS.
@@ -11,74 +11,22 @@
 #
 #
 # There are multiple ways to setup a machine:
-# + run a docker container via [Docker Desktop](https://www.docker.com/products/docker-desktop)
+# 1. run a docker container via [Docker Desktop](https://www.docker.com/products/docker-desktop)
 #   and [nix-docker](https://github.com/LnL7/nix-docker).
-# + run a virtual machine via type 2 virtualization software, such as VirtualBox.
+# 2. run a virtual machine via type 2 virtualization software.
 #
 # Personally, I don't like Docker, because it's using layed file system, and the
 # used disk space that will not be reclaimed. Eventually, the container will take
 # up a lot of space.
 #
-# So, I choose VirtualBox, and create a virtual machine within it.
-#
-# When I setup a virtual machine, I will create 2 NIC:
-# 1. one for NAT (not NAT Network). The virtual machine accesses Internet
-#    through host with the help of this NIC.
-#
-# 2. one for Host-only Network. The host uses this NIC to communicate with the
-#    virtual machine, mainly for SSH.
-#
-#  > Create a Host Network before creating any NIC of Host Network.
-#  > (The default subnet 192.168.56.1/24 is good)
-#  > Try to click: File > Host Network Manager
-#
+# So, I choose way #2.
 
 { pkgs, lib, secrets, username, ... }:
 
 let
-  hostName = "nix-builder";
+  hostName = "box-x86_64";
 in
 lib.mkMerge [
-  # autostart virtual machine
-  ({
-    launchd.daemons."vbox-ensure-headless-run-${hostName}" =
-      let
-        command = "${pkgs.custom.vbox-ensure-headless-run}/bin/vbox-ensure-headless-run";
-        logFile = "/var/log/vbox-ensure-headless-run.log";
-      in
-      {
-        serviceConfig.RunAtLoad = true;
-        serviceConfig.StartInterval = 60;
-        serviceConfig.ProgramArguments = [
-          "/bin/sh"
-          "-c"
-          "/bin/wait4path ${command} && exec ${command} ${username} ${hostName}"
-        ];
-        serviceConfig.StandardOutPath = logFile;
-        serviceConfig.StandardErrorPath = logFile;
-      };
-  })
-
-  # read IP of virtual machine, and add the entry into /etc/hosts
-  ({
-    launchd.daemons."vbox-ensure-host-entry-${hostName}" =
-      let
-        command = "${pkgs.custom.vbox-ensure-host-entry}/bin/vbox-ensure-host-entry";
-        logFile = "/var/log/vbox-ensure-host-entry.log";
-      in
-      {
-        serviceConfig.RunAtLoad = true;
-        serviceConfig.StartInterval = 10;
-        serviceConfig.ProgramArguments = [
-          "/bin/sh"
-          "-c"
-          "/bin/wait4path ${command} && exec ${command} ${username} ${hostName} 1"
-        ];
-        serviceConfig.StandardOutPath = logFile;
-        serviceConfig.StandardErrorPath = logFile;
-      };
-  })
-
   (
     let
       sshPort = 22;
@@ -112,7 +60,7 @@ lib.mkMerge [
         {
           hostName = hostName;
           system = "x86_64-linux";
-          supportedFeatures = [ "kvm" ]; # required by nixos-generators
+          supportedFeatures = [ "kvm" ];
           maxJobs = 2;
         }
       ];
@@ -124,7 +72,7 @@ lib.mkMerge [
       #   This is useful when there're lots of keys in SSH Agent, which will trigger
       #   the login failure due to exceeding the maximum number of attempts.
       home-manager.users."${username}".programs.bash.shellAliases = {
-        ",enter-nix-builder" = "sudo -p 'root password on macOS: ' ssh ${hostName}";
+        ",enter-box-x86_64" = "sudo -p 'root password on macOS: ' ssh ${hostName}";
       };
 
       # Step 5 - test

@@ -67,9 +67,8 @@ in
 
     ./modules/application
 
-    # ./modules/texlive
+    ./modules/box-x86_64
 
-    # ./modules/nix-builder
     # ./modules/local-dev-vm
   ] ++ (
     # import private extensions
