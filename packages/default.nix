@@ -20,7 +20,6 @@ in
 
         marmaduke-chromium = pkgs.callPackage ./marmaduke-chromium { };
         thorium-chromium = pkgs.callPackage ./thorium-chromium { };
-        macos-librewolf = pkgs.callPackage ./macos-librewolf { };
 
         nodePackages = import ./node-packages {
           inherit pkgs system;
