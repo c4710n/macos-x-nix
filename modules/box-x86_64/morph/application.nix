@@ -53,10 +53,12 @@ lib.mkMerge [
 
   # Redis
   {
-    services.redis.servers.general = {
+    services.redis.servers."" = {
       enable = true;
       bind = "0.0.0.0";
       openFirewall = true;
+      user = "redis";
+      requirePass = "redis";
     };
   }
 
