@@ -62,7 +62,6 @@ in
 
     ./modules/terminal
     ./modules/emacs
-    ./modules/web-browser
 
     ./modules/dev
 
