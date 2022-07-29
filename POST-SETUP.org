@@ -1,0 +1,91 @@
+* Setup for NixOps and NixOps-like tools
+Just as the project name implies, we are running Nix on macOS whose architecture name is =x86_64-darwin=. Because the incompatibility of architecture, I can't build software for my =x86_64-linux= server without any effort.
+
+In order to achieve it, I setup a build machine with [[./modules/nix-builder][nix-builder]] module.
+
+And, I need to clearly state the architecture of remote machine in the configuration of NixOps or NixOps-like tools, such as [[https://github.com/DBCDK/morph][morph]], etc. For example:
+
+#+begin_src nix
+{
+  webserver = { config, pkgs, lib, ... }: {
+    deployment.targetHost = "...";
+    nixpkgs.localSystem.system = "x86_64-linux";
+    # ...
+  };
+}
+#+end_src
+
+Then, use NixOps or NixOps-like tools as normal.
+
+It's done.
+* Manage virtual machines
+As you can see in above action, I am using a build machine.
+
+But, how I create and manage the virtual machines? I still use Nix.
+
+** build VirtualBox images
+#+begin_src sh
+$ cd ./nixos-vm
+
+# build a VirtualBox image for nix-bulider
+$ nixos-generate --format virtualbox --system x86_64-linux -c vm/nix-builder/image.nix
+
+# build a VirtualBox image for my daily development
+$ nixos-generate --format virtualbox --system x86_64-linux -c vm/dev-box/image.nix
+
+# These two commands will generate .ova files.
+#+end_src
+
+** create required host-only network
+
+Suppose that the interface name is =vboxnet0=.
+
+#+begin_src sh
+# list host-only interface
+$ VBoxManage list hostonlyifs
+# empty ...
+
+# create one host-only interface
+$ VBoxManage hostonlyif create
+Name:            vboxnet0
+GUID:            786f6276-656e-4074-8000-0a0027000000
+DHCP:            Disabled
+IPAddress:       192.168.56.1
+NetworkMask:     255.255.255.0
+IPV6Address:
+IPV6NetworkMaskPrefixLength: 0
+HardwareAddress: 0a:00:27:00:00:00
+MediumType:      Ethernet
+Wireless:        No
+Status:          Down
+VBoxNetworkName: HostInterfaceNetworking-vboxnet0
+
+# enable DHCP server for created interface
+$ VBoxManage list dhcpservers
+$ VBoxManage dhcpserver modify --ifname vboxnet0 --enable
+$ VBoxManage list dhcpservers
+#+end_src
+
+** import the VirtualBox images
+Import images to VirtualBox with your prefered way.
+
+I prefer using =VBoxManage=:
+#+begin_src sh
+$ VBoxManage import $OVA_FILE
+#+end_src
+
+** add host-only adapter to virtual machine
+By default the VM has one interface, which is using NAT. In my case, another host-only interface is required.
+
+When building VirtualBox images, I have added this interface into it. But, it seems that there is a bug, I have to refresh the setting again:
+
+#+begin_src sh
+$ VBoxManage list vms
+$ VBoxManage modifyvm $VM_NAME --nic2 hostonly --nictype2 virtio --hostonlyadapter2 vboxnet0
+#+end_src
+
+** start vm
+#+begin_src sh
+$ VBoxManage list vms
+$ VBoxManage startvm $VM_NAME --type headless
+#+end_src
