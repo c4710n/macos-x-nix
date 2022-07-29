@@ -69,9 +69,7 @@ let
     "--enable-features=SetIpv6ProbeFalse"
   ];
   openMainBrowser = "open -a ${chromiumApp} --args ${lib.concatStringsSep " " chromiumArgs}";
-
-  libreWolfApp = "${pkgs.custom.macos-librewolf}/Applications/LibreWolf.app";
-  openAltBrowser = "open -a ${libreWolfApp}";
+  openAltBrowser = "open -a Safari";
 in
 {
   environment.systemPackages = [
